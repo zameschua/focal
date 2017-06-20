@@ -19,7 +19,6 @@ const initApp = (initialState) => {
 	// Every time the state changes, log it and update state stored in chrome.storage
 	// unsubscribe() to stop listening to state updates
 	function handleChange() {
-		console.log(store.getState());
 		chrome.storage.local.set({'TodoListStore': store.getState()}, () => {
 			console.log("todoList state saved");
 		});
@@ -35,8 +34,6 @@ const initApp = (initialState) => {
 };
 
 chrome.storage.local.get("TodoListStore", (items) => {
-	console.log("todoList state gotten");
-	console.log(items["TodoListStore"]);
 	let initialState = items["TodoListStore"];
 
 	initApp(initialState);
