@@ -8,6 +8,8 @@
   },
   "author": "Tyler Shaddix",
   "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
     "react": "^15.5.0",
     "react-chrome-redux": "0.0.7",
     "react-dom": "^15.5.0",

@@ -11549,19 +11549,28 @@ var App = function (_Component) {
   _createClass(App, [{
     key: 'render',
     value: function render() {
+      // Code to render the background image
+      var imageURL = "https://static.pexels.com/photos/296282/pexels-photo-296282.jpeg";
+
+      var backgroundImageStyle = {
+        background: 'url(' + imageURL + ')',
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center center",
+        backgroundAttachment: "fixed",
+        backgroundSize: "cover",
+        height: "100vh"
+      };
+
       return _react2.default.createElement(
         'div',
-        { className: 'App' },
+        { className: 'App container-fluid', style: backgroundImageStyle },
+        ' ',
         _react2.default.createElement(
           'h2',
           null,
           'Welcome to React'
         ),
-        _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(_TodoListApp2.default, null)
-        )
+        _react2.default.createElement('div', null)
       );
     }
   }]);
