@@ -4,35 +4,41 @@ import App from './App';
 import {Store} from 'react-chrome-redux';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
-import reducers from '../../../event/src/reducers/index';
+import reducers from './TodoList/reducers/index';
 
 /**
-	Main dashboard work to be done here.
+	Create a local store to keep track of states of to-do list
+
+	Render the application with the local store as provider
 **/
 
-// create new proxy store
-const proxyStore = new Store({portName: 'Todo-List'});
+// wrapper function to initialize app inside chrome.storage.get callback
+const initApp = (initialState) => {
+	const store = createStore(reducers,initialState);
 
-const proxyStore2 = createStore(reducers,{});
+	// Every time the state changes, log it and update state stored in chrome.storage
+	// unsubscribe() to stop listening to state updates
+	function handleChange() {
+		console.log(store.getState());
+		chrome.storage.local.set({'TodoListStore': store.getState()}, () => {
+			console.log("todoList state saved");
+		});
+	}
 
-console.log("State of proxyStore: ");
-console.log(proxyStore);
-console.log(proxyStore.getState());
-console.log("State of proxyStore2: ");
-console.log(proxyStore2);
-console.log(proxyStore2.getState());
+	let unsubscribe = store.subscribe(handleChange);
 
-// Every time the state changes, log it and update state stored in localStorage
-// unsubscribe() to stop listening to state updates
-function handleChange() {
-	//console.log(proxyStore.getState())
-	//localStorage.setItem("state",JSON.stringify(store.getState()))
-}
+	render(
+	    <Provider store={store}>
+	    	<App />
+	    </Provider>
+	  , document.getElementById('app'));
+};
 
-let unsubscribe = proxyStore.subscribe(handleChange);
+chrome.storage.local.get("TodoListStore", (items) => {
+	console.log("todoList state gotten");
+	console.log(items["TodoListStore"]);
+	let initialState = items["TodoListStore"];
 
-render(
-    <Provider store={proxyStore}>
-    	<App />
-    </Provider>
-  , document.getElementById('app'));
+	initApp(initialState);
+
+});

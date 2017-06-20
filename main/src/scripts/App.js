@@ -23,7 +23,7 @@ class App extends Component {
       <div className="App container-fluid" style={backgroundImageStyle}> {/* Attatch background image */}
         <h2>Welcome to React</h2>
         <div>
-          { /* <TodoListApp/> */ }
+          <TodoListApp/>
         </div>
       </div>
     );

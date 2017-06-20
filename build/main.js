@@ -11382,7 +11382,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactDom = __webpack_require__(193);
 
-var _App = __webpack_require__(115);
+var _App = __webpack_require__(112);
 
 var _App2 = _interopRequireDefault(_App);
 
@@ -11392,119 +11392,50 @@ var _reactRedux = __webpack_require__(36);
 
 var _redux = __webpack_require__(58);
 
-var _index = __webpack_require__(114);
+var _index = __webpack_require__(123);
 
 var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
-	Main dashboard work to be done here.
+	Create a local store to keep track of states of to-do list
+
+	Render the application with the local store as provider
 **/
 
-// create new proxy store
-var proxyStore = new _reactChromeRedux.Store({ portName: 'Todo-List' });
+// wrapper function to initialize app inside chrome.storage.get callback
+var initApp = function initApp(initialState) {
+	var store = (0, _redux.createStore)(_index2.default, initialState);
 
-var proxyStore2 = (0, _redux.createStore)(_index2.default, {});
+	// Every time the state changes, log it and update state stored in chrome.storage
+	// unsubscribe() to stop listening to state updates
+	function handleChange() {
+		console.log(store.getState());
+		chrome.storage.local.set({ 'TodoListStore': store.getState() }, function () {
+			console.log("todoList state saved");
+		});
+	}
 
-console.log("State of proxyStore: ");
-console.log(proxyStore);
-console.log(proxyStore.getState());
-console.log("State of proxyStore2: ");
-console.log(proxyStore2);
-console.log(proxyStore2.getState());
+	var unsubscribe = store.subscribe(handleChange);
 
-// Every time the state changes, log it and update state stored in localStorage
-// unsubscribe() to stop listening to state updates
-function handleChange() {
-  //console.log(proxyStore.getState())
-  //localStorage.setItem("state",JSON.stringify(store.getState()))
-}
+	(0, _reactDom.render)(_react2.default.createElement(
+		_reactRedux.Provider,
+		{ store: store },
+		_react2.default.createElement(_App2.default, null)
+	), document.getElementById('app'));
+};
 
-var unsubscribe = proxyStore.subscribe(handleChange);
+chrome.storage.local.get("TodoListStore", function (items) {
+	console.log("todoList state gotten");
+	console.log(items["TodoListStore"]);
+	var initialState = items["TodoListStore"];
 
-(0, _reactDom.render)(_react2.default.createElement(
-  _reactRedux.Provider,
-  { store: proxyStore },
-  _react2.default.createElement(_App2.default, null)
-), document.getElementById('app'));
+	initApp(initialState);
+});
 
 /***/ }),
 /* 112 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
-  Handles the state of to-do items
-**/
-const todos = (state = [], action) => {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return [
-        ...state,
-        {
-          id: action.id,
-          text: action.text,
-          completed: false
-        }
-      ]
-    case 'TOGGLE_TODO':
-      return state.map(todo =>
-        (todo.id === action.id) 
-          ? {id: todo.id, text: todo.text, completed: !todo.completed} // toggle todo as opposite of its current state
-          : todo
-      )
-    case 'DELETE_TODO':
-      return state.filter(todo =>
-        (todo.id !== action.id)
-      )
-    default:
-      return state
-  }
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (todos);
-
-/***/ }),
-/* 113 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
-	Used to toggle the state of a to-do as visible or invisible
-**/
-const visibilityFilter = (state = 'SHOW_ALL', action) => {
-  switch (action.type) {
-    case 'SET_VISIBILITY_FILTER':
-      return action.filter
-    default:
-      return state
-  }
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (visibilityFilter);
-
-/***/ }),
-/* 114 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__TodoListReducers_todos__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TodoListReducers_visibilityFilter__ = __webpack_require__(113);
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["combineReducers"])({
-  todos: __WEBPACK_IMPORTED_MODULE_1__TodoListReducers_todos__["a" /* default */],
-  visibilityFilter: __WEBPACK_IMPORTED_MODULE_2__TodoListReducers_visibilityFilter__["a" /* default */]
-}));
-
-
-/***/ }),
-/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11520,7 +11451,7 @@ var _react = __webpack_require__(12);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _TodoListApp = __webpack_require__(120);
+var _TodoListApp = __webpack_require__(117);
 
 var _TodoListApp2 = _interopRequireDefault(_TodoListApp);
 
@@ -11570,7 +11501,11 @@ var App = function (_Component) {
           null,
           'Welcome to React'
         ),
-        _react2.default.createElement('div', null)
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(_TodoListApp2.default, null)
+        )
       );
     }
   }]);
@@ -11581,7 +11516,7 @@ var App = function (_Component) {
 exports.default = App;
 
 /***/ }),
-/* 116 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11595,7 +11530,7 @@ var _react = __webpack_require__(12);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _FilterLink = __webpack_require__(122);
+var _FilterLink = __webpack_require__(119);
 
 var _FilterLink2 = _interopRequireDefault(_FilterLink);
 
@@ -11630,7 +11565,7 @@ var Footer = function Footer() {
 exports.default = Footer;
 
 /***/ }),
-/* 117 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11686,7 +11621,7 @@ Link.propTypes = {
 exports.default = Link;
 
 /***/ }),
-/* 118 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11754,7 +11689,7 @@ Todo.propTypes = {
 exports.default = Todo;
 
 /***/ }),
-/* 119 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11774,7 +11709,7 @@ var _propTypes = __webpack_require__(21);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Todo = __webpack_require__(118);
+var _Todo = __webpack_require__(115);
 
 var _Todo2 = _interopRequireDefault(_Todo);
 
@@ -11822,7 +11757,7 @@ TodoList.propTypes = {
 exports.default = TodoList;
 
 /***/ }),
-/* 120 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11836,15 +11771,15 @@ var _react = __webpack_require__(12);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Footer = __webpack_require__(116);
+var _Footer = __webpack_require__(113);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
-var _AddTodo = __webpack_require__(121);
+var _AddTodo = __webpack_require__(118);
 
 var _AddTodo2 = _interopRequireDefault(_AddTodo);
 
-var _VisibleTodoList = __webpack_require__(123);
+var _VisibleTodoList = __webpack_require__(120);
 
 var _VisibleTodoList2 = _interopRequireDefault(_VisibleTodoList);
 
@@ -11863,7 +11798,7 @@ var TodoListApp = function TodoListApp() {
 exports.default = TodoListApp;
 
 /***/ }),
-/* 121 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11921,7 +11856,7 @@ AddTodo = (0, _reactRedux.connect)()(AddTodo);
 exports.default = AddTodo;
 
 /***/ }),
-/* 122 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11935,7 +11870,7 @@ var _reactRedux = __webpack_require__(36);
 
 var _actions = __webpack_require__(38);
 
-var _Link = __webpack_require__(117);
+var _Link = __webpack_require__(114);
 
 var _Link2 = _interopRequireDefault(_Link);
 
@@ -11960,7 +11895,7 @@ var FilterLink = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_
 exports.default = FilterLink;
 
 /***/ }),
-/* 123 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11974,7 +11909,7 @@ var _reactRedux = __webpack_require__(36);
 
 var _actions = __webpack_require__(38);
 
-var _TodoList = __webpack_require__(119);
+var _TodoList = __webpack_require__(116);
 
 var _TodoList2 = _interopRequireDefault(_TodoList);
 
@@ -12023,6 +11958,104 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 var VisibleTodoList = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_TodoList2.default);
 
 exports.default = VisibleTodoList;
+
+/***/ }),
+/* 121 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+/**
+  Handles the state of to-do items
+**/
+var todos = function todos() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments[1];
+
+  switch (action.type) {
+    case 'ADD_TODO':
+      return [].concat(_toConsumableArray(state), [{
+        id: action.id,
+        text: action.text,
+        completed: false
+      }]);
+    case 'TOGGLE_TODO':
+      return state.map(function (todo) {
+        return todo.id === action.id ? { id: todo.id, text: todo.text, completed: !todo.completed // toggle todo as opposite of its current state
+        } : todo;
+      });
+    case 'DELETE_TODO':
+      return state.filter(function (todo) {
+        return todo.id !== action.id;
+      });
+    default:
+      return state;
+  }
+};
+
+exports.default = todos;
+
+/***/ }),
+/* 122 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/**
+	Used to toggle the state of a to-do as visible or invisible
+**/
+var visibilityFilter = function visibilityFilter() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'SHOW_ALL';
+  var action = arguments[1];
+
+  switch (action.type) {
+    case 'SET_VISIBILITY_FILTER':
+      return action.filter;
+    default:
+      return state;
+  }
+};
+
+exports.default = visibilityFilter;
+
+/***/ }),
+/* 123 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _redux = __webpack_require__(58);
+
+var _todos = __webpack_require__(121);
+
+var _todos2 = _interopRequireDefault(_todos);
+
+var _visibilityFilter = __webpack_require__(122);
+
+var _visibilityFilter2 = _interopRequireDefault(_visibilityFilter);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = (0, _redux.combineReducers)({
+  todos: _todos2.default,
+  visibilityFilter: _visibilityFilter2.default
+});
 
 /***/ }),
 /* 124 */
