@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-//import './App.css';
-//import Visuals from './visuals/Visuals';
-//import Scheduler from './scheduler/Scheduler';
-//import FileDownloader from './fileDownloader/FileDownloader';
 import TodoListApp from './TodoList/components/TodoListApp';
-import TemplatePanelComponent from './TemplatePanel/components/TemplatePanelComponent' // Temporary component
+import TemplatePanelComponent from './TemplatePanel/components/TemplatePanelComponent'; // Temporary component
+import VisualMain from './Visual/components/VisualMain';
 
 class App extends Component {
   render() {
@@ -49,7 +46,7 @@ class App extends Component {
             <TemplatePanelComponent />
           </div>
           <div className="row" style={{height:"50%"}}>
-            <TemplatePanelComponent />
+            <VisualMain />
           </div>
         </div>
         {/* End Right Column */}

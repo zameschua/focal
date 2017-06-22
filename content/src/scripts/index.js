@@ -1,23 +1,44 @@
-import React from 'react';
-import {render} from 'react-dom';
-import {Provider} from 'react-redux';
-import {Store} from 'react-chrome-redux';
+// http://www.kirupa.com/html5/detecting_if_the_user_is_idle_or_inactive.htm
 
-import App from './components/app/App';
+// Background events for visuals
+// Used to keep track of user's time spent on different sites
 
-/**
-	Chrome content-script functions go here
-**/
+var timeoutID;
 
-const proxyStore = new Store({portName: 'main'}); // communication port name
+function setup() {
+  // any action by the mouse will reset the timer
+  document.onmousemove = resetTimer;
+  document.onmousedown = resetTimer;
+  document.onkeypress = resetTimer;
+  document.onscroll = resetTimer;
+  document.ontouchmove = resetTimer;
+  document.onpointermove = resetTimer;
 
-const anchor = document.createElement('div');
-anchor.id = 'rcr-anchor';
+  startTimer();
+}
 
-document.body.insertBefore(anchor, document.body.childNodes[0]);
+setup();
 
-render(
-  <Provider store={proxyStore}>
-    <App/>
-  </Provider>
-  , document.getElementById('rcr-anchor'));
+function startTimer() {
+  // send goInactive callback after 5 seconds
+  timeoutID = window.setTimeout(goInactive, 5000);
+}
+
+function resetTimer(e) {
+  // restart the timer and send goActive callback
+  window.clearTimeout(timeoutID);
+  goActive();
+}
+
+function goInactive() {
+  // sends a runtime message to all event listeners in the chrome extension
+  // used to send message to visuals backend
+  chrome.runtime.sendMessage({ userActive: false });
+}
+
+function goActive() {
+  // sends a runtime message to all event listeners in the chrome extension
+  // used to send message to visuals backend
+  chrome.runtime.sendMessage({ userActive: true });
+  startTimer();
+}
