@@ -20,6 +20,7 @@ const TodoList = ({ todos, onTodoClick, onTodoDelete }) => {
       ))}
     </ul>)
   } else {
+  // If there are no todos to display
     return null;
   }
 }
@@ -31,12 +32,12 @@ const TodoList = ({ todos, onTodoClick, onTodoDelete }) => {
 TodoList.propTypes = {
   todos: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
-      completed: PropTypes.bool,
-      text: PropTypes.string
+      id: PropTypes.number.isRequired,
+      completed: PropTypes.bool.isRequired,
+      text: PropTypes.string.isRequired
     })
   ),
-  onTodoClick: PropTypes.func
+  onTodoClick: PropTypes.func.isRequired
 }
 
 export default TodoList

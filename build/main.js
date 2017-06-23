@@ -11819,6 +11819,7 @@ var TodoList = function TodoList(_ref) {
       })
     );
   } else {
+    // If there are no todos to display
     return null;
   }
 };
@@ -11829,11 +11830,11 @@ var TodoList = function TodoList(_ref) {
 **/
 TodoList.propTypes = {
   todos: _propTypes2.default.arrayOf(_propTypes2.default.shape({
-    id: _propTypes2.default.number,
-    completed: _propTypes2.default.bool,
-    text: _propTypes2.default.string
+    id: _propTypes2.default.number.isRequired,
+    completed: _propTypes2.default.bool.isRequired,
+    text: _propTypes2.default.string.isRequired
   })),
-  onTodoClick: _propTypes2.default.func
+  onTodoClick: _propTypes2.default.func.isRequired
 };
 
 exports.default = TodoList;
