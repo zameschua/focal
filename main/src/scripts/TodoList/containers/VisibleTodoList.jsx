@@ -20,12 +20,20 @@ const getVisibleTodos = (todos, filter) => {
 }
 
 const mapStateToProps = state => {
-  return {
-    todos: getVisibleTodos(state.todos, state.visibilityFilter)
+  // Store is ready
+  if (state.todoList) {
+    return {
+      todos: getVisibleTodos(state.todoList.todos, state.todoList.visibilityFilter)
+    }
+  // Store is still initialising
+  } else {
+    return {
+      todos: []
+    }
   }
 }
 
-// upon click, dispatch "toggleTodo" action to store
+// Upon click, dispatch "toggleTodo" action to store
 const mapDispatchToProps = dispatch => {
   return {
     onTodoClick: id => {
@@ -42,4 +50,4 @@ const VisibleTodoList = connect(
   mapDispatchToProps
 )(TodoList)
 
-export default VisibleTodoList
+export default VisibleTodoList;

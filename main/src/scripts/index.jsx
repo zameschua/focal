@@ -8,7 +8,6 @@ import {createStore} from 'redux';
 // wrapper function to initialize app inside chrome.storage.get callback
 const initApp = (initialState) => {
 	const proxyStore = new Store({portName: 'MAIN_STORE'});
-	console.log(proxyStore);
 
 	// Every time the state changes, log it and update state stored in chrome.storage
 	// unsubscribe() to stop listening to state updates

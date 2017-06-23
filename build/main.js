@@ -11397,7 +11397,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // wrapper function to initialize app inside chrome.storage.get callback
 var initApp = function initApp(initialState) {
 	var proxyStore = new _reactChromeRedux.Store({ portName: 'MAIN_STORE' });
-	console.log(proxyStore);
 
 	// Every time the state changes, log it and update state stored in chrome.storage
 	// unsubscribe() to stop listening to state updates
@@ -12012,12 +12011,20 @@ var getVisibleTodos = function getVisibleTodos(todos, filter) {
 };
 
 var mapStateToProps = function mapStateToProps(state) {
-  return {
-    todos: getVisibleTodos(state.todos, state.visibilityFilter)
-  };
+  // Store is ready
+  if (state.todoList) {
+    return {
+      todos: getVisibleTodos(state.todoList.todos, state.todoList.visibilityFilter)
+      // Store is still initialising
+    };
+  } else {
+    return {
+      todos: []
+    };
+  }
 };
 
-// upon click, dispatch "toggleTodo" action to store
+// Upon click, dispatch "toggleTodo" action to store
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     onTodoClick: function onTodoClick(id) {

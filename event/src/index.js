@@ -1,10 +1,12 @@
 import {createStore} from 'redux';
-import rootReducer from './reducers';
-
 import {wrapStore} from 'react-chrome-redux';
 
+import rootReducer from './reducers';
+
+// Create Redux store
 const store = createStore(rootReducer, {});
 
+// Wrap it in proxy so that front end is able to retrieve it (react-chrome-redux package)
 wrapStore(store, {
   portName: 'MAIN_STORE'
 });

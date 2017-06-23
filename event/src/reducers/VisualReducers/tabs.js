@@ -9,8 +9,8 @@ const tabs = (state = [], action) => {
         }
       ]
     default:
-      return state
+      return state;
   }
 }
 
-export default tabs
+export default tabs;
