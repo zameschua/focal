@@ -14,28 +14,36 @@ const getTextId = text => {
 export const addTodo = text => {
   return {
     type: 'ADD_TODO',
-    id: getTextId(text),
-    text
+    payload: {
+      text,
+      id: getTextId(text)
+    }
   }
 }
 
 export const deleteTodo = id => {
   return {
     type: 'DELETE_TODO',
-    id
+    payload: {
+      id
+    }
   }
 }
 
 export const setVisibilityFilter = filter => {
   return {
     type: 'SET_VISIBILITY_FILTER',
-    filter
+    payload: {
+      filter
+    }
   }
 }
 
 export const toggleTodo = id => {
   return {
     type: 'TOGGLE_TODO',
-    id
+    payload: {
+      id
+    }
   }
 }

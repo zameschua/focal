@@ -1395,8 +1395,8 @@ var todos = function todos() {
   switch (action.type) {
     case 'ADD_TODO':
       return [].concat(_toConsumableArray(state), [{
-        id: action.id,
-        text: action.text,
+        id: action.payload.id,
+        text: action.payload.text,
         completed: false
       }]);
     case 'TOGGLE_TODO':
@@ -1406,7 +1406,7 @@ var todos = function todos() {
       });
     case 'DELETE_TODO':
       return state.filter(function (todo) {
-        return todo.id !== action.id;
+        return todo.id !== action.payload.id;
       });
     default:
       return state;
@@ -1434,7 +1434,7 @@ var visibilityFilter = function visibilityFilter() {
 
   switch (action.type) {
     case 'SET_VISIBILITY_FILTER':
-      return action.filter;
+      return action.payload.filter;
     default:
       return state;
   }
@@ -1462,8 +1462,8 @@ var tabs = function tabs() {
   switch (action.type) {
     case 'ADD_URL':
       return [].concat(_toConsumableArray(state), [{
-        id: action.id,
-        url: action.url
+        id: action.payload.id,
+        url: action.payload.url
       }]);
     default:
       return state;

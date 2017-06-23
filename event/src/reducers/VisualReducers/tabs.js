@@ -4,8 +4,8 @@ const tabs = (state = [], action) => {
       return [
         ...state,
         {
-          id: action.id,
-          url: action.url
+          id: action.payload.id,
+          url: action.payload.url
         }
       ]
     default:

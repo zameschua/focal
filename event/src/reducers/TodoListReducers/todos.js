@@ -7,8 +7,8 @@ const todos = (state = [], action) => {
       return [
         ...state,
         {
-          id: action.id,
-          text: action.text,
+          id: action.payload.id,
+          text: action.payload.text,
           completed: false
         }
       ]
@@ -20,7 +20,7 @@ const todos = (state = [], action) => {
       )
     case 'DELETE_TODO':
       return state.filter(todo =>
-        (todo.id !== action.id)
+        (todo.id !== action.payload.id)
       )
     default:
       return state

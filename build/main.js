@@ -4877,29 +4877,37 @@ var getTextId = function getTextId(text) {
 var addTodo = exports.addTodo = function addTodo(text) {
   return {
     type: 'ADD_TODO',
-    id: getTextId(text),
-    text: text
+    payload: {
+      text: text,
+      id: getTextId(text)
+    }
   };
 };
 
 var deleteTodo = exports.deleteTodo = function deleteTodo(id) {
   return {
     type: 'DELETE_TODO',
-    id: id
+    payload: {
+      id: id
+    }
   };
 };
 
 var setVisibilityFilter = exports.setVisibilityFilter = function setVisibilityFilter(filter) {
   return {
     type: 'SET_VISIBILITY_FILTER',
-    filter: filter
+    payload: {
+      filter: filter
+    }
   };
 };
 
 var toggleTodo = exports.toggleTodo = function toggleTodo(id) {
   return {
     type: 'TOGGLE_TODO',
-    id: id
+    payload: {
+      id: id
+    }
   };
 };
 
