@@ -11304,7 +11304,7 @@ var _reactRedux = __webpack_require__(99);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var proxyStore = new _reactChromeRedux.Store({
-  portName: 'Todo-list'
+  portName: 'MAIN_STORE'
 });
 
 (0, _reactDom.render)(_react2.default.createElement(

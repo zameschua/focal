@@ -1,3 +1,14 @@
+import {createStore} from 'redux';
+import rootReducer from './reducers';
+
+import {wrapStore} from 'react-chrome-redux';
+
+const store = createStore(rootReducer, {});
+
+wrapStore(store, {
+  portName: 'MAIN_STORE'
+});
+
 /*************************************** BACKGROUND CODE GOES HERE *********************************************/
 
 /**** START OF BACKGROUND CODE FOR VISUALS ****/

@@ -12,13 +12,17 @@ import Todo from './Todo'
   *Note*: ... is a spread attribute
           {...todo} = id={todo.id} completed={todo.completed} text={todo.text}
 **/
-const TodoList = ({ todos, onTodoClick, onTodoDelete }) => (
-  <ul>
-    {todos.map(todo => (
-      <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} onDelete={() => onTodoDelete(todo.id)} />
-    ))}
-  </ul>
-)
+const TodoList = ({ todos, onTodoClick, onTodoDelete }) => {
+  if (todos) {
+    return (<ul>
+      {todos.map(todo => (
+        <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} onDelete={() => onTodoDelete(todo.id)} />
+      ))}
+    </ul>)
+  } else {
+    return null;
+  }
+}
 
 /**
   Used to validate the obj-type for the props passed in.
@@ -27,12 +31,12 @@ const TodoList = ({ todos, onTodoClick, onTodoDelete }) => (
 TodoList.propTypes = {
   todos: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      completed: PropTypes.bool.isRequired,
-      text: PropTypes.string.isRequired
-    }).isRequired
-  ).isRequired,
-  onTodoClick: PropTypes.func.isRequired
+      id: PropTypes.number,
+      completed: PropTypes.bool,
+      text: PropTypes.string
+    })
+  ),
+  onTodoClick: PropTypes.func
 }
 
 export default TodoList
