@@ -27521,7 +27521,8 @@ var App = function (_Component) {
         backgroundPosition: "center center",
         backgroundAttachment: "fixed",
         backgroundSize: "cover",
-        height: "100vh"
+        height: "100vh",
+        overflow: "hidden"
       };
 
       return _react2.default.createElement(
@@ -27530,49 +27531,81 @@ var App = function (_Component) {
         ' ',
         _react2.default.createElement(
           'div',
-          { className: 'container col-md-3', style: { height: "100%" } },
+          { className: 'row h-100' },
           _react2.default.createElement(
             'div',
-            { className: 'row', style: { height: "50%" } },
-            _react2.default.createElement(_TemplatePanelComponent2.default, null)
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'row', style: { height: "50%" } },
-            _react2.default.createElement(_TemplatePanelComponent2.default, null)
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'col-md-6 container' },
-          _react2.default.createElement(
-            'div',
-            { className: 'text-center' },
+            { className: 'col-3' },
             _react2.default.createElement(
-              'h2',
-              { style: { color: "white" } },
-              'HI CHEN KUANG'
-            ),
-            _react2.default.createElement(
-              'h1',
-              { style: { color: "white" } },
-              '10 : 37'
+              'div',
+              { className: 'container', style: { paddingTop: "5%" } },
+              _react2.default.createElement(
+                'div',
+                { className: 'row' },
+                _react2.default.createElement(_TemplatePanelComponent2.default, null)
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'row' },
+                _react2.default.createElement(_TemplatePanelComponent2.default, null)
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'row' },
+                _react2.default.createElement(_TemplatePanelComponent2.default, null)
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'row' },
+                _react2.default.createElement(_TemplatePanelComponent2.default, null)
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'row' },
+                _react2.default.createElement(_TemplatePanelComponent2.default, null)
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'row' },
+                _react2.default.createElement(_TemplatePanelComponent2.default, null)
+              )
             )
           ),
-          _react2.default.createElement(_TodoListApp2.default, null)
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'container col-md-3', style: { height: "100%" } },
           _react2.default.createElement(
             'div',
-            { className: 'row', style: { height: "50%" } },
-            _react2.default.createElement(_TemplatePanelComponent2.default, null)
+            { className: 'col-6 align-self-center' },
+            _react2.default.createElement(
+              'div',
+              { className: 'text-center' },
+              _react2.default.createElement(
+                'h2',
+                { style: { color: "white" } },
+                'HI CHEN KUANG'
+              ),
+              _react2.default.createElement(
+                'h1',
+                { style: { color: "white" } },
+                '10 : 37'
+              )
+            ),
+            _react2.default.createElement(_TodoListApp2.default, null)
           ),
           _react2.default.createElement(
             'div',
-            { className: 'row', style: { height: "50%" } },
-            _react2.default.createElement(_TimeTrackerMain2.default, null)
+            { className: 'col-3' },
+            _react2.default.createElement(
+              'div',
+              { className: 'container', style: { paddingTop: "5%" } },
+              _react2.default.createElement(
+                'div',
+                { className: 'row' },
+                _react2.default.createElement(_TemplatePanelComponent2.default, null)
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'row' },
+                _react2.default.createElement(_TimeTrackerMain2.default, null)
+              )
+            )
           )
         )
       );
@@ -27592,7 +27625,7 @@ exports.default = App;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 
 var _react = __webpack_require__(8);
@@ -27602,24 +27635,29 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var TemplatePanelComponent = function TemplatePanelComponent() {
-  return _react2.default.createElement(
-    "div",
-    { className: "panel panel-danger" },
-    _react2.default.createElement(
-      "div",
-      { className: "panel-heading" },
-      _react2.default.createElement(
-        "h3",
-        { className: "panel-title" },
-        "Panel danger"
-      )
-    ),
-    _react2.default.createElement(
-      "div",
-      { className: "panel-body" },
-      "Panel content"
-    )
-  );
+	return _react2.default.createElement(
+		"div",
+		{ className: "mdc-card", style: { paddingBottom: "5%" } },
+		_react2.default.createElement(
+			"section",
+			{ className: "mdc-card__primary", style: { backgroundColor: "white" } },
+			_react2.default.createElement(
+				"h1",
+				{ className: "mdc-card__title mdc-card__title--large" },
+				"Title goes here"
+			),
+			_react2.default.createElement(
+				"h2",
+				{ className: "mdc-card__subtitle" },
+				"Subtitle here"
+			)
+		),
+		_react2.default.createElement(
+			"section",
+			{ className: "mdc-card__supporting-text", style: { backgroundColor: "white" } },
+			"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+		)
+	);
 };
 
 exports.default = TemplatePanelComponent;
@@ -27648,19 +27686,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var TimeTrackerMain = function TimeTrackerMain() {
   return _react2.default.createElement(
     "div",
-    { className: "panel panel-danger" },
+    { className: "mdc-card" },
     _react2.default.createElement(
-      "div",
-      { className: "panel-heading" },
+      "section",
+      { className: "mdc-card__primary", style: { backgroundColor: "white" } },
       _react2.default.createElement(
-        "h3",
-        { className: "panel-title" },
-        "Time tracker"
+        "h1",
+        { className: "mdc-card__title mdc-card__title--large" },
+        "Time Tracker"
       )
     ),
     _react2.default.createElement(
-      "div",
-      { className: "panel-body" },
+      "section",
+      { className: "mdc-card__supporting-text", style: { backgroundColor: "white" } },
       _react2.default.createElement(_ShowURL2.default, null)
     )
   );

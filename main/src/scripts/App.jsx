@@ -15,41 +15,61 @@ class App extends Component {
       backgroundAttachment: "fixed",
       backgroundSize: "cover",
       height: "100vh",
+      overflow: "hidden"
     };
 
     return (
       <div className="App container-fluid" style={backgroundImageStyle}> {/* Attatch background image */}
-        {/* Start Left Column */}
-        <div className="container col-md-3" style={{height:"100%"}}>
-          <div className="row" style={{height:"50%"}}>
-            <TemplatePanelComponent />
+        <div className="row h-100">
+          
+          <div className="col-3">
+            <div className="container" style={{paddingTop: "5%"}}>
+              <div className="row">
+                <TemplatePanelComponent />
+              </div>
+              <div className="row">
+                <TemplatePanelComponent />
+              </div>
+              <div className="row">
+                <TemplatePanelComponent />
+              </div>
+              <div className="row">
+                <TemplatePanelComponent />
+              </div>
+              <div className="row">
+                <TemplatePanelComponent />
+              </div>
+              <div className="row">
+                <TemplatePanelComponent />
+              </div>
+            </div>
           </div>
-          <div className="row" style={{height:"50%"}}>
-            <TemplatePanelComponent />
-          </div>
-        </div>
-        {/* End Left Column */}
 
-        {/* Start Middle Column */}
-        <div className="col-md-6 container">
-          <div className="text-center">
-            <h2 style={{color:"white"}}>HI CHEN KUANG</h2>
-            <h1 style={{color:"white"}}>10 : 37</h1>
-          </div>
-          <TodoListApp/>
-        </div>
-        {/* End Middle Column */}
 
-        {/* Start Right Column */}
-        <div className="container col-md-3" style={{height:"100%"}}>
-          <div className="row" style={{height:"50%"}}>
-            <TemplatePanelComponent />
+
+          <div className="col-6 align-self-center">
+            <div className="text-center">
+              <h2 style={{color:"white"}}>HI CHEN KUANG</h2>
+              <h1 style={{color:"white"}}>10 : 37</h1>
+            </div>
+            <TodoListApp/>
           </div>
-          <div className="row" style={{height:"50%"}}>
-            <TimeTrackerMain />
+
+
+
+          <div className="col-3">
+            <div className="container" style={{paddingTop: "5%"}}>
+              <div className="row">
+                <TemplatePanelComponent />
+              </div>
+              <div className="row">
+                <TimeTrackerMain />
+              </div>
+            </div>
           </div>
+
+
         </div>
-        {/* End Right Column */}
       </div>
     );
   }
