@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TodoListApp from './TodoList/components/TodoListApp';
 import TemplatePanelComponent from './TemplatePanel/components/TemplatePanelComponent'; // Temporary component
-import VisualMain from './Visual/components/VisualMain';
+import TimeTrackerMain from './TimeTracker/components/TimeTrackerMain';
 
 class App extends Component {
   render() {
@@ -46,7 +46,7 @@ class App extends Component {
             <TemplatePanelComponent />
           </div>
           <div className="row" style={{height:"50%"}}>
-            <VisualMain />
+            <TimeTrackerMain />
           </div>
         </div>
         {/* End Right Column */}

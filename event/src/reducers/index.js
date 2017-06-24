@@ -1,18 +1,20 @@
-import tabs from './VisualReducers/tabs'
 import todoListReducer from './TodoListReducers/todoListReducer';
+import TimeTrackerReducer from './TimeTrackerReducers/TimeTrackerReducer';
 
 const INITIAL_STATE = {
 	todoList: {
 	  todos: [],
 	  visibilityFilter: "SHOW_ALL"
 	},
-	visualisation: []
+	TimeTracker: {
+		URL:[]
+	}
 }
 
 export default function rootReducer(state = INITIAL_STATE, action) {
   return {
     todoList : todoListReducer(state.todoList, action),
-    visualisation : tabs(state.visualisation, action)
+    TimeTracker : TimeTrackerReducer(state.TimeTracker, action)
   };
 }
 
@@ -29,7 +31,8 @@ store = {
 	  ],
 	  visibilityFilter: STRING
 	}
-	visualisation: {
+	TimeTracker: {
+		URL: []
 	}
 }
 */
