@@ -9,10 +9,12 @@
   "author": "Tyler Shaddix",
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "chart.js": "^2.6.0",
     "jquery": "^3.2.1",
-    "react": "^15.5.0",
+    "react": "^15.6.1",
+    "react-chartjs-2": "^2.1.0",
     "react-chrome-redux": "0.0.7",
-    "react-dom": "^15.5.0",
+    "react-dom": "^15.6.1",
     "react-redux": "^4.0.0",
     "redux": "^3.0.4"
   },
