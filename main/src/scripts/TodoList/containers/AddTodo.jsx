@@ -6,7 +6,7 @@ let AddTodo = ({ dispatch }) => {
   let input
 
   return (
-    <div className="form-group">
+    <div className="mdc-textfield">
       <form
         onSubmit={e => {
           e.preventDefault()
@@ -17,12 +17,12 @@ let AddTodo = ({ dispatch }) => {
           input.value = ''
         }}
       >
-        <input className="form-control" 
+        <input className="mdc-textfield__input" 
           ref={node => {
             input = node
           }}
         />
-        <button type="submit">
+        <button className="mdc-button mdc-button--raised bg-faded" type="submit">
           Add Todo
         </button>
       </form>

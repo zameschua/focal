@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import TodoListApp from './TodoList/components/TodoListApp';
 import TemplatePanelComponent from './TemplatePanel/components/TemplatePanelComponent'; // Temporary component
 import TimeTrackerMain from './TimeTracker/components/TimeTrackerMain';
+import WelcomeCard from './WelcomeCard/containers/WelcomeCard';
 
 class App extends Component {
   render() {
     // Code to render the background image
-    const imageURL = "https://s-media-cache-ak0.pinimg.com/originals/e7/e7/fe/e7e7fe1d5a22f73a73a8d5a9b729b568.jpg";
+    // TODO: Cache the image
+    // Add /daily to end of url so that the image is only queried once a day
+    // Refer to https://source.unsplash.com/
+    const imageURL = "https://source.unsplash.com/collection/488784/1600x900";
 
     const backgroundImageStyle = {
       background: `url(${imageURL})`,
@@ -49,8 +53,7 @@ class App extends Component {
 
           <div className="col-6 align-self-center">
             <div className="text-center">
-              <h2 style={{color:"white"}}>HI CHEN KUANG</h2>
-              <h1 style={{color:"white"}}>10 : 37</h1>
+              <WelcomeCard />
             </div>
             <TodoListApp/>
           </div>
