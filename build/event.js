@@ -1217,7 +1217,7 @@ var getURL = function getURL(url) {
 
   // when data in store is not empty, loop through every tab detail and find
   // the one whose title is the same as current tab's title
-  data.TimeTracker.URL.forEach(function (value, Index) {
+  data.timeTracker.URL.forEach(function (value, Index) {
     if (value.title === hostname) {
       index = Index;
       found = true;
@@ -1227,7 +1227,7 @@ var getURL = function getURL(url) {
   // on finding a matching tab detail in the store, we retrieve the details of it
   // and set to currentTabInfo
   if (found) {
-    var retrieved = data.TimeTracker.URL[index];
+    var retrieved = data.timeTracker.URL[index];
     currentTabInfo.id = retrieved.id;
     currentTabInfo.title = retrieved.title;
     currentTabInfo.time = retrieved.time;
@@ -1358,38 +1358,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _URLReducer = __webpack_require__(26);
-
-var _URLReducer2 = _interopRequireDefault(_URLReducer);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var INITIAL_STATE = {
-  URL: []
-
-  // Combine reducers for todoList
-};function TimeTrackerReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
-  var action = arguments[1];
-
-  return {
-    URL: (0, _URLReducer2.default)(state.URL, action)
-  };
-}
-
-exports.default = TimeTrackerReducer;
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var URLReducer = function URLReducer() {
@@ -1408,6 +1376,7 @@ var URLReducer = function URLReducer() {
         return url.title === action.payload.title ? { id: url.id, title: url.title, time: url.time + 1 } : url;
       });
     case 'CLEAR_ALL_TAB_INFO':
+      console.log("HIGT");
       return [];
     default:
       return state;
@@ -1415,6 +1384,38 @@ var URLReducer = function URLReducer() {
 };
 
 exports.default = URLReducer;
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _URLReducer = __webpack_require__(25);
+
+var _URLReducer2 = _interopRequireDefault(_URLReducer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var INITIAL_STATE = {
+  URL: []
+
+  // Combine reducers for todoList
+};function timeTrackerReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
+  var action = arguments[1];
+
+  return {
+    URL: (0, _URLReducer2.default)(state.URL, action)
+  };
+}
+
+exports.default = timeTrackerReducer;
 
 /***/ }),
 /* 27 */
@@ -1483,7 +1484,7 @@ var todos = function todos() {
       }]);
     case 'TOGGLE_TODO':
       return state.map(function (todo) {
-        return todo.id === action.id ? { id: todo.id, text: todo.text, completed: !todo.completed // toggle todo as opposite of its current state
+        return todo.id === action.payload.id ? { id: todo.id, text: todo.text, completed: !todo.completed // toggle todo as opposite of its current state
         } : todo;
       });
     case 'DELETE_TODO':
@@ -1540,9 +1541,9 @@ var _todoListReducer = __webpack_require__(27);
 
 var _todoListReducer2 = _interopRequireDefault(_todoListReducer);
 
-var _TimeTrackerReducer = __webpack_require__(25);
+var _timeTrackerReducer = __webpack_require__(26);
 
-var _TimeTrackerReducer2 = _interopRequireDefault(_TimeTrackerReducer);
+var _timeTrackerReducer2 = _interopRequireDefault(_timeTrackerReducer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1551,7 +1552,7 @@ var INITIAL_STATE = {
 		todos: [],
 		visibilityFilter: "SHOW_ALL"
 	},
-	TimeTracker: {
+	timeTracker: {
 		URL: []
 	}
 };
@@ -1562,7 +1563,7 @@ function rootReducer() {
 
 	return {
 		todoList: (0, _todoListReducer2.default)(state.todoList, action),
-		TimeTracker: (0, _TimeTrackerReducer2.default)(state.TimeTracker, action)
+		timeTracker: (0, _timeTrackerReducer2.default)(state.timeTracker, action)
 	};
 }
 
@@ -1578,7 +1579,7 @@ store = {
 	  ],
 	  visibilityFilter: STRING
 	}
-	TimeTracker: {
+	timeTracker: {
 		URL: []
 	}
 }

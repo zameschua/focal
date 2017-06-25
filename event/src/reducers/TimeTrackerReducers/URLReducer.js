@@ -16,7 +16,8 @@ const URLReducer = (state = [], action) => {
     			: url
   		)
     case 'CLEAR_ALL_TAB_INFO':
-      return [];
+      console.log("HIGT");
+      return []
     default:
       return state;
   }

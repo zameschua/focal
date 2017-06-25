@@ -14,7 +14,7 @@ const todos = (state = [], action) => {
       ]
     case 'TOGGLE_TODO':
       return state.map(todo =>
-        (todo.id === action.id) 
+        (todo.id === action.payload.id) 
           ? {id: todo.id, text: todo.text, completed: !todo.completed} // toggle todo as opposite of its current state
           : todo
       )

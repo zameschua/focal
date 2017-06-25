@@ -54,7 +54,7 @@ var getURL = (url) => {
 
   // when data in store is not empty, loop through every tab detail and find
   // the one whose title is the same as current tab's title
-  data.TimeTracker.URL.forEach(function(value, Index) {
+  data.timeTracker.URL.forEach(function(value, Index) {
     if (value.title === hostname) {
       index = Index;
       found = true;
@@ -64,7 +64,7 @@ var getURL = (url) => {
   // on finding a matching tab detail in the store, we retrieve the details of it
   // and set to currentTabInfo
   if (found) {
-    var retrieved = data.TimeTracker.URL[index];
+    var retrieved = data.timeTracker.URL[index];
     currentTabInfo.id = retrieved.id;
     currentTabInfo.title = retrieved.title;
     currentTabInfo.time = retrieved.time;

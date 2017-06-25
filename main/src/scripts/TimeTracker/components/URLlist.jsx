@@ -1,4 +1,3 @@
-import URL from './URL';
 import React from 'react';
 import {Doughnut} from 'react-chartjs-2';
 
@@ -21,7 +20,7 @@ const getBackgroundColors = (items) => {
   return arr;
 }
 
-const URLlist = ({URLs}) => {
+const URLlist = ({URLs, handleClick}) => {
   var data = {
     labels: URLs.map(url => url.title),
     datasets: [{
@@ -43,7 +42,9 @@ const URLlist = ({URLs}) => {
           data={data}
           options={options}
           />
+        <button type="button" onClick={handleClick}>Clear all</button>
       </div>
+
     )
   } else {
   // If there are no tabs to display

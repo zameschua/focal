@@ -1,12 +1,12 @@
 import todoListReducer from './TodoListReducers/todoListReducer';
-import TimeTrackerReducer from './TimeTrackerReducers/TimeTrackerReducer';
+import timeTrackerReducer from './TimeTrackerReducers/timeTrackerReducer';
 
 const INITIAL_STATE = {
 	todoList: {
 	  todos: [],
 	  visibilityFilter: "SHOW_ALL"
 	},
-	TimeTracker: {
+	timeTracker: {
 		URL:[]
 	}
 }
@@ -14,7 +14,7 @@ const INITIAL_STATE = {
 export default function rootReducer(state = INITIAL_STATE, action) {
   return {
     todoList : todoListReducer(state.todoList, action),
-    TimeTracker : TimeTrackerReducer(state.TimeTracker, action)
+    timeTracker : timeTrackerReducer(state.timeTracker, action)
   };
 }
 
@@ -31,7 +31,7 @@ store = {
 	  ],
 	  visibilityFilter: STRING
 	}
-	TimeTracker: {
+	timeTracker: {
 		URL: []
 	}
 }

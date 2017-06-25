@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import URLlist from '../components/URLlist'
+import {clearAllTabInfo} from '../actions'
 
 /**
   mapStateToProps and mapDispatchToProps provides TodoList with the store's state and dispatches
@@ -7,21 +8,30 @@ import URLlist from '../components/URLlist'
 **/
 
 const mapStateToProps = state => {
-	if (state.TimeTracker) {
+	if (state.timeTracker) {
 	  return {
-    	URLs: state.TimeTracker.URL
+    	URLs: state.timeTracker.URL
   	}
 	}
 	else {
 		return {
-			URLs: [{id: "dsafas", title: "google.com.sg", time: 50}]
+			URLs: []
 		}
 	}
 
 }
 
+const mapDispatchToProps = dispatch => {
+	return {
+		handleClick: () => {
+			dispatch(clearAllTabInfo())
+		}
+	}
+}
+
 const ShowURL = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(URLlist)
 
 export default ShowURL
