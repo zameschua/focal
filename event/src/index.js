@@ -12,13 +12,15 @@ import rootReducer from './reducers';
 
 // });
 
+var initialState = (localStorage.MAIN_STORE) ? JSON.parse(localStorage.MAIN_STORE) : {};
+
 // Create Redux store
-const store = createStore(rootReducer, {});
+const store = createStore(rootReducer, initialState);
 
 // Every time the state changes, update state stored in chrome.storage
 // unsubscribe() to stop listening to state updates
 function handleChange() {
-  chrome.storage.local.set({'MAIN_STORE': store.getState()});
+  localStorage.setItem("MAIN_STORE",JSON.stringify(store.getState()));
 }
 
 let unsubscribe = store.subscribe(handleChange);
@@ -74,7 +76,7 @@ var getURL = (url) => {
   else {
     currentTabInfo.id = '_' + Math.random().toString(36).substr(2, 9);
     currentTabInfo.title = hostname;
-    currentTabInfo.time = 0;
+    currentTabInfo.time = 1;
 
     // update new storage state by firing a dispatch call
     store.dispatch(addURL(currentTabInfo.id,currentTabInfo.title,currentTabInfo.time));
@@ -113,7 +115,7 @@ var getCurrentTab = () => {
     currentWindow: true,
     active: true
   }, function(tabs) {
-    var blacklist = ['newtab', 'devtools', 'extensions']; //blacklist consists of sites not meant to keep track of
+    var blacklist = ['newtab', 'devtools', 'extensions', 'settings']; //blacklist consists of sites not meant to keep track of
     var hostname = new URL(tabs[0].url).hostname;
     var found = (blacklist.indexOf(hostname) === -1) ? false : true;
 
