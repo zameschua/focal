@@ -3,7 +3,7 @@ import URLlist from '../components/URLlist'
 import {clearAllTabInfo} from '../actions'
 
 /**
-  mapStateToProps and mapDispatchToProps provides TodoList with the store's state and dispatches
+  mapStateToProps and mapDispatchToProps provides component with the store's state and dispatches
   as props
 **/
 

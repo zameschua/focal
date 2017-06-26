@@ -1,5 +1,6 @@
 import React from 'react'
 import ShowURL from "../container/ShowURL"
+import URLInfo from "./URLInfo"
 
 
 const TimeTrackerMain = () => (
@@ -9,7 +10,9 @@ const TimeTrackerMain = () => (
 	  </section>
     <section className="mdc-card__supporting-text">
       <ShowURL />
+      
     </section>
+    <URLInfo />
   </div>
 );
 

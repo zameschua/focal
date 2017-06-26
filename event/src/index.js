@@ -63,7 +63,7 @@ var getURL = (url) => {
 
   // on finding a matching tab detail in the store, we retrieve the details of it
   // and set to currentTabInfo
-  if (found) {
+  if (found) {  
     var retrieved = data.timeTracker.URL[index];
     currentTabInfo.id = retrieved.id;
     currentTabInfo.title = retrieved.title;
