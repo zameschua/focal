@@ -28462,7 +28462,7 @@ exports.default = VisibleTodoList;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 
 var _react = __webpack_require__(7);
@@ -28472,16 +28472,26 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Clock = function Clock(_ref) {
-  var hours = _ref.hours,
-      minutes = _ref.minutes;
+	var hours = _ref.hours,
+	    minutes = _ref.minutes;
 
-  return _react2.default.createElement(
-    "h1",
-    { style: { color: "white" } },
-    hours,
-    ":",
-    minutes
-  );
+	if (minutes > 9) {
+		return _react2.default.createElement(
+			"h1",
+			{ style: { color: "white" } },
+			hours,
+			":",
+			minutes
+		);
+	} else {
+		return _react2.default.createElement(
+			"h1",
+			{ style: { color: "white" } },
+			hours,
+			":0",
+			minutes
+		);
+	}
 };
 
 exports.default = Clock;
