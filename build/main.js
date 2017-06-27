@@ -27516,6 +27516,23 @@ var App = function (_Component) {
   _createClass(App, [{
     key: 'render',
     value: function render() {
+      chrome.identity.getAuthToken({ 'interactive': false }, function (token) {
+
+        var headers = new Headers({
+          'Authorization': 'Bearer ' + token,
+          'Content-Type': 'application/json'
+        });
+
+        var queryParams = { headers: headers };
+
+        fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', queryParams).then(function (response) {
+          return response.json();
+        }) // Transform the data into json
+        .then(function (data) {
+          console.log(data);
+        });
+      });
+
       // Code to render the background image
       // TODO: Cache the image
       // Add /daily to end of url so that the image is only queried once a day
