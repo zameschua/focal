@@ -3,37 +3,10 @@ import TodoListApp from './TodoList/components/TodoListApp';
 import TemplatePanelComponent from './TemplatePanel/components/TemplatePanelComponent'; // Temporary component
 import TimeTrackerMain from './TimeTracker/components/TimeTrackerMain';
 import WelcomeCard from './WelcomeCard/containers/WelcomeCard';
+import EventsFeed from './EventsFeed/containers/EventsFeed';
 
 class App extends Component {
   render() {
-    chrome.identity.getAuthToken({ 'interactive': false }, function(token) {
-      
-      const headers = new Headers({
-          'Authorization' : 'Bearer ' + token,
-          'Content-Type': 'application/json'
-      })
-
-      const queryParams = { headers };
-
-      fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', queryParams)
-      .then((response) => response.json()) // Transform the data into json
-      .then(function(data) {
-          console.log(data);
-        })
-      })
-
-
-
-
-
-
-
-
-
-
-
-
-
     // Code to render the background image
     // TODO: Cache the image
     // Add /daily to end of url so that the image is only queried once a day
@@ -59,21 +32,7 @@ class App extends Component {
               <div className="row">
                 <TemplatePanelComponent />
               </div>
-              <div className="row">
-                <TemplatePanelComponent />
-              </div>
-              <div className="row">
-                <TemplatePanelComponent />
-              </div>
-              <div className="row">
-                <TemplatePanelComponent />
-              </div>
-              <div className="row">
-                <TemplatePanelComponent />
-              </div>
-              <div className="row">
-                <TemplatePanelComponent />
-              </div>
+              <EventsFeed />
             </div>
           </div>
 

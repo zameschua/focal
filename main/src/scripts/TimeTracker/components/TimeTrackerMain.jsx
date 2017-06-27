@@ -1,5 +1,5 @@
 import React from 'react'
-import ShowURL from "../container/ShowURL"
+import ShowURL from "../containers/ShowURL"
 import URLInfo from "./URLInfo"
 
 

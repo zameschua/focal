@@ -1,5 +1,6 @@
 import todoListReducer from './TodoListReducers/todoListReducer';
 import timeTrackerReducer from './TimeTrackerReducers/timeTrackerReducer';
+import eventsFeedReducer from './EventsFeedReducers/eventsFeedReducer'
 
 const INITIAL_STATE = {
 	todoList: {
@@ -8,13 +9,21 @@ const INITIAL_STATE = {
 	},
 	timeTracker: {
 		URL:[]
+	},
+	eventsFeed: {
+		token: {
+			oAuth2Token: "",
+			userHasAuthenticated: false
+		},
+		events: []
 	}
 }
 
 export default function rootReducer(state = INITIAL_STATE, action) {
   return {
     todoList : todoListReducer(state.todoList, action),
-    timeTracker : timeTrackerReducer(state.timeTracker, action)
+    timeTracker : timeTrackerReducer(state.timeTracker, action),
+    eventsFeed: eventsFeedReducer(state.eventsFeed, action)
   };
 }
 
@@ -33,6 +42,10 @@ store = {
 	}
 	timeTracker: {
 		URL: []
-	}
+	},
+    eventsFeed: {
+	  oAuth2Token: STRING,
+	  events: [EVENTS]
+    }
 }
 */
