@@ -42,7 +42,7 @@ const URLlist = ({URLs, handleClick}) => {
           data={data}
           options={options}
           />
-        <button type="button" onClick={handleClick}>Clear all</button>
+        <button type="button" onClick={handleClick} className="btn btn-primary">Clear all</button>
       </div>
 
     )

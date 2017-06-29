@@ -1,12 +1,12 @@
 {
-  "name": "rcr-example",
+  "name": "nus-focal",
   "version": "0.0.1",
   "private": true,
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Tyler Shaddix",
+  "author": "Chen Kuang",
   "dependencies": {
     "bootstrap": "^3.3.7",
     "chart.js": "^2.6.0",
@@ -14,7 +14,9 @@
     "react": "^15.6.1",
     "react-chartjs-2": "^2.1.0",
     "react-chrome-redux": "0.0.7",
+    "react-collapse": "^4.0.2",
     "react-dom": "^15.6.1",
+    "react-motion": "^0.5.0",
     "react-redux": "^4.0.0",
     "react-scrollbar-js": "^1.0.1",
     "redux": "^3.0.4"

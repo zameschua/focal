@@ -12,7 +12,7 @@ class App extends Component {
     // Add /daily to end of url so that the image is only queried once a day
     // Refer to https://source.unsplash.com/
     const imageURL = "https://source.unsplash.com/collection/488784/1600x900";
-
+    
     const backgroundImageStyle = {
       background: `url(${imageURL})`,
       backgroundRepeat: "no-repeat",

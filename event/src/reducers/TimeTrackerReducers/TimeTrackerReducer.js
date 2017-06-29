@@ -7,7 +7,7 @@ const INITIAL_STATE = {
 // Combine reducers for todoList
 function timeTrackerReducer(state = INITIAL_STATE, action) {
   return {
-    URL: URLReducer(state.URL,action)
+    URL: URLReducer(state.URL,action),
   }
 }
 

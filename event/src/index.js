@@ -116,8 +116,14 @@ var getCurrentTab = () => {
     active: true
   }, function(tabs) {
     var blacklist = ['newtab', 'devtools', 'extensions', 'settings']; //blacklist consists of sites not meant to keep track of
-    var hostname = new URL(tabs[0].url).hostname;
-    var found = (blacklist.indexOf(hostname) === -1) ? false : true;
+    if (tabs[0].url) {
+      var hostname = new URL(tabs[0].url).hostname;
+      var found = (blacklist.indexOf(hostname) === -1) ? false : true;
+    }
+    else {
+      var found = true;
+    }
+    
 
     // if hostname not part of blacklist
     if (!found) {
