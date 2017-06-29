@@ -32,11 +32,11 @@ var URLInfo = ({URLs}) => {
   if (URLs) {
     return (
       <ReactScrollbar style={myScrollbar}>
-        <ul>
+        <ol type="1">
           {sortedURLs.map(url => (
             <URLLine key={url.id} title={url.title} time={url.time} totalTime={Math.round(url.time*100/totalTimeSpent)} />
           ))}
-        </ul>
+        </ol>
       </ReactScrollbar>
 
     )

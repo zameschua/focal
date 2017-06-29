@@ -20,13 +20,22 @@ const getBackgroundColors = (items) => {
   return arr;
 }
 
+const getBorderColor = (items) => {
+  let arr = [];
+  for (let i=0;i<items;i++) {
+    arr.push('rgba(255, 255, 255, 0.4)');
+  }
+  return arr;  
+}
+
 const URLlist = ({URLs, handleClick}) => {
   var data = {
     labels: URLs.map(url => url.title),
     datasets: [{
       data: URLs.map(url => url.time),
-      backgroundColor: getBackgroundColors(URLs.length)
-    }]
+      backgroundColor: getBackgroundColors(URLs.length),
+      borderColor: getBorderColor(URLs.length)
+    }]    
   };
 
   var options = {

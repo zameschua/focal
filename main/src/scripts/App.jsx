@@ -11,7 +11,7 @@ class App extends Component {
     // TODO: Cache the image
     // Add /daily to end of url so that the image is only queried once a day
     // Refer to https://source.unsplash.com/
-    const imageURL = "https://source.unsplash.com/collection/488784/1600x900";
+    const imageURL = "http://i.imgur.com/0ul4vJS.jpg";
     
     const backgroundImageStyle = {
       background: `url(${imageURL})`,

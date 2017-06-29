@@ -28434,23 +28434,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-/**
-const TimeTrackerMain = () => (
-  <div className="mdc-card" style={{backgroundColor: "rgba(192,192,192,0.4)"}}>
-    <section className="mdc-card__primary">
-	    <h1 className="mdc-card__title mdc-card__title--large text-white">Time Tracker</h1>
-	  </section>
-    <section className="mdc-card__supporting-text">
-      <ShowURL />
-      <button onClick={toggle}>Open</button>
-      <Collapse isOpened={isOpened}>
-      	<URLInfo />
-      </Collapse>
-    </section>
-    
-  </div>
-);**/
-
 var TimeTrackerMain = function (_Component) {
 	_inherits(TimeTrackerMain, _Component);
 
@@ -28561,8 +28544,8 @@ var URLInfo = function URLInfo(_ref) {
       _reactScrollbarJs2.default,
       { style: myScrollbar },
       _react2.default.createElement(
-        'ul',
-        null,
+        'ol',
+        { type: '1' },
         sortedURLs.map(function (url) {
           return _react2.default.createElement(_URLLine2.default, { key: url.id, title: url.title, time: url.time, totalTime: Math.round(url.time * 100 / totalTimeSpent) });
         })
@@ -28615,24 +28598,28 @@ var URLLine = function URLLine(_ref) {
     "div",
     { className: "text-white", style: { fontSize: "17px" } },
     _react2.default.createElement(
-      "label",
-      { style: { fontWeight: "bold" } },
-      title,
-      ":"
-    ),
-    _react2.default.createElement(
-      "label",
-      { style: { fontWeight: "bold" } },
-      Math.round(time / 60)
-    ),
-    "min ",
-    _react2.default.createElement(
-      "label",
-      { style: { fontWeight: "bold" } },
-      time % 60
-    ),
-    "s",
-    _react2.default.createElement("br", null)
+      "li",
+      null,
+      _react2.default.createElement(
+        "label",
+        { style: { fontWeight: "bold" } },
+        title
+      ),
+      ": ",
+      _react2.default.createElement(
+        "label",
+        { style: { fontWeight: "bold" } },
+        Math.round(time / 60)
+      ),
+      "min ",
+      _react2.default.createElement(
+        "label",
+        { style: { fontWeight: "bold" } },
+        time % 60
+      ),
+      "s",
+      _react2.default.createElement("br", null)
+    )
   );
 };
 
@@ -28676,6 +28663,14 @@ var getBackgroundColors = function getBackgroundColors(items) {
   return arr;
 };
 
+var getBorderColor = function getBorderColor(items) {
+  var arr = [];
+  for (var i = 0; i < items; i++) {
+    arr.push('rgba(255, 255, 255, 0.4)');
+  }
+  return arr;
+};
+
 var URLlist = function URLlist(_ref) {
   var URLs = _ref.URLs,
       handleClick = _ref.handleClick;
@@ -28688,7 +28683,8 @@ var URLlist = function URLlist(_ref) {
       data: URLs.map(function (url) {
         return url.time;
       }),
-      backgroundColor: getBackgroundColors(URLs.length)
+      backgroundColor: getBackgroundColors(URLs.length),
+      borderColor: getBorderColor(URLs.length)
     }]
   };
 
