@@ -22,8 +22,8 @@ class TimeTrackerMain extends Component {
 		    <h1 className="mdc-card__title mdc-card__title--large text-white" style={{fontFamily:"Segoe UI",fontWeight:"bold"}}>Time Tracker</h1>
 		  </section>
 	    <section className="mdc-card__supporting-text">
-	    	{/* Panel will resize causing doughnut to have no animation. TODO: fix weird bug */}
-	      <ShowURL />
+	    	{/* Panel will resize causing doughnut to have no animation. FIXED: Set responsive to false */}
+	      <ShowURL />	
 	      <ButtonActions toggleShowAllClick={this.toggleClick}/>
 	      <Collapse isOpened={this.state.isOpened}>
 	      	<URLInfo />

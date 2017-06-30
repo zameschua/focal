@@ -41,7 +41,13 @@ const URLlist = ({URLs}) => {
   var options = {
     legend: {
       display: false
-    }
+    },
+    layout: {
+      padding: {
+        left: 50
+      }
+    },
+    responsive: false,
   }
 
   if (URLs) {

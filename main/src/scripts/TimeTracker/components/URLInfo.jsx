@@ -32,7 +32,6 @@ var URLInfo = ({URLs}) => {
   if (URLs) {
     return (
       <ReactScrollbar style={myScrollbar}>
-        <p></p>
         <ul className="list-group" style={{fontFamily:"Segoe UI"}}>
           {sortedURLs.map(url => (
             <URLLine key={url.id} title={url.title} time={url.time} totalTime={Math.round(url.time*100/totalTimeSpent)} />

@@ -28586,7 +28586,6 @@ var URLInfo = function URLInfo(_ref) {
     return _react2.default.createElement(
       _reactScrollbarJs2.default,
       { style: myScrollbar },
-      _react2.default.createElement('p', null),
       _react2.default.createElement(
         'ul',
         { className: 'list-group', style: { fontFamily: "Segoe UI" } },
@@ -28733,7 +28732,13 @@ var URLlist = function URLlist(_ref) {
   var options = {
     legend: {
       display: false
-    }
+    },
+    layout: {
+      padding: {
+        left: 50
+      }
+    },
+    responsive: false
   };
 
   if (URLs) {
