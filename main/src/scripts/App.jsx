@@ -42,7 +42,7 @@ class App extends Component {
             <div className="text-center">
               <WelcomeCard />
             </div>
-            <TodoListApp/>
+            
           </div>
 
 
@@ -53,7 +53,7 @@ class App extends Component {
                 <TimeTrackerMain />
               </div>
               <div className="row">
-                {/*<TemplatePanelComponent />*/}
+                <TodoListApp/>
               </div>
             </div>
           </div>

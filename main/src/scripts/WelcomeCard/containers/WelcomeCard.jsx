@@ -35,8 +35,8 @@ class WelcomeCard extends Component {
     return (
       <div>
         { /* TODO: GET NAME FROM STORE */ }
+        <Clock hours={this.state.hours} minutes={this.state.minutes}/>
   		  <WelcomeMessage userName="Chen Kuang"/>
-  		  <Clock hours={this.state.hours} minutes={this.state.minutes}/>
       </div>
     );
   }

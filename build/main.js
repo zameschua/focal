@@ -28194,8 +28194,7 @@ var App = function (_Component) {
               'div',
               { className: 'text-center' },
               _react2.default.createElement(_WelcomeCard2.default, null)
-            ),
-            _react2.default.createElement(_TodoListApp2.default, null)
+            )
           ),
           _react2.default.createElement(
             'div',
@@ -28208,7 +28207,11 @@ var App = function (_Component) {
                 { className: 'row' },
                 _react2.default.createElement(_TimeTrackerMain2.default, null)
               ),
-              _react2.default.createElement('div', { className: 'row' })
+              _react2.default.createElement(
+                'div',
+                { className: 'row' },
+                _react2.default.createElement(_TodoListApp2.default, null)
+              )
             )
           )
         )
@@ -28433,7 +28436,8 @@ var ButtonContainer = function ButtonContainer(_ref) {
       "button",
       { onClick: toggleShowAllClick, style: { float: "right" }, className: "btn btn-primary" },
       "Open"
-    )
+    ),
+    _react2.default.createElement("p", null)
   );
 };
 
@@ -28507,7 +28511,7 @@ var TimeTrackerMain = function (_Component) {
 					{ className: "mdc-card__primary" },
 					_react2.default.createElement(
 						"h1",
-						{ className: "mdc-card__title mdc-card__title--large text-white" },
+						{ className: "mdc-card__title mdc-card__title--large text-white", style: { fontFamily: "Segoe UI", fontWeight: "bold" } },
 						"Time Tracker"
 					)
 				),
@@ -28585,7 +28589,7 @@ var URLInfo = function URLInfo(_ref) {
       _react2.default.createElement('p', null),
       _react2.default.createElement(
         'ul',
-        { className: 'list-group' },
+        { className: 'list-group', style: { fontFamily: "Segoe UI" } },
         sortedURLs.map(function (url) {
           return _react2.default.createElement(_URLLine2.default, { key: url.id, title: url.title, time: url.time, totalTime: Math.round(url.time * 100 / totalTimeSpent) });
         })
@@ -28638,23 +28642,27 @@ var URLLine = function URLLine(_ref) {
     "li",
     { className: "list-group-item text-white", style: { fontSize: "17px", background: "none" } },
     _react2.default.createElement(
-      "b",
+      "div",
       null,
-      title
-    ),
-    ": ",
-    _react2.default.createElement(
-      "b",
-      null,
-      Math.round(time / 60)
-    ),
-    "min ",
-    _react2.default.createElement(
-      "b",
-      null,
-      time % 60
-    ),
-    "s"
+      _react2.default.createElement(
+        "b",
+        null,
+        title
+      ),
+      ": ",
+      _react2.default.createElement(
+        "b",
+        null,
+        Math.round(time / 60)
+      ),
+      "min ",
+      _react2.default.createElement(
+        "b",
+        null,
+        time % 60
+      ),
+      "s"
+    )
   );
 };
 
@@ -29079,7 +29087,7 @@ exports.default = TodoList;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 
 var _react = __webpack_require__(5);
@@ -29101,13 +29109,26 @@ var _VisibleTodoList2 = _interopRequireDefault(_VisibleTodoList);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var TodoListApp = function TodoListApp() {
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(_AddTodo2.default, null),
-    _react2.default.createElement(_VisibleTodoList2.default, null),
-    _react2.default.createElement(_Footer2.default, null)
-  );
+	return _react2.default.createElement(
+		'div',
+		{ className: 'mdc-card bg-faded', style: { marginBottom: "5%" } },
+		_react2.default.createElement(
+			'section',
+			{ className: 'mdc-card__primary' },
+			_react2.default.createElement(
+				'h1',
+				{ className: 'mdc-card__title mdc-card__title--large text-muted' },
+				'To-do list'
+			)
+		),
+		_react2.default.createElement(
+			'section',
+			{ className: 'mdc-card__supporting-text text-muted' },
+			_react2.default.createElement(_AddTodo2.default, null),
+			_react2.default.createElement(_VisibleTodoList2.default, null),
+			_react2.default.createElement(_Footer2.default, null)
+		)
+	);
 };
 
 exports.default = TodoListApp;
@@ -29305,7 +29326,7 @@ var Clock = function Clock(_ref) {
 	if (minutes > 9) {
 		return _react2.default.createElement(
 			"h1",
-			{ style: { color: "white" } },
+			{ style: { color: "white", fontSize: "108px" } },
 			hours,
 			":",
 			minutes
@@ -29313,7 +29334,7 @@ var Clock = function Clock(_ref) {
 	} else {
 		return _react2.default.createElement(
 			"h1",
-			{ style: { color: "white" } },
+			{ style: { color: "white", fontSize: "108px" } },
 			hours,
 			":0",
 			minutes
@@ -29432,8 +29453,8 @@ var WelcomeCard = function (_Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(_WelcomeMessage2.default, { userName: 'Chen Kuang' }),
-        _react2.default.createElement(_Clock2.default, { hours: this.state.hours, minutes: this.state.minutes })
+        _react2.default.createElement(_Clock2.default, { hours: this.state.hours, minutes: this.state.minutes }),
+        _react2.default.createElement(_WelcomeMessage2.default, { userName: 'Chen Kuang' })
       );
     }
   }]);
