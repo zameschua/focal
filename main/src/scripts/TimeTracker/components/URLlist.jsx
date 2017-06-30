@@ -28,7 +28,7 @@ const getBorderColor = (items) => {
   return arr;  
 }
 
-const URLlist = ({URLs, handleClick}) => {
+const URLlist = ({URLs}) => {
   var data = {
     labels: URLs.map(url => url.title),
     datasets: [{
@@ -50,8 +50,7 @@ const URLlist = ({URLs, handleClick}) => {
         <Doughnut
           data={data}
           options={options}
-          />
-        <button type="button" onClick={handleClick} className="btn btn-primary">Clear all</button>
+        />
       </div>
 
     )

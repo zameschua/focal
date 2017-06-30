@@ -16,8 +16,8 @@ function compare(url1, url2) {
 }
 
 const myScrollbar = {
-  height: 400,
-  width: 400
+  height: 350,
+  width: "100%"
 };
 
 var URLInfo = ({URLs}) => {
@@ -32,11 +32,12 @@ var URLInfo = ({URLs}) => {
   if (URLs) {
     return (
       <ReactScrollbar style={myScrollbar}>
-        <ol type="1">
+        <p></p>
+        <ul className="list-group">
           {sortedURLs.map(url => (
             <URLLine key={url.id} title={url.title} time={url.time} totalTime={Math.round(url.time*100/totalTimeSpent)} />
           ))}
-        </ol>
+        </ul>
       </ReactScrollbar>
 
     )

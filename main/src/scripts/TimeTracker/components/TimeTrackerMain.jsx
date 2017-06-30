@@ -1,7 +1,8 @@
 import React, {  Component  }  from 'react'
 import ShowURL from "../containers/ShowURL"
 import URLInfo from "./URLInfo"
-import {Collapse} from 'react-collapse';
+import ButtonActions from "../containers/ButtonActions"
+import {Collapse} from 'react-collapse'
 
 class TimeTrackerMain extends Component {
 	constructor() {
@@ -12,18 +13,17 @@ class TimeTrackerMain extends Component {
 
 	toggleClick() {
 		this.setState({isOpened: !this.state.isOpened});
-		console.log(this.state.isOpened);
 	}
 
 	render() {
 		return (
-	  <div className="mdc-card" style={{backgroundColor: "rgba(0,0,0,0.2)"}}>
+	  <div className="mdc-card" style={{backgroundColor: "rgba(255,255,255,0.1)", borderRadius:"25px"}}>
 	    <section className="mdc-card__primary">
 		    <h1 className="mdc-card__title mdc-card__title--large text-white">Time Tracker</h1>
 		  </section>
 	    <section className="mdc-card__supporting-text">
 	      <ShowURL />
-	      <button onClick={this.toggleClick}>Open</button>
+	      <ButtonActions toggleShowAllClick={this.toggleClick}/>
 	      <Collapse isOpened={this.state.isOpened}>
 	      	<URLInfo />
 	      </Collapse>

@@ -2,11 +2,9 @@ import React from 'react';
 
 const URLLine = ({ title, time, totalTime }) => (
 
-  <div className="text-white" style={{fontSize: "17px"}}>
-  	<li>
-  		<label style={{fontWeight: "bold"}}>{title}</label>: <label style={{fontWeight: "bold"}}>{Math.round(time/60)}</label>min <label style={{fontWeight: "bold"}}>{time%60}</label>s<br/>
-  	</li>
-  </div>
+  <li className="list-group-item text-white" style={{fontSize: "17px",background:"none"}}>
+				<b>{title}</b>: <b>{Math.round(time/60)}</b>min <b>{time%60}</b>s
+  </li>
 )
 
 export default URLLine
