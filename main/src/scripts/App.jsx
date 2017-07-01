@@ -4,6 +4,7 @@ import TemplatePanelComponent from './TemplatePanel/components/TemplatePanelComp
 import TimeTrackerMain from './TimeTracker/components/TimeTrackerMain';
 import WelcomeCard from './WelcomeCard/containers/WelcomeCard';
 import EventsFeed from './EventsFeed/containers/EventsFeed';
+import SearchBar from './WelcomeCard/components/SearchBar';
 
 class App extends Component {
   render() {
@@ -11,7 +12,7 @@ class App extends Component {
     // TODO: Cache the image
     // Add /daily to end of url so that the image is only queried once a day
     // Refer to https://source.unsplash.com/
-    const imageURL = "http://i.imgur.com/0ul4vJS.jpg";
+    const imageURL = "https://source.unsplash.com/collection/983160/1980x1080 ";
     
     const backgroundImageStyle = {
       background: `url(${imageURL})`,
@@ -42,7 +43,6 @@ class App extends Component {
             <div className="text-center">
               <WelcomeCard />
             </div>
-            
           </div>
 
 
