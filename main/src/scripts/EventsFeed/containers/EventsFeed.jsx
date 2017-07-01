@@ -1,17 +1,21 @@
 import { connect } from 'react-redux'
 import React, {  Component  } from 'react';
-import {  updateOAuth2Token  } from '../actions/oAuth2Action'
-
+import {  updateUserAuthenticationStatus  } from '../actions/updateUserAuthenticationStatus'
+import {  getCalendarEvents  } from '../actions/getCalendarEvents'
 
 class EventsFeed extends Component {
 	constructor() {
 		super();
 	}
 
+  componentDidMount() {
+    this.props.getCalendarEvents();
+  }
+
 	handleClick() {
 		let self = this; // So that we can use 'this' in callback
-	  chrome.identity.getAuthToken({ 'interactive': false }, function(token) {
-	    self.props.updateOAuth2Token(token);
+	  chrome.identity.getAuthToken({ 'interactive': true }, function(token) {
+	    self.props.updateUserAuthenticationStatus(true);
 	  })
 	}
 
@@ -28,11 +32,11 @@ const mapStateToProps = state => {
   if (state.eventsFeed) {
   	return {
   	  events: state.eventsFeed.events,
-      userHasAuthenticated: state.eventsFeed.token.userHasAuthenticated
+      userHasAuthenticated: state.eventsFeed.userHasAuthenticated
     };
   } else {
   	return {
-      events: [],
+      events: {},
       userHasAuthenticated: false
   	};
   }
@@ -40,9 +44,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		updateOAuth2Token: (token) => {
-			dispatch(updateOAuth2Token(token));
-		}
+		updateUserAuthenticationStatus: (status) => {
+			dispatch(updateUserAuthenticationStatus(status));
+		},
+    getCalendarEvents: () => {
+      dispatch(getCalendarEvents());
+    }
 	}
 }
 
@@ -52,10 +59,7 @@ export default connect(
 )(EventsFeed)
 
 /*
-  let today = new Date()
-  let nextWeek = new Date((new Date()).setDate(today.getDate() + 8)) // Add 1 week
-  let timeMax = nextWeek.toISOString();
-  let timeMin = today.toISOString();
+
 
   const headers = new Headers({
       'Authorization' : 'Bearer ' + token,

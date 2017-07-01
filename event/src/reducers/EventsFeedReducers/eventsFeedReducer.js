@@ -1,18 +1,14 @@
-import tokenReducer from './tokenReducer'
+import authenticationReducer from './authenticationReducer';
 
 const INITIAL_STATE = {
 	events: [],
-	token: {
-		oAuth2Token: "",
-		userHasAuthenticated: false
-	}
+	userHasAuthenticated: false
 }
 
 // Combine reducers for todoList
 function eventsFeedReducer(state = INITIAL_STATE, action) {
-  console.log(state);
   return {
-  	token: tokenReducer(state.token, action),
+  	userHasAuthenticated: authenticationReducer(state.userHasAuthenticated, action),
     events: state.events // ADD THIS LATER
   }
 }
