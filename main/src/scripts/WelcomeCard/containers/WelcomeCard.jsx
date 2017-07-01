@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect }  from 'react-redux';
 import WelcomeMessage from '../components/WelcomeMessage';
-import Clock from '../components/Clock'
+import Clock from '../components/Clock';
+import SearchBar from "../components/SearchBar"
 
 class WelcomeCard extends Component {
   constructor() {
@@ -37,6 +38,7 @@ class WelcomeCard extends Component {
         { /* TODO: GET NAME FROM STORE */ }
         <Clock hours={this.state.hours} minutes={this.state.minutes}/>
   		  <WelcomeMessage userName="Chen Kuang"/>
+        <SearchBar />
       </div>
     );
   }
