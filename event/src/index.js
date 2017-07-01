@@ -1,21 +1,14 @@
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import {wrapStore} from 'react-chrome-redux';
 import {addURL,addTime} from './backend-actions';
 import rootReducer from './reducers';
-
-
-
-// chrome.storage.local.get("MAIN_STORE", (items) => {
-//   alert("state gotten");
-//   initialState = items.MAIN_STORE;
-//   initApp();
-
-// });
+import logger from 'redux-logger'
+import asyncActionsMiddleware from './middlewares/asyncActionsMiddleware';
 
 var initialState = (localStorage.MAIN_STORE) ? JSON.parse(localStorage.MAIN_STORE) : {};
 
 // Create Redux store
-const store = createStore(rootReducer, initialState);
+const store = createStore(rootReducer, initialState, applyMiddleware(asyncActionsMiddleware, logger));
 
 // Every time the state changes, update state stored in chrome.storage
 // unsubscribe() to stop listening to state updates

@@ -11,11 +11,8 @@ const INITIAL_STATE = {
 		URL:[]
 	},
 	eventsFeed: {
-		token: {
-			oAuth2Token: "",
-			userHasAuthenticated: false
-		},
-		events: []
+		events: {},
+		userHasAuthenticated: false
 	}
 }
 
@@ -44,8 +41,8 @@ store = {
 		URL: []
 	},
     eventsFeed: {
-	  oAuth2Token: STRING,
-	  events: [EVENTS]
+	  userHasAuthenticated: BOOLEAN
+	  events: {DATA_FROM_GOOGLE}
     }
 }
 */
