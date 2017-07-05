@@ -11,7 +11,7 @@ const INITIAL_STATE = {
 		URL:[]
 	},
 	eventsFeed: {
-		events: {},
+		events: [[],[],[],[],[],[],[]],
 		userHasAuthenticated: false
 	}
 }
@@ -42,7 +42,10 @@ store = {
 	},
     eventsFeed: {
 	  userHasAuthenticated: BOOLEAN
-	  events: {DATA_FROM_GOOGLE}
+	  events: [{
+		fullDayEvents: [],
+		events: []
+	  }];
     }
 }
 */
