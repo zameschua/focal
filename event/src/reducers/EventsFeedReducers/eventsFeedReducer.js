@@ -1,7 +1,7 @@
 import authenticationReducer from './authenticationReducer';
-
+import eventsReducer from './eventsReducer';
 const INITIAL_STATE = {
-	events: [],
+	events: [[],[],[],[],[],[],[]],
 	userHasAuthenticated: false
 }
 
@@ -9,7 +9,7 @@ const INITIAL_STATE = {
 function eventsFeedReducer(state = INITIAL_STATE, action) {
   return {
   	userHasAuthenticated: authenticationReducer(state.userHasAuthenticated, action),
-    events: state.events // ADD THIS LATER
+    events: eventsReducer(state.events, action) // ADD THIS LATER
   }
 }
 

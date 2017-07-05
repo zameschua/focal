@@ -28,3 +28,10 @@ export const updateUserAuthenticationStatus = (status) => {
     payload: status
   }
 }
+
+export const getCalendarEventsSuccess = (payload) => {
+  return {
+    type: "GET_CALENDAR_EVENTS_SUCCESS",
+    payload
+  }
+}
