@@ -1,7 +1,9 @@
 import { connect } from 'react-redux'
 import React, {  Component  } from 'react';
-import {  updateOAuth2Token  } from '../actions/oAuth2Action'
-
+import {  updateUserAuthenticationStatus  } from '../actions/updateUserAuthenticationStatus'
+import {  getCalendarEvents  } from '../actions/getCalendarEvents'
+import _ from 'lodash'
+import EventsFeedDisplay from '../components/EventsFeedDisplay'
 
 class EventsFeed extends Component {
 	constructor() {
@@ -10,16 +12,18 @@ class EventsFeed extends Component {
 
 	handleClick() {
 		let self = this; // So that we can use 'this' in callback
-	  chrome.identity.getAuthToken({ 'interactive': false }, function(token) {
-	    self.props.updateOAuth2Token(token);
+    // Authenticate on the front end (So that user knows that we are obtaining their calendar info)
+	  chrome.identity.getAuthToken({ 'interactive': true }, function(token) {
+	    self.props.updateUserAuthenticationStatus(true);
+      self.props.getCalendarEvents();
 	  })
 	}
 
 	render() {
-		if (this.props.userHasAuthenticated == false) {
-			return <button onClick={this.handleClick.bind(this)}>Authenticate</button>;
+  	if (this.props.userHasAuthenticated == false) {
+			return <button onClick={this.handleClick.bind(this)}>Authenticate</button>; // TODO: Extract into another component
 		} else {
-			return <div>"NOTHING TO DISPLAY"</div>;
+			return <EventsFeedDisplay events={this.props.events}/>;
 		}
 	}
 }
@@ -28,7 +32,7 @@ const mapStateToProps = state => {
   if (state.eventsFeed) {
   	return {
   	  events: state.eventsFeed.events,
-      userHasAuthenticated: state.eventsFeed.token.userHasAuthenticated
+      userHasAuthenticated: state.eventsFeed.userHasAuthenticated
     };
   } else {
   	return {
@@ -40,9 +44,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		updateOAuth2Token: (token) => {
-			dispatch(updateOAuth2Token(token));
-		}
+		updateUserAuthenticationStatus: (status) => {
+			dispatch(updateUserAuthenticationStatus(status));
+		},
+    getCalendarEvents: () => {
+      dispatch(getCalendarEvents());
+    }
 	}
 }
 
@@ -50,25 +57,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(EventsFeed)
-
-/*
-  let today = new Date()
-  let nextWeek = new Date((new Date()).setDate(today.getDate() + 8)) // Add 1 week
-  let timeMax = nextWeek.toISOString();
-  let timeMin = today.toISOString();
-
-  const headers = new Headers({
-      'Authorization' : 'Bearer ' + token,
-      'Content-Type': 'application/json',
-  })
-
-  const queryParams = { 
-    headers
-  };
-
-  fetch(`https://www.googleapis.com/calendar/v3/calendars/primary/events?timeMin=${timeMin}&timeMax=${timeMax}`, queryParams)
-  .then((response) => response.json()) // Transform the data into json
-  .then(function(data) {
-      console.log(data);
-    })
-*/

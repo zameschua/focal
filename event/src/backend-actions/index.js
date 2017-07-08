@@ -22,3 +22,23 @@ export const addTime = title => {
   }
 }
 
+export const updateUserAuthenticationStatus = (status) => {
+  return {
+    type: "UPDATE_USER_AUTHENTICATION_STATUS",
+    payload: status
+  }
+}
+
+export const getCalendarEventsSuccess = (payload) => {
+  return {
+    type: "GET_CALENDAR_EVENTS_SUCCESS",
+    payload
+  }
+}
+
+export const getCalendarEvents = () => {
+  return {
+    type: "GET_CALENDAR_EVENTS",
+    async: true
+  }
+}
