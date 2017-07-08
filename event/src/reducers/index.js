@@ -11,7 +11,7 @@ const INITIAL_STATE = {
 		URL:[]
 	},
 	eventsFeed: {
-		events: [[],[],[],[],[],[],[]],
+		events: [],
 		userHasAuthenticated: false
 	}
 }
@@ -45,7 +45,7 @@ store = {
 	  events: [{
 		fullDayEvents: [],
 		events: []
-	  }];
+	  } * 7 days];
     }
 }
 */

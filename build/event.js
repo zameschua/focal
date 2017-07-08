@@ -318,6 +318,13 @@ var getCalendarEventsSuccess = exports.getCalendarEventsSuccess = function getCa
   };
 };
 
+var getCalendarEvents = exports.getCalendarEvents = function getCalendarEvents() {
+  return {
+    type: "GET_CALENDAR_EVENTS",
+    async: true
+  };
+};
+
 /***/ }),
 /* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1368,6 +1375,10 @@ chrome.tabs.onActivated.addListener(function (activeInfo) {
 
 /**** END OF BACKGROUND CODE FOR VISUALS ****/
 
+if (store.getState().eventsFeed.userHasAuthenticated) {
+  store.dispatch((0, _backendActions.getCalendarEvents)());
+}
+
 /***/ }),
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -1425,17 +1436,14 @@ var makeAPICall = function makeAPICall(token, store) {
 		return response.json();
 	}) // Transform the data into json
 	.then(function (events) {
-		var eventsPayloadArray = splitEventsByDay(events);
-		var sortedEventsPayloadArray = sortEventsByTime(eventsPayloadArray, store);
+		var dateArray = createAndFillDateArray();
+		var eventsPayloadArray = splitEventsByDay(events, dateArray);
+		var sortedEventsPayloadArray = sortEventsByTime(eventsPayloadArray, store, dateArray);
 	});
 };
 
 // Takes in Event oject and returns an object of events split by their days
-var splitEventsByDay = function splitEventsByDay(events) {
-	var currentDateTime = new Date();
-	var dateToday = new Date(currentDateTime.getFullYear(), currentDateTime.getMonth(), currentDateTime.getDate());
-	var dateArray = createAndFillDateArray(dateToday); // Array of dates at 00:00, for the next 7 days
-
+var splitEventsByDay = function splitEventsByDay(events, dateArray) {
 	// Create array of 7 empty arrays
 	var eventsPayloadArray = Array.from({ length: 7 }, function (x) {
 		return [];
@@ -1500,7 +1508,10 @@ var splitEventsByDay = function splitEventsByDay(events) {
 };
 
 // Creates an array of dates as such [toda]
-var createAndFillDateArray = function createAndFillDateArray(dateToday) {
+var createAndFillDateArray = function createAndFillDateArray() {
+	var currentDateTime = new Date();
+	var dateToday = new Date(currentDateTime.getFullYear(), currentDateTime.getMonth(), currentDateTime.getDate());
+
 	var dateArray = [];
 	for (var i = 0; i < 8; i++) {
 		dateArray.push(getDateOfNDaysFromToday(dateToday, i));
@@ -1526,9 +1537,12 @@ var createEventPayload = function createEventPayload(summary, startTime, endTime
 	};
 };
 
-var sortEventsByTime = function sortEventsByTime(eventsPayloadArray, store) {
+var sortEventsByTime = function sortEventsByTime(eventsPayloadArray, store, dateArray) {
+	console.log(dateArray);
+
 	// Initialize empty payload
 	var resultArray = Array.from({ length: 7 }, function (x) {});
+
 	// For each day
 	for (var i = 0; i < eventsPayloadArray.length; i++) {
 		var dayArray = eventsPayloadArray[i];
@@ -1560,9 +1574,20 @@ var sortEventsByTime = function sortEventsByTime(eventsPayloadArray, store) {
 					return 1;
 				}
 			});
+
+			// Set dayHasEvents to true if there are any events on that day, else false if no events on that day.
+			var dayHasEvents = true;
+			if (wholeDayEvents.length === 0 && dayArray.length === 0) {
+				dayHasEvents = false;
+			}
+
 			resultArray[i] = {
 				wholeDayEvents: wholeDayEvents,
-				remainingEvents: dayArray
+				remainingEvents: dayArray,
+				dayHasEvents: dayHasEvents,
+				date: dateArray[i].getDate(),
+				month: dateArray[i].getMonth(),
+				index: i
 			};
 		}
 		store.dispatch((0, _index.getCalendarEventsSuccess)(resultArray));
@@ -1583,7 +1608,6 @@ var authenticationReducer = function authenticationReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
   var action = arguments[1];
 
-  console.log(action.payload);
   switch (action.type) {
     case 'UPDATE_USER_AUTHENTICATION_STATUS':
       return action.payload;
@@ -1616,7 +1640,7 @@ var _eventsReducer2 = _interopRequireDefault(_eventsReducer);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var INITIAL_STATE = {
-  events: [[], [], [], [], [], [], []],
+  events: [],
   userHasAuthenticated: false
 
   // Combine reducers for todoList
@@ -1642,7 +1666,7 @@ exports.default = eventsFeedReducer;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var INITIAL_STATE = [[], [], [], [], [], [], []];
+var INITIAL_STATE = [];
 
 var eventsReducer = function eventsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
@@ -1870,7 +1894,7 @@ var INITIAL_STATE = {
 		URL: []
 	},
 	eventsFeed: {
-		events: [[], [], [], [], [], [], []],
+		events: [],
 		userHasAuthenticated: false
 	}
 };
@@ -1906,7 +1930,7 @@ store = {
 	  events: [{
 		fullDayEvents: [],
 		events: []
-	  }];
+	  } * 7 days];
     }
 }
 */

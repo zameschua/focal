@@ -1,9 +1,10 @@
 import {createStore, applyMiddleware} from 'redux';
 import {wrapStore} from 'react-chrome-redux';
-import {addURL,addTime} from './backend-actions';
+import {addURL,addTime, getCalendarEvents} from './backend-actions';
 import rootReducer from './reducers';
 import logger from 'redux-logger'
 import asyncActionsMiddleware from './middlewares/asyncActionsMiddleware';
+
 
 var initialState = (localStorage.MAIN_STORE) ? JSON.parse(localStorage.MAIN_STORE) : {};
 
@@ -152,3 +153,6 @@ chrome.tabs.onActivated.addListener((activeInfo) => {
 
 /**** END OF BACKGROUND CODE FOR VISUALS ****/
 
+if (store.getState().eventsFeed.userHasAuthenticated) {
+  store.dispatch(getCalendarEvents());
+}

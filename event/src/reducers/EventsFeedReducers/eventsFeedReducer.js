@@ -1,7 +1,7 @@
 import authenticationReducer from './authenticationReducer';
 import eventsReducer from './eventsReducer';
 const INITIAL_STATE = {
-	events: [[],[],[],[],[],[],[]],
+	events: [],
 	userHasAuthenticated: false
 }
 

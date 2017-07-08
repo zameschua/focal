@@ -35,3 +35,10 @@ export const getCalendarEventsSuccess = (payload) => {
     payload
   }
 }
+
+export const getCalendarEvents = () => {
+  return {
+    type: "GET_CALENDAR_EVENTS",
+    async: true
+  }
+}

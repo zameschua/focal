@@ -41,17 +41,14 @@ const makeAPICall = (token, store) => {
   fetch(`https://www.googleapis.com/calendar/v3/calendars/primary/events?timeMin=${timeMin}&timeMax=${timeMax}`, queryParams)
   .then((response) => response.json()) // Transform the data into json
   .then(function(events) {
-      let eventsPayloadArray = splitEventsByDay(events);
-      let sortedEventsPayloadArray = sortEventsByTime(eventsPayloadArray, store);
+  		let dateArray = createAndFillDateArray();
+      let eventsPayloadArray = splitEventsByDay(events, dateArray);
+      let sortedEventsPayloadArray = sortEventsByTime(eventsPayloadArray, store, dateArray);
     });
 }
 
 // Takes in Event oject and returns an object of events split by their days
-const splitEventsByDay = events => {
-  let currentDateTime = new Date;
-  let dateToday = new Date(currentDateTime.getFullYear(), currentDateTime.getMonth(), currentDateTime.getDate());
-  const dateArray = createAndFillDateArray(dateToday); // Array of dates at 00:00, for the next 7 days
-  
+const splitEventsByDay = (events, dateArray) => {
   // Create array of 7 empty arrays
   let eventsPayloadArray = Array.from({ length: 7 }, (x) => []);
   
@@ -116,7 +113,10 @@ const splitEventsByDay = events => {
 
 
 // Creates an array of dates as such [toda]
-const createAndFillDateArray = (dateToday) => {
+const createAndFillDateArray = () => {
+	let currentDateTime = new Date;
+  let dateToday = new Date(currentDateTime.getFullYear(), currentDateTime.getMonth(), currentDateTime.getDate());
+  
   let dateArray = [];
   for (let i = 0; i < 8; i++) {
   	dateArray.push(getDateOfNDaysFromToday(dateToday, i));
@@ -142,9 +142,12 @@ const createEventPayload = (summary, startTime, endTime, location, displayStartT
 	}
 }
 
-const sortEventsByTime = (eventsPayloadArray, store) => {
+const sortEventsByTime = (eventsPayloadArray, store, dateArray) => {
+	console.log(dateArray);
+
 	// Initialize empty payload
 	let resultArray = Array.from({ length: 7 }, (x) => {});
+
 	// For each day
 	for (let i = 0; i < eventsPayloadArray.length; i++) {
 		let dayArray = eventsPayloadArray[i];
@@ -169,9 +172,20 @@ const sortEventsByTime = (eventsPayloadArray, store) => {
 					return 1;
 				}
 			});
+
+			// Set dayHasEvents to true if there are any events on that day, else false if no events on that day.
+			let dayHasEvents = true;
+			if (wholeDayEvents.length === 0 && dayArray.length === 0) {
+				dayHasEvents = false
+			}
+
 			resultArray[i] = {
 				wholeDayEvents,
-				remainingEvents: dayArray
+				remainingEvents: dayArray,
+				dayHasEvents,
+				date: dateArray[i].getDate(),
+				month: dateArray[i].getMonth(),
+				index: i
 			}
 		}
 		store.dispatch(getCalendarEventsSuccess(resultArray));
