@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactScrollbar from 'react-scrollbar-js';
+
 import EventsDay from './EventsDay';
 
 const EventsFeedDisplay = ({events}) => {
@@ -9,7 +11,11 @@ const EventsFeedDisplay = ({events}) => {
 		}
 	}
 	
-	return <div>{eventsDayRender}</div>;
+	return (
+		<ReactScrollbar>
+			{eventsDayRender}
+		</ReactScrollbar>
+	);
 }
 
 export default EventsFeedDisplay;

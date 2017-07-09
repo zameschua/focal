@@ -1481,12 +1481,14 @@ var splitEventsByDay = function splitEventsByDay(events, dateArray) {
 				date: eventEnd,
 				hours: eventEnd.getHours(),
 				minutes: eventEnd.getMinutes()
-				// Event starts and ends on that day
-			};if (isFullDayEvent) {
+			};
+
+			if (isFullDayEvent) {
 				if (eventStart.getDate() <= dayStart.getDate() && dayStart.getDate() <= eventEnd.getDate()) {
 					var eventPayload = createEventPayload(event.summary, payloadStartTime, payloadEndTime, event.location, false, false, true);
 					eventsPayloadArray[i].push(eventPayload);
 				}
+				// Event starts and ends on that day
 			} else if (eventStartTime >= dayStartTime && eventEndTime < dayEndTime) {
 				var _eventPayload = createEventPayload(event.summary, payloadStartTime, payloadEndTime, event.location, true, true, false);
 				eventsPayloadArray[i].push(_eventPayload);
@@ -1551,21 +1553,14 @@ var sortEventsByTime = function sortEventsByTime(eventsPayloadArray, store, date
 		// If the day has at least 1 event
 		if (dayArray != []) {
 			var wholeDayEvents = [];
-
-			var _loop = function _loop(j) {
+			for (var j = 0; j < dayArray.length; j++) {
 				// Remove and store events that are whole day
 				var event = dayArray[j];
 				if (event.isWholeDayEvent) {
 					// If the event is whole day, transfer it to resultArray.wholeDayEvents
-					dayArray.filter(function (item) {
-						return item == event;
-					});
+					dayArray.splice(j, 1);
 					wholeDayEvents.push(event);
 				}
-			};
-
-			for (var j = 0; j < dayArray.length; j++) {
-				_loop(j);
 			}
 			// Sort the remaining events by time
 			dayArray.sort(function (event1, event2) {
@@ -1592,6 +1587,7 @@ var sortEventsByTime = function sortEventsByTime(eventsPayloadArray, store, date
 				index: i
 			};
 		}
+		console.log(resultArray);
 		store.dispatch((0, _index.getCalendarEventsSuccess)(resultArray));
 	}
 };
