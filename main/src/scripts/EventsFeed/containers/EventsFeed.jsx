@@ -4,13 +4,14 @@ import {  updateUserAuthenticationStatus  } from '../actions/updateUserAuthentic
 import {  getCalendarEvents  } from '../actions/getCalendarEvents'
 import _ from 'lodash'
 import EventsFeedDisplay from '../components/EventsFeedDisplay'
+import AuthenticateCard from '../components/AuthenticateCard'
 
 class EventsFeed extends Component {
 	constructor() {
 		super();
 	}
 
-	handleClick() {
+	handleAuthenticate() {
 		let self = this; // So that we can use 'this' in callback
     // Authenticate on the front end (So that user knows that we are obtaining their calendar info)
 	  chrome.identity.getAuthToken({ 'interactive': true }, function(token) {
@@ -20,10 +21,10 @@ class EventsFeed extends Component {
 	}
 
 	render() {
-  	if (this.props.userHasAuthenticated == false) {
-			return <button onClick={this.handleClick.bind(this)}>Authenticate</button>; // TODO: Extract into another component
+		if (this.props.userHasAuthenticated) {
+			return <EventsFeedDisplay events={this.props.events} />
 		} else {
-			return <EventsFeedDisplay events={this.props.events}/>;
+			return <AuthenticateCard handleAuthenticate={this.handleAuthenticate.bind(this)} />;		
 		}
 	}
 }

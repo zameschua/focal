@@ -2,7 +2,6 @@ import React from 'react';
 
 
 const EventCard = ({event}) => {
-	console.log(event);
 	let timeRender = "";
 
 	if (event.isWholeDayEvent) {

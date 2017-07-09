@@ -29,9 +29,6 @@ class App extends Component {
           
           <div className="col-3">
             <div className="container" style={{paddingTop: "5%"}}>
-              <div className="row">
-                <TemplatePanelComponent />
-              </div>
               <EventsFeed />
             </div>
           </div>

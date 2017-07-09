@@ -8,6 +8,7 @@ const EventsFeedDisplay = ({events}) => {
 			eventsDayRender.push(<EventsDay eventsDay={events[i]} key={events[i].index}/>)
 		}
 	}
+	
 	return <div>{eventsDayRender}</div>;
 }
 
