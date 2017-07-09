@@ -1375,6 +1375,7 @@ chrome.tabs.onActivated.addListener(function (activeInfo) {
 
 /**** END OF BACKGROUND CODE FOR VISUALS ****/
 
+// Grab the calendar events if user has already authenticated with Google
 if (store.getState().eventsFeed.userHasAuthenticated) {
   store.dispatch((0, _backendActions.getCalendarEvents)());
 }
