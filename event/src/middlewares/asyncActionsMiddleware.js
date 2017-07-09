@@ -84,12 +84,13 @@ const splitEventsByDay = (events, dateArray) => {
 				hours: eventEnd.getHours(),
 				minutes: eventEnd.getMinutes()
 			}
-  		// Event starts and ends on that day
+
   		if (isFullDayEvent) {
   			if ((eventStart.getDate() <= dayStart.getDate()) && (dayStart.getDate() <= eventEnd.getDate())) {
   				const eventPayload = createEventPayload(event.summary, payloadStartTime, payloadEndTime, event.location, false, false, true);
   				eventsPayloadArray[i].push(eventPayload);
   			}
+  		// Event starts and ends on that day
   		} else if (eventStartTime >= dayStartTime && eventEndTime < dayEndTime) {
   			const eventPayload = createEventPayload(event.summary, payloadStartTime, payloadEndTime, event.location, true, true, false);
   			eventsPayloadArray[i].push(eventPayload);
@@ -160,7 +161,7 @@ const sortEventsByTime = (eventsPayloadArray, store, dateArray) => {
 				let event = dayArray[j];
 				if (event.isWholeDayEvent) {
 					// If the event is whole day, transfer it to resultArray.wholeDayEvents
-					dayArray.filter(item => item == event)
+					dayArray.splice(j, 1);
 					wholeDayEvents.push(event);
 				}
 			}
@@ -189,6 +190,7 @@ const sortEventsByTime = (eventsPayloadArray, store, dateArray) => {
 				index: i
 			}
 		}
+		console.log(resultArray);
 		store.dispatch(getCalendarEventsSuccess(resultArray));
 	}
 }
