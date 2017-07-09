@@ -28275,24 +28275,23 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var monthsArray = [null, "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
 var DateCard = function DateCard(_ref) {
 	var date = _ref.date,
-	    month = _ref.month;
+	    month = _ref.month,
+	    day = _ref.day;
 
 	return _react2.default.createElement(
 		"div",
-		{ className: "container" },
+		{ className: "container", style: { fontColor: "white" } },
 		_react2.default.createElement(
 			"div",
-			{ className: "row" },
-			date
+			{ className: "row mdc-typography--title" },
+			date + " " + month
 		),
 		_react2.default.createElement(
 			"div",
-			{ className: "row" },
-			monthsArray[month]
+			{ className: "row mdc-typography--body1" },
+			day
 		)
 	);
 };
@@ -28329,22 +28328,26 @@ var EventCard = function EventCard(_ref) {
 			timeRender = "From " + event.startTime.hours + ":" + event.startTime.minutes + " ";
 		}
 		if (event.displayEndTime) {
-			timeRender += "To " + event.endTime.hours + ":" + event.endTime.minutes;
+			timeRender += "Till " + event.endTime.hours + ":" + event.endTime.minutes;
 		}
 	}
 
 	return _react2.default.createElement(
 		"div",
-		{ className: "container" },
+		{ className: "mdc-card bg-faded", style: { marginBottom: "5%" } },
 		_react2.default.createElement(
-			"div",
-			{ className: "row" },
-			event.summary
-		),
-		_react2.default.createElement(
-			"div",
-			{ className: "row" },
-			timeRender
+			"section",
+			{ className: "mdc-card__primary" },
+			_react2.default.createElement(
+				"h1",
+				{ className: "mdc-card__title mdc-card__title--large text-muted" },
+				event.summary
+			),
+			_react2.default.createElement(
+				"h2",
+				{ className: "mdc-card__subtitle text-muted" },
+				timeRender
+			)
 		)
 	);
 };
@@ -28426,7 +28429,7 @@ var EventsDay = function EventsDay(_ref) {
 		_react2.default.createElement(
 			'div',
 			{ className: 'col-md-3' },
-			_react2.default.createElement(_DateCard2.default, { date: eventsDay.date, month: eventsDay.month })
+			_react2.default.createElement(_DateCard2.default, { date: eventsDay.date, month: eventsDay.month, day: eventsDay.day })
 		),
 		_react2.default.createElement(
 			'div',
