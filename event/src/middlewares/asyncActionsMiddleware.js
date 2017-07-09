@@ -143,7 +143,7 @@ const createEventPayload = (summary, startTime, endTime, location, displayStartT
 }
 
 const sortEventsByTime = (eventsPayloadArray, store, dateArray) => {
-	console.log(dateArray);
+	const monthsArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 	// Initialize empty payload
 	let resultArray = Array.from({ length: 7 }, (x) => {});
@@ -184,7 +184,8 @@ const sortEventsByTime = (eventsPayloadArray, store, dateArray) => {
 				remainingEvents: dayArray,
 				dayHasEvents,
 				date: dateArray[i].getDate(),
-				month: dateArray[i].getMonth(),
+				month: monthsArray[dateArray[i].getMonth()],
+				day: dateArray[i].toString().split(' ')[0],
 				index: i
 			}
 		}

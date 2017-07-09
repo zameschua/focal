@@ -1,14 +1,12 @@
 import React from 'react';
 
-const monthsArray = [null, "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-
-const DateCard = ({date, month}) => {
-	return (<div className="container">
-		<div className="row">
-			{date}
+const DateCard = ({date, month, day}) => {
+	return (<div className="container" style={{fontColor:"white"}}>
+		<div className="row mdc-typography--title">
+			{date + " " + month}
 		</div>
-		<div className="row">
-			{monthsArray[month]}
+		<div className="row mdc-typography--body1">
+			{day}
 		</div>
 	</div>);
 }

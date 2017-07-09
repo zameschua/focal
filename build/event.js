@@ -1538,7 +1538,7 @@ var createEventPayload = function createEventPayload(summary, startTime, endTime
 };
 
 var sortEventsByTime = function sortEventsByTime(eventsPayloadArray, store, dateArray) {
-	console.log(dateArray);
+	var monthsArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 	// Initialize empty payload
 	var resultArray = Array.from({ length: 7 }, function (x) {});
@@ -1586,7 +1586,8 @@ var sortEventsByTime = function sortEventsByTime(eventsPayloadArray, store, date
 				remainingEvents: dayArray,
 				dayHasEvents: dayHasEvents,
 				date: dateArray[i].getDate(),
-				month: dateArray[i].getMonth(),
+				month: monthsArray[dateArray[i].getMonth()],
+				day: dateArray[i].toString().split(' ')[0],
 				index: i
 			};
 		}
