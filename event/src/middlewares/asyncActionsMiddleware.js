@@ -1,4 +1,4 @@
-import {  updateUserAuthenticationStatus, getCalendarEventsSuccess  } from '../backend-actions/index';
+import {  updateUserAuthenticationStatus, getCalendarEventsSuccess  } from '../backendActions/index';
 
 const asyncActionsMiddleware = store => next => action => {
   if (action.async) {
