@@ -3,47 +3,39 @@
 **/
 
 // used to get unique id of a to-do item via its text composition
-const getTextId = text => {
+const getTextId = (text) => {
   let output = 0;
-  for (let i=0;i<text.length;i++) {
-    output += text.charCodeAt(i)*(i+1);
+  for (let i = 0; i < text.length; i++) {
+    output += text.charCodeAt(i) * (i + 1);
   }
-  return output
-}
+  return output;
+};
 
-export const addTodo = text => {
-  return {
-    type: 'ADD_TODO',
-    payload: {
-      text,
-      id: getTextId(text)
-    }
-  }
-}
+export const addTodo = text => ({
+  type: 'ADD_TODO',
+  payload: {
+    text,
+    id: getTextId(text),
+  },
+});
 
-export const deleteTodo = id => {
-  return {
-    type: 'DELETE_TODO',
-    payload: {
-      id
-    }
-  }
-}
+export const deleteTodo = id => ({
+  type: 'DELETE_TODO',
+  payload: {
+    id,
+  },
+});
 
-export const setVisibilityFilter = filter => {
-  return {
-    type: 'SET_VISIBILITY_FILTER',
-    payload: {
-      filter
-    }
-  }
-}
+export const setVisibilityFilter = filter => ({
+  type: 'SET_VISIBILITY_FILTER',
+  payload: {
+    filter,
+  },
+});
 
-export const toggleTodo = id => {
-  return {
-    type: 'TOGGLE_TODO',
-    payload: {
-      id
-    }
-  }
-}
+export const toggleTodo = id => ({
+  type: 'TOGGLE_TODO',
+  payload: {
+    id,
+  },
+});
