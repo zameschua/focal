@@ -1,21 +1,24 @@
 import todoListReducer from './TodoListReducers/todoListReducer';
 import timeTrackerReducer from './TimeTrackerReducers/timeTrackerReducer';
 import eventsFeedReducer from './EventsFeedReducers/eventsFeedReducer'
-import sidePanelsReducer from './sidePanelsReducers/sidePanelsReducer'
+import appStateReducer from './appStateReducers/appStateReducer'
 
 const INITIAL_STATE = {
 	todoList: {
 	  todos: [],
-	  visibilityFilter: "SHOW_ALL"
+	  visibilityFilter: "SHOW_ALL",
 	},
 	timeTracker: {
-		URL:[]
+		URL:[],
 	},
 	eventsFeed: {
 		events: [],
-		userHasAuthenticated: false
+		userHasAuthenticated: false,
 	},
-	sidePanelsVisible: false
+	appState: {
+		sidePanelsVisible: false,
+		userName: "",
+	},
 }
 
 export default function rootReducer(state = INITIAL_STATE, action) {
@@ -23,7 +26,7 @@ export default function rootReducer(state = INITIAL_STATE, action) {
     todoList : todoListReducer(state.todoList, action),
     timeTracker : timeTrackerReducer(state.timeTracker, action),
     eventsFeed: eventsFeedReducer(state.eventsFeed, action),
-    sidePanelsVisible: sidePanelsReducer(state.showSidePanels, action),
+    appState: appStateReducer(state.appState, action),
   };
 }
 
@@ -50,6 +53,11 @@ store = {
 		events: []
 	  } * 7 days];
     },
+    appState:
+    	sidePanelsVisible: BOOLEAN
+    	userName: STRING
+
+		
     sidePanelsVisible: BOOLEAN
 }
 */

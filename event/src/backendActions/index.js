@@ -36,6 +36,13 @@ export const getCalendarEventsSuccess = (payload) => {
   }
 }
 
+export const getCalendarEventsFailure = (payload) => {
+  return {
+    type: "GET_CALENDAR_EVENTS_FAILURE",
+    payload
+  }
+}
+
 export const getCalendarEvents = () => {
   return {
     type: "GET_CALENDAR_EVENTS",

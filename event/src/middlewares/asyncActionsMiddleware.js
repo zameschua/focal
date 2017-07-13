@@ -1,4 +1,4 @@
-import {  updateUserAuthenticationStatus, getCalendarEventsSuccess  } from '../backendActions/index';
+import {  updateUserAuthenticationStatus, getCalendarEventsSuccess, getCalendarEventsFailure  } from '../backendActions/index';
 
 const asyncActionsMiddleware = store => next => action => {
   if (action.async) {
@@ -26,7 +26,7 @@ export default asyncActionsMiddleware;
 
 // Helper method
 const makeAPICall = (token, store) => {
-	let today = new Date()
+  let today = new Date()
   let nextWeek = new Date((new Date()).setDate(today.getDate() + 7)) // Add 1 week
   let timeMax = nextWeek.toISOString();
   let timeMin = today.toISOString();

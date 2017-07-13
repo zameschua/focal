@@ -6,11 +6,16 @@ import TemplatePanelComponent from './TemplatePanel/components/TemplatePanelComp
 import TimeTrackerMain from './TimeTracker/components/TimeTrackerMain';
 import WelcomeCard from './WelcomeCard/containers/WelcomeCard';
 import EventsFeed from './EventsFeed/containers/EventsFeed';
-
+import RequestName from './RequestName/containers/RequestName';
 import {  showSidePanels, hideSidePanels  } from './appActions/sidePanelActions';
 
 class App extends Component {
   render() {
+    // Requests for user name if it's user's first login
+    if (this.props.userFirstLogin) {
+      return <RequestName />
+    }
+
     // Code to render the background image
     // TODO: Cache the image
     // Add /daily to end of url so that the image is only queried once a day
@@ -61,7 +66,7 @@ class App extends Component {
 
           <div className="col-6 align-self-center">
             <div className="text-center">
-              <WelcomeCard />
+              <WelcomeCard userName={this.props.userName}/>
             </div>
             
           </div>
@@ -80,8 +85,18 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  return {
-    sidePanelsVisible: state.sidePanelsVisible
+  // Check if the state is ready
+  if (state.appState) {
+    return {
+      sidePanelsVisible: state.appState.sidePanelsVisible,
+      userFirstLogin: (state.appState.userName === ""), // Returns true if user first login
+      userName: state.appState.userName,
+    }
+  } else {
+    return {
+      sidePanelsVisible: false,
+      userFirstLogin: true,
+    };
   }
 }
 
