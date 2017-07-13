@@ -15,7 +15,7 @@ const INITIAL_STATE = {
 		events: [],
 		userHasAuthenticated: false
 	},
-	showSidePanels: false
+	sidePanelsVisible: false
 }
 
 export default function rootReducer(state = INITIAL_STATE, action) {
@@ -23,7 +23,7 @@ export default function rootReducer(state = INITIAL_STATE, action) {
     todoList : todoListReducer(state.todoList, action),
     timeTracker : timeTrackerReducer(state.timeTracker, action),
     eventsFeed: eventsFeedReducer(state.eventsFeed, action),
-    showSidePanels: sidePanelsReducer(state.showSidePanels, action),
+    sidePanelsVisible: sidePanelsReducer(state.showSidePanels, action),
   };
 }
 
@@ -50,6 +50,6 @@ store = {
 		events: []
 	  } * 7 days];
     },
-    showSidePanels: BOOLEAN
+    sidePanelsVisible: BOOLEAN
 }
 */

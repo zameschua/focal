@@ -7,13 +7,9 @@ import TimeTrackerMain from './TimeTracker/components/TimeTrackerMain';
 import WelcomeCard from './WelcomeCard/containers/WelcomeCard';
 import EventsFeed from './EventsFeed/containers/EventsFeed';
 
-import {  toggleSidePanelsVisibility  } from './appActions/sidePanelActions';
+import {  showSidePanels, hideSidePanels  } from './appActions/sidePanelActions';
 
 class App extends Component {
-  toggleSidePanelsVisibility() {
-    this.props.toggleSidePanelsVisibility();
-  }
-
   render() {
     // Code to render the background image
     // TODO: Cache the image
@@ -34,7 +30,7 @@ class App extends Component {
     let leftPanel = null;
     let rightPanel = null;
 
-    if (this.props.showSidePanels) {
+    if (this.props.sidePanelsVisible) {
       leftPanel = (
         <div className="container" style={{paddingTop: "5%"}}>
           <EventsFeed />
@@ -58,8 +54,8 @@ class App extends Component {
           
           <div className="col-3" 
             style={{height:"100vh"}} 
-            onMouseEnter={this.toggleSidePanelsVisibility.bind(this)} 
-            onMouseLeave={this.toggleSidePanelsVisibility.bind(this)}>
+            onMouseEnter={this.props.showSidePanels.bind(this)} 
+            onMouseLeave={this.props.hideSidePanels.bind(this)}>
             {leftPanel}
           </div>
 
@@ -72,8 +68,8 @@ class App extends Component {
 
           <div className="col-3"
             style={{height:"100vh"}} 
-            onMouseEnter={this.toggleSidePanelsVisibility.bind(this)} 
-            onMouseLeave={this.toggleSidePanelsVisibility.bind(this)}>
+            onMouseEnter={this.props.showSidePanels.bind(this)} 
+            onMouseLeave={this.props.hideSidePanels.bind(this)}>
             {rightPanel}
           </div>
 
@@ -85,14 +81,17 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    showSidePanels: state.showSidePanels
+    sidePanelsVisible: state.sidePanelsVisible
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    toggleSidePanelsVisibility: () => {
-      dispatch(toggleSidePanelsVisibility());
+    showSidePanels: () => {
+      dispatch(showSidePanels());
+    },
+    hideSidePanels: () => {
+      dispatch(hideSidePanels());
     }
   }
 }
