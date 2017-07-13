@@ -2,7 +2,6 @@ import { connect } from 'react-redux'
 import React, {  Component  } from 'react';
 import {  updateUserAuthenticationStatus  } from '../actions/updateUserAuthenticationStatus'
 import {  getCalendarEvents  } from '../actions/getCalendarEvents'
-import _ from 'lodash'
 import EventsFeedDisplay from '../components/EventsFeedDisplay'
 import AuthenticateCard from '../components/AuthenticateCard'
 

@@ -1,5 +1,11 @@
-export const toggleSidePanelsVisibility = () => {
+export const showSidePanels = () => {
   return {
-    type: "TOGGLE_SIDE_PANELS_VISIBILITY",
+    type: "SHOW_SIDE_PANELS",
+  }
+}
+
+export const hideSidePanels = () => {
+  return {
+    type: "HIDE_SIDE_PANELS",
   }
 }

@@ -1,7 +1,9 @@
 const sidePanelsReducer = (state = false, action) => {
   switch (action.type) {
-    case 'TOGGLE_SIDE_PANELS_VISIBILITY':
-      return !state;
+    case 'SHOW_SIDE_PANELS':
+      return true;
+    case 'HIDE_SIDE_PANELS':
+      return false;
     default:
       return state;
   }
