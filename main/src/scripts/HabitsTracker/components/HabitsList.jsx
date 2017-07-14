@@ -38,15 +38,6 @@ class HabitsList extends Component {
 				    
 				  </li>
 				</ul>
-
-				<SkyLightStateless
-          isVisible={this.props.showAddSiteModal}
-          onCloseClicked={this.props.toggleModal}
-          onOverlayClicked={this.props.toggleModal}
-          title="A Stateless Modal"
-        >
-          I'm a Stateless modal!
-        </SkyLightStateless>
 		  </div>
 		)
 	}
