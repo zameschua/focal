@@ -8,6 +8,7 @@ import WelcomeCard from './WelcomeCard/containers/WelcomeCard';
 import EventsFeed from './EventsFeed/containers/EventsFeed';
 import RequestName from './RequestName/containers/RequestName';
 import {  showSidePanels, hideSidePanels  } from './appActions/sidePanelActions';
+import HabitsTrackerApp from './HabitsTracker/components/HabitsTrackerApp'
 
 class App extends Component {
   render() {
@@ -46,8 +47,9 @@ class App extends Component {
           <div className="row">
             <TimeTrackerMain />
           </div>
+          <br />
           <div className="row">
-            <TodoListApp/>
+            <HabitsTrackerApp/>
           </div>
         </div>
       )

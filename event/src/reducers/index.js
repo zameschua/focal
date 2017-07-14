@@ -1,7 +1,8 @@
 import todoListReducer from './TodoListReducers/todoListReducer';
-import timeTrackerReducer from './TimeTrackerReducers/timeTrackerReducer';
-import eventsFeedReducer from './EventsFeedReducers/eventsFeedReducer'
-import appStateReducer from './appStateReducers/appStateReducer'
+import timeTrackerReducer from './TimeTrackerReducers/TimeTrackerReducer';
+import eventsFeedReducer from './EventsFeedReducers/eventsFeedReducer';
+import appStateReducer from './appStateReducers/appStateReducer';
+import habitsTrackerReducer from './HabitsTrackerReducers/HabitsTrackerReducer';
 
 const INITIAL_STATE = {
 	todoList: {
@@ -19,6 +20,9 @@ const INITIAL_STATE = {
 		sidePanelsVisible: false,
 		userName: "",
 	},
+	habitsTracker: {
+		showAddSiteModal: false,
+	}
 }
 
 export default function rootReducer(state = INITIAL_STATE, action) {
@@ -27,6 +31,7 @@ export default function rootReducer(state = INITIAL_STATE, action) {
     timeTracker : timeTrackerReducer(state.timeTracker, action),
     eventsFeed: eventsFeedReducer(state.eventsFeed, action),
     appState: appStateReducer(state.appState, action),
+    habitsTracker: habitsTrackerReducer(state.habitsTracker, action),
   };
 }
 
