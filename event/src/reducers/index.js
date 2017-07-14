@@ -19,6 +19,10 @@ const INITIAL_STATE = {
 	appState: {
 		sidePanelsVisible: false,
 		userName: "",
+		cachedWallpapers: {
+			wallpaperQueue: [],
+			nextWallpaper: "",
+		},
 	},
 	habitsTracker: {
 		showAddSiteModal: false,
@@ -58,11 +62,12 @@ store = {
 		events: []
 	  } * 7 days];
     },
-    appState:
-    	sidePanelsVisible: BOOLEAN
-    	userName: STRING
-
-		
-    sidePanelsVisible: BOOLEAN
+  appState: {
+		sidePanelsVisible: BOOLEAN,
+		userName: STRING,
+		cachedWallpapers:
+			wallpaperQueue: QUEUE,
+			nextWallpaper: STRING (URL),
+	},
 }
 */

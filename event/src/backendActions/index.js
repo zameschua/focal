@@ -22,6 +22,9 @@ export const addTime = title => {
   }
 }
 
+
+// EventsFeed actions
+
 export const updateUserAuthenticationStatus = (status) => {
   return {
     type: "UPDATE_USER_AUTHENTICATION_STATUS",
@@ -47,5 +50,27 @@ export const getCalendarEvents = () => {
   return {
     type: "GET_CALENDAR_EVENTS",
     async: true
+  }
+}
+
+// appState actions
+export const changeWallpaper = () => {
+  // Get the next image
+  return {
+    type: "CHANGE_WALLPAPER"
+  }
+}
+
+export const preloadWallpaper = () => {
+  return {
+    type: "PRELOAD_WALLPAPER",
+    async: true,
+  }
+}
+
+export const preloadWallpaperSuccess = (newWallpaperId) => {
+  return {
+    type: "PRELOAD_WALLPAPER_SUCCESS",
+    payload: newWallpaperId,
   }
 }
