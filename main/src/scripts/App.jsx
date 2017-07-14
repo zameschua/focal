@@ -20,10 +20,10 @@ class App extends Component {
     // TODO: Cache the image
     // Add /daily to end of url so that the image is only queried once a day
     // Refer to https://source.unsplash.com/
-    const imageURL = "http://i.imgur.com/0ul4vJS.jpg";
+    const wallpaperUrl = this.props.wallpaperUrl;
     
     const backgroundImageStyle = {
-      background: `url(${imageURL})`,
+      background: `url(${wallpaperUrl})`,
       backgroundRepeat: "no-repeat",
       backgroundPosition: "center center",
       backgroundAttachment: "fixed",
@@ -91,11 +91,14 @@ const mapStateToProps = state => {
       sidePanelsVisible: state.appState.sidePanelsVisible,
       userFirstLogin: (state.appState.userName === ""), // Returns true if user first login
       userName: state.appState.userName,
+      wallpaperUrl: state.appState.cachedWallpapers.nextWallpaper,
     }
   } else {
     return {
       sidePanelsVisible: false,
       userFirstLogin: true,
+      userName: "",
+      wallpaperUrl: "",
     };
   }
 }
