@@ -7,7 +7,7 @@ const wallpapersReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'PRELOAD_WALLPAPER_SUCCESS':
       // Put pre-loaded wallpaper as next wallpaper on first load
-      if (state.nextWallpaper === "") {
+      if (state.nextWallpaper === "" || state.nextWallpaper === undefined) {
         return {
           wallpaperQueue: state.wallpaperQueue,
           nextWallpaper: action.payload,
