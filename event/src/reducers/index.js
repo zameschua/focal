@@ -72,7 +72,15 @@ store = {
 	},
 	habitsTracker: {
 		showAddSiteModal: BOOLEAN,
-		habitSites: []
+		habitSites: [
+	    id: NUMBER,
+	    completed: BOOLEAN,
+	    url: STRING,
+	    atMost: BOOLEAN,
+	    duration: NUMBER,
+	    timeSpent: NUMBER;
+
+		]
 	}
 }
 */

@@ -87,3 +87,12 @@ export const addHabitSiteTime = url => {
     }
   }
 }
+
+export const toggleCompleted = url => {
+  return {
+    type: "TOGGLE_COMPLETED",
+    payload: {
+      url: url,
+    }
+  }
+}

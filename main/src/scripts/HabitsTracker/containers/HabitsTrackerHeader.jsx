@@ -31,7 +31,7 @@ class HabitsTrackerHeader extends Component {
 	}	
 
 	handleDurationChange(event) {
-		this.setState({duration: event.target.value});
+		this.setState({duration: parseInt(event.target.value)});
 	}
 
 	render() {

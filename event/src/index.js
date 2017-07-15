@@ -1,6 +1,7 @@
 import initStore from './backendScripts/initStore';
 import initEventsFeed from './backendScripts/initEventsFeed';
 import initTimeTracker from './backendScripts/initTimeTracker';
+import initHabitsTracker from './backendScripts/initHabitsTracker';
 import { preloadWallpaper, changeWallpaper } from './backendActions'
 
 const store = initStore();
@@ -17,5 +18,5 @@ store.dispatch(preloadWallpaper());
 
 initEventsFeed(store);
 initTimeTracker(store);
-
+initHabitsTracker(store);
 
