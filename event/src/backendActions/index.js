@@ -2,6 +2,8 @@
   Fires off actions to the reducers, informing the reducer of changes to be made
 **/
 
+// TimeTracker actions
+
 export const addURL = (id, title, time) => {
   return {
     type: 'ADD_URL',
@@ -72,5 +74,16 @@ export const preloadWallpaperSuccess = (newWallpaperId) => {
   return {
     type: "PRELOAD_WALLPAPER_SUCCESS",
     payload: newWallpaperId,
+  }
+}
+
+// HabitSites actions
+
+export const addHabitSiteTime = url => {
+  return {
+    type: "ADD_HABIT_SITE_TIME",
+    payload: {
+      url: url,
+    }
   }
 }

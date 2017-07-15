@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {SkyLightStateless} from 'react-skylight';
-import {toggleModal} from "../actions/index";
+import {toggleModal, addHabitSite} from "../actions/index";
 import { connect } from 'react-redux';
 
 class HabitsTrackerHeader extends Component {
@@ -16,8 +16,9 @@ class HabitsTrackerHeader extends Component {
 	}
 
 	handleSubmit(event) {
-		alert('webUrl, choice, duration: ' + this.state.webUrl + " " + this.state.choice + " " + this.state.duration);
-		// this.props.toggleModal;
+		let atMost = (this.state.choice === 0);
+		this.props.addHabitSite(this.state.webUrl, atMost, this.state.duration);
+		this.props.toggleModal();
 		event.preventDefault();
 	}
 
@@ -35,15 +36,9 @@ class HabitsTrackerHeader extends Component {
 
 	render() {
 
-		var styles = {
-	    width: '30%',
-	    height: '30%',
-	    left: '70%',
-		};
 
 		return (
 		  <div>
-		    <h1 className="mdc-card__title mdc-card__title--large text-muted">To-do list</h1>
 	     	<button className="btn" type="button" onClick={this.props.toggleModal}>
           <span className="fa fa-plus"></span>
         </button>
@@ -55,8 +50,8 @@ class HabitsTrackerHeader extends Component {
         >	
         	<form onSubmit={this.handleSubmit}>
 	          <div className="form-group">
-	          	<label>Website address</label>
-	          	<input type="text" className="form-control" onChange={this.handleWebUrlChange} placeholder="www.example.com" />
+	          	<label>Website address (a website that starts with "http://" or "https://")</label>
+	          	<input type="url" className="form-control" onChange={this.handleWebUrlChange} placeholder="http://www.example.com" required pattern="https?://.+"/>
 	          </div>
 	          <div className="form-group">
 	          	<label>This website is to be visited daily for: </label>
@@ -67,7 +62,7 @@ class HabitsTrackerHeader extends Component {
 	          </div>
 	          <div className="form-group">
 	          	<label>Duration (in minutes)</label>
-	          	<input type="text" className="form-control" onChange={this.handleDurationChange} placeholder="15" />
+	          	<input type="number" className="form-control" onChange={this.handleDurationChange} placeholder="15" required/>
 	          </div>
 	          <button type="submit" className="btn btn-primary">Submit</button>	
 	        </form>
@@ -88,6 +83,9 @@ const mapDispatchToProps = dispatch => {
   return {
     toggleModal: () => {
       dispatch(toggleModal());
+    },
+    addHabitSite: (url, atMost, duration) => {
+    	dispatch(addHabitSite(url,atMost,duration));
     },
   }
 }

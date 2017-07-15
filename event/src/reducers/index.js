@@ -26,6 +26,7 @@ const INITIAL_STATE = {
 	},
 	habitsTracker: {
 		showAddSiteModal: false,
+		habitSites: []
 	}
 }
 
@@ -69,5 +70,9 @@ store = {
 			wallpaperQueue: QUEUE,
 			nextWallpaper: STRING (URL),
 	},
+	habitsTracker: {
+		showAddSiteModal: BOOLEAN,
+		habitSites: []
+	}
 }
 */

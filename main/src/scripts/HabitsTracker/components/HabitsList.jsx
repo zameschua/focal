@@ -12,12 +12,6 @@ class HabitsList extends Component {
 
 	render() {
 
-		var styles = {
-	    width: '30%',
-	    height: '30%',
-	    left: '70%',
-		};
-
 		return (
 		  <div>
 		    <ul className="list-group">
