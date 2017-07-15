@@ -1,6 +1,6 @@
 import React from 'react'
-import HabitsList from "./HabitsList"
-import HabitsTrackerHeader from "./HabitsTrackerHeader"
+import HabitsList from "../containers/HabitsList"
+import HabitsTrackerHeader from "../containers/HabitsTrackerHeader"
 
 const HabitTrackerApp = () => (
 	<div className="mdc-card bg-faded col-sm-12" style={{marginBottom: "5%"}}>

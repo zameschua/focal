@@ -10,19 +10,19 @@ class HabitsTrackerHeader extends Component {
 
 
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handlgeChoiceChange = this.handlgeChoiceChange.bind(this);
+		this.handleChoiceChange = this.handleChoiceChange.bind(this);
 		this.handleWebUrlChange = this.handleWebUrlChange.bind(this);
 		this.handleDurationChange = this.handleDurationChange.bind(this);
 	}
 
 	handleSubmit(event) {
-		let atMost = (this.state.choice === 0);
+		let atMost = (this.state.choice == 0);
 		this.props.addHabitSite(this.state.webUrl, atMost, this.state.duration);
 		this.props.toggleModal();
 		event.preventDefault();
 	}
 
-	handlgeChoiceChange(event) {
+	handleChoiceChange(event) {
 		this.setState({choice: event.target.value});
 	}
 
@@ -55,7 +55,7 @@ class HabitsTrackerHeader extends Component {
 	          </div>
 	          <div className="form-group">
 	          	<label>This website is to be visited daily for: </label>
-	          	<select className="form-control" onChange={this.handleChoiceChange}>
+	          	<select value={this.state.choice} className="form-control" onChange={this.handleChoiceChange}>
 	          		<option value="0">at most</option>
 	          		<option value="1">at least</option>
 	          	</select>
