@@ -25,8 +25,10 @@ const INITIAL_STATE = {
 		},
 	},
 	habitsTracker: {
+		showStatsModal: false,
 		showAddSiteModal: false,
-		habitSites: []
+		habitSites: [],
+		pastRecords: [],
 	}
 }
 
@@ -73,13 +75,21 @@ store = {
 	habitsTracker: {
 		showAddSiteModal: BOOLEAN,
 		habitSites: [
-	    id: NUMBER,
-	    completed: BOOLEAN,
-	    url: STRING,
-	    atMost: BOOLEAN,
-	    duration: NUMBER,
-	    timeSpent: NUMBER;
-
+			{
+		    id: NUMBER,
+		    completed: BOOLEAN,
+		    url: STRING,
+		    atMost: BOOLEAN,
+		    duration: NUMBER,
+		    timeSpent: NUMBER;
+	    }
+		],
+		pastRecords: [
+			{
+				date: DATE,
+				completed: NUMBER,
+				incompleted: NUMBER,
+			}
 		]
 	}
 }

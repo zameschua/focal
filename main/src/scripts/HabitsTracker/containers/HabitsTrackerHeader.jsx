@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import {SkyLightStateless} from 'react-skylight';
-import {toggleModal, addHabitSite} from "../actions/index";
+import {toggleModal, addHabitSite, toggleStatsModal} from "../actions/index";
 import { connect } from 'react-redux';
+import DayPicker from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
+
 
 class HabitsTrackerHeader extends Component {
 	constructor() {
@@ -42,6 +45,11 @@ class HabitsTrackerHeader extends Component {
 	     	<button className="btn" type="button" onClick={this.props.toggleModal}>
           <span className="fa fa-plus"></span>
         </button>
+        <button className="btn" type="button" style={{float:"right"}} onClick={this.props.toggleStatsModal}>
+        	<span className="fa fa-area-chart"></span>
+        </button>
+
+      	{/* MODAL FOR ADDING OF NEW SITE TO TRACK */}
 				<SkyLightStateless
           isVisible={this.props.showAddSiteModal}
           onCloseClicked={this.props.toggleModal}
@@ -68,6 +76,21 @@ class HabitsTrackerHeader extends Component {
 	        </form>
 	        
         </SkyLightStateless>
+
+      	{/* MODAL FOR DISPLAYING OF STATISTICS */}
+				<SkyLightStateless
+          isVisible={this.props.showStatsModal}
+          onCloseClicked={this.props.toggleStatsModal}
+          onOverlayClicked={this.props.toggleStatsModal}
+          title="Your progress for the past 42 days"
+        >	
+        	<div className="text-center">
+        		<h3>DayPicker</h3>
+  		      <DayPicker fixedWeeks canChangeMonth={false} 
+			      />      
+        	</div>
+        </SkyLightStateless>
+
 		  </div>
 		)
 	}
@@ -75,7 +98,8 @@ class HabitsTrackerHeader extends Component {
 
 const mapStateToProps = state => {
   return {
-  	showAddSiteModal: state.habitsTracker.showAddSiteModal
+  	showAddSiteModal: state.habitsTracker.showAddSiteModal,
+  	showStatsModal: state.habitsTracker.showStatsModal,
   }
 }
 
@@ -83,6 +107,9 @@ const mapDispatchToProps = dispatch => {
   return {
     toggleModal: () => {
       dispatch(toggleModal());
+    },
+    toggleStatsModal: () => {
+    	dispatch(toggleStatsModal());
     },
     addHabitSite: (url, atMost, duration) => {
     	dispatch(addHabitSite(url,atMost,duration));

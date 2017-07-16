@@ -29,3 +29,8 @@ export const deleteHabitSite = id => ({
 		id
 	}
 });
+
+export const toggleStatsModal = () => ({
+	type: "TOGGLE_STATS_MODAL",
+	payload: {}
+})
