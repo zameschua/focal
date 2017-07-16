@@ -64,7 +64,7 @@ class HabitsTrackerHeader extends Component {
           <span className="fa fa-plus"></span>
         </button>
         <button className="btn" type="button" style={{float:"right"}} onClick={this.props.toggleStatsModal}>
-        	<span className="fa fa-area-chart"></span>
+        	<span className="fa fa-calendar"></span>
         </button>
 
       	{/* MODAL FOR ADDING OF NEW SITE TO TRACK */}
