@@ -96,3 +96,14 @@ export const toggleCompleted = url => {
     }
   }
 }
+
+export const addDailyRecord = (date, completed, incomplete) => {
+  return {
+    type: "ADD_DAILY_RECORD",
+    payload: {
+      date,
+      completed,
+      incomplete
+    }
+  }
+}

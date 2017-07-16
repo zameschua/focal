@@ -1,6 +1,7 @@
 import AddSiteModalReducer from './AddSiteModalReducer';
 import AddHabitSitesReducer from './AddHabitSitesReducer';
 import ShowStatsModalReducer from './ShowStatsModalReducer';
+import AddPastRecordsReducer from './AddPastRecordsReducer';
 
 const INITIAL_STATE = {
   showAddSiteModal: false,
@@ -15,6 +16,7 @@ function habitsTrackerReducer(state = INITIAL_STATE, action) {
     showAddSiteModal: AddSiteModalReducer(state.showAddSiteModal,action),
     showStatsModal: ShowStatsModalReducer(state.showStatsModal,action),
     habitSites: AddHabitSitesReducer(state.habitSites,action),
+    pastRecords: AddPastRecordsReducer(state.pastRecords,action),
   }
 }
 

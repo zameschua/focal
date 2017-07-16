@@ -88,7 +88,7 @@ store = {
 			{
 				date: DATE,
 				completed: NUMBER,
-				incompleted: NUMBER,
+				incomplete: NUMBER,
 			}
 		]
 	}

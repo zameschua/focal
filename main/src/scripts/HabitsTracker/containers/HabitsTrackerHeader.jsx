@@ -4,38 +4,56 @@ import {toggleModal, addHabitSite, toggleStatsModal} from "../actions/index";
 import { connect } from 'react-redux';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
+import {approximateColor1ToColor2ByPercent, getRecordsModifiersStyles, getRecordsModifier} from "../helpers/index";
 
 
 class HabitsTrackerHeader extends Component {
 	constructor() {
 		super();
-		this.state = {webUrl: "", choice:0, duration:0};
+		this.state = {webUrl: "", choice:0, duration:0, selectedDay: null, selectedCompleted: 0, selectedIncomplete: 0};
 
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChoiceChange = this.handleChoiceChange.bind(this);
 		this.handleWebUrlChange = this.handleWebUrlChange.bind(this);
 		this.handleDurationChange = this.handleDurationChange.bind(this);
-	}
+		this.handleDayClick = this.handleDayClick.bind(this);
+	};
 
 	handleSubmit(event) {
 		let atMost = (this.state.choice == 0);
 		this.props.addHabitSite(this.state.webUrl, atMost, this.state.duration);
 		this.props.toggleModal();
 		event.preventDefault();
-	}
+	};
 
 	handleChoiceChange(event) {
 		this.setState({choice: event.target.value});
-	}
+	};
 
 	handleWebUrlChange(event) {
 		this.setState({webUrl: event.target.value});
-	}	
+	};
 
 	handleDurationChange(event) {
 		this.setState({duration: parseInt(event.target.value)});
-	}
+	};
+
+  handleDayClick(day) {
+  	this.setState({
+  		selectedDay: day,
+  		selectedCompleted: 0,
+  		selectedIncomplete: 0
+  	});
+    this.props.pastRecords.forEach(record => {
+    	if (record.date.getFullYear() === day.getFullYear() && record.date.getMonth() === day.getMonth() && record.date.getDate() === day.getDate()) {
+    		this.setState({
+    			selectedCompleted: record.completed,
+    			selectedIncomplete: record.incomplete
+    		})
+    	}
+    });
+  };
 
 	render() {
 
@@ -85,9 +103,18 @@ class HabitsTrackerHeader extends Component {
           title="Your progress for the past 42 days"
         >	
         	<div className="text-center">
-        		<h3>DayPicker</h3>
-  		      <DayPicker fixedWeeks canChangeMonth={false} 
-			      />      
+  		      <DayPicker 
+  		      	fixedWeeks 
+  		      	canChangeMonth={false}
+  		      	modifiers={getRecordsModifier(this.props.pastRecords)}
+  		      	modifiersStyles={getRecordsModifiersStyles(this.props.pastRecords)} 
+  		      	onDayClick={this.handleDayClick}
+			      />
+        		{this.state.selectedDay 
+      				? (<p>On <strong>{this.state.selectedDay.toLocaleDateString()}</strong>,
+      						you fulfilled <label style={{fontWeight: "bold", color: "green"}}>{this.state.selectedCompleted}</label> habits and
+      						failed to fulfill <label style={{fontWeight: "bold", color: "red"}}>{this.state.selectedIncomplete}</label> habits.</p>)
+      				: (<p>Nothing selected</p>)}			            
         	</div>
         </SkyLightStateless>
 
@@ -96,10 +123,24 @@ class HabitsTrackerHeader extends Component {
 	}
 }
 
+var mockRecords = [
+	{
+		date: new Date(2017, 6, 17),
+		completed: 5,
+		incomplete: 10
+	},
+	{
+		date: new Date(2017, 6, 18),
+		completed: 5,
+		incomplete: 2
+	},	
+]
+
 const mapStateToProps = state => {
   return {
   	showAddSiteModal: state.habitsTracker.showAddSiteModal,
   	showStatsModal: state.habitsTracker.showStatsModal,
+  	pastRecords: mockRecords,
   }
 }
 
