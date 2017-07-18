@@ -1,5 +1,5 @@
 import React from 'react';
-import {deleteHabitSite} from "../actions/index";
+import {deleteHabitSite, updateDailyRecordMinus} from "../actions/index";
 import { connect } from 'react-redux';
 import HabitSite from "../components/HabitSite";
 
@@ -7,7 +7,7 @@ const HabitsList = ({ habitSites, deleteHabitSite }) => {
   if (habitSites) {
     return (<ul className="list-group">
         {habitSites.map(site => (
-        <HabitSite key={site.id} completed={site.completed} url={site.url} timeSpent={site.timeSpent} onDelete={() => deleteHabitSite(site.id)} />
+        <HabitSite key={site.id} completed={site.completed} url={site.url} timeSpent={site.timeSpent} onDelete={() => deleteHabitSite(site.id, site.completed)} />
       ))}
     </ul>)
   } else {
@@ -32,8 +32,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteHabitSite: (id) => {
+    deleteHabitSite: (id, completed) => {
       dispatch(deleteHabitSite(id));
+      dispatch(updateDailyRecordMinus(new Date().toLocaleDateString(), completed));
     },
   }
 }

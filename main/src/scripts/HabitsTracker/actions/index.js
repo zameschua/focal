@@ -33,4 +33,20 @@ export const deleteHabitSite = id => ({
 export const toggleStatsModal = () => ({
 	type: "TOGGLE_STATS_MODAL",
 	payload: {}
-})
+});
+
+export const updateDailyRecordAdd = (date, atMost) => ({
+	type: "UPDATE_DAILY_RECORD_ADD",
+	payload: {
+		date,
+		atMost
+	}
+});
+
+export const updateDailyRecordMinus = (date, completed) => ({
+	type: "UPDATE_DAILY_RECORD_MINUS",
+	payload: {
+		date,
+		completed
+	}
+});
