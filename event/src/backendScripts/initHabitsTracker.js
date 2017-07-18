@@ -1,4 +1,4 @@
-import {toggleCompleted, addHabitSiteTime, addDailyRecord} from '../backendActions/index';
+import {toggleCompleted, addHabitSiteTime, addDailyRecord, resetCompletedStatus} from '../backendActions/index';
 
 const initHabitsTracker = store => {
 
@@ -18,9 +18,9 @@ const initHabitsTracker = store => {
   **/
 
   var getURL = (url) => {
-    let data = store.getState();
-    let index, found;
-    let hostname = new URL(url).origin;
+    var data = store.getState();
+    var index, found;
+    var hostname = new URL(url).origin;
 
     // when data in store is not empty, loop through every tab detail and find
     // the one whose url is the same as current tab's url
@@ -76,11 +76,12 @@ const initHabitsTracker = store => {
         }
       }
     }
+  };
 
-    
-    let data = store.getState();
-    let record = {
-      date: new Date(),
+  var updateDailyRecord = () => {
+    var data = store.getState();
+    var record = {
+      date: new Date().toLocaleDateString(),
       completed: data.habitsTracker.habitSites.filter(site => {return site.completed}).length,
       incomplete: data.habitsTracker.habitSites.filter(site => {return !site.completed}).length
     };
@@ -90,13 +91,15 @@ const initHabitsTracker = store => {
       store.dispatch(addDailyRecord(record.date, record.completed, record.incomplete));
     }
     else {
-      let lastRecordIndex = data.habitsTracker.pastRecords.length-1;
-      // check whether dates are same. If it's not the same, then it's a new day so add the record in
-      if (record.date.getDate() !== data.habitsTracker.pastRecords[lastRecordIndex].getDate()) {
+      var lastRecordIndex = data.habitsTracker.pastRecords.length-1;
+      // check whether dates are same. If it's not the same, 
+      // then it's a new day so add the record in and also reset the habitsTracker "completed" status
+      if (new Date(record.date).getDate() !== new Date(data.habitsTracker.pastRecords[lastRecordIndex].date).getDate()) {
         store.dispatch(addDailyRecord(record.date, record.completed, record.incomplete));
+        store.dispatch(resetCompletedStatus());
       }
     }
-  };
+  }
 
   /**
     function that keeps track of current tab and increments the time counter of the tab in storage
@@ -111,10 +114,10 @@ const initHabitsTracker = store => {
       var blacklist = ['newtab', 'devtools', 'extensions', 'settings']; //blacklist consists of sites not meant to keep track of
       if (tabs[0].url) {
         let hostname = new URL(tabs[0].url).hostname;
-        let found = (blacklist.indexOf(hostname) === -1) ? false : true;
+        var found = (blacklist.indexOf(hostname) === -1) ? false : true;
       }
       else {
-        let found = true;
+        var found = true;
       }
       
 
@@ -124,6 +127,7 @@ const initHabitsTracker = store => {
         clearInterval(interval);
         // every period, increment the time of tab details in storage
         interval = setInterval(function() {
+          updateDailyRecord();
           getURL(tabs[0].url);
           if (Object.keys(currentTabInfo).length !== 0) {
             updateURL();

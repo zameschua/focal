@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {SkyLightStateless} from 'react-skylight';
-import {toggleModal, addHabitSite, toggleStatsModal} from "../actions/index";
+import {toggleModal, addHabitSite, toggleStatsModal, updateDailyRecordAdd} from "../actions/index";
 import { connect } from 'react-redux';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
@@ -12,17 +12,18 @@ class HabitsTrackerHeader extends Component {
 		super();
 		this.state = {webUrl: "", choice:0, duration:0, selectedDay: null, selectedCompleted: 0, selectedIncomplete: 0};
 
-
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChoiceChange = this.handleChoiceChange.bind(this);
 		this.handleWebUrlChange = this.handleWebUrlChange.bind(this);
 		this.handleDurationChange = this.handleDurationChange.bind(this);
 		this.handleDayClick = this.handleDayClick.bind(this);
+    this.handleStatsPanel = this.handleStatsPanel.bind(this);
 	};
 
 	handleSubmit(event) {
 		let atMost = (this.state.choice == 0);
 		this.props.addHabitSite(this.state.webUrl, atMost, this.state.duration);
+		this.props.updateDailyRecordAdd(new Date().toLocaleDateString(), atMost);
 		this.props.toggleModal();
 		event.preventDefault();
 	};
@@ -46,7 +47,8 @@ class HabitsTrackerHeader extends Component {
   		selectedIncomplete: 0
   	});
     this.props.pastRecords.forEach(record => {
-    	if (record.date.getFullYear() === day.getFullYear() && record.date.getMonth() === day.getMonth() && record.date.getDate() === day.getDate()) {
+    	var dateObj = new Date(record.date);
+    	if (dateObj.getFullYear() === day.getFullYear() && dateObj.getMonth() === day.getMonth() && dateObj.getDate() === day.getDate()) {
     		this.setState({
     			selectedCompleted: record.completed,
     			selectedIncomplete: record.incomplete
@@ -54,6 +56,11 @@ class HabitsTrackerHeader extends Component {
     	}
     });
   };
+
+  handleStatsPanel(event) {
+    this.props.toggleStatsModal();
+    this.setState({selectedDay:null});
+  }
 
 	render() {
 
@@ -98,8 +105,8 @@ class HabitsTrackerHeader extends Component {
       	{/* MODAL FOR DISPLAYING OF STATISTICS */}
 				<SkyLightStateless
           isVisible={this.props.showStatsModal}
-          onCloseClicked={this.props.toggleStatsModal}
-          onOverlayClicked={this.props.toggleStatsModal}
+          onCloseClicked={this.handleStatsPanel}
+          onOverlayClicked={this.handleStatsPanel}
           title="Your progress for the past 42 days"
         >	
         	<div className="text-center">
@@ -140,7 +147,7 @@ const mapStateToProps = state => {
   return {
   	showAddSiteModal: state.habitsTracker.showAddSiteModal,
   	showStatsModal: state.habitsTracker.showStatsModal,
-  	pastRecords: mockRecords,
+  	pastRecords: state.habitsTracker.pastRecords,
   }
 }
 
@@ -155,6 +162,9 @@ const mapDispatchToProps = dispatch => {
     addHabitSite: (url, atMost, duration) => {
     	dispatch(addHabitSite(url,atMost,duration));
     },
+    updateDailyRecordAdd: (date, atMost) => {
+    	dispatch(updateDailyRecordAdd(date, atMost));
+    }
   }
 }
 

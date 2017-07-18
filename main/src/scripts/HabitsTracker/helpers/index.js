@@ -34,7 +34,8 @@ function mix(start, end, percent) {
 export const getRecordsModifier = (pastRecords) => {
   let modifiers = {};
   for (let i=0;i<pastRecords.length;i++) {
-    modifiers[i+1] = pastRecords[i].date;
+    var dateObj = new Date(pastRecords[i].date);
+    modifiers[i+1] = dateObj;
   }
   return modifiers;
 }

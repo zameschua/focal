@@ -101,9 +101,16 @@ export const addDailyRecord = (date, completed, incomplete) => {
   return {
     type: "ADD_DAILY_RECORD",
     payload: {
-      date,
-      completed,
-      incomplete
+      date: date,
+      completed: completed,
+      incomplete: incomplete,
     }
   }
 }
+
+export const resetCompletedStatus = () => {
+  return {
+    type: "RESET_COMPLETED_STATUS",
+    payload: {}
+  }
+} 
