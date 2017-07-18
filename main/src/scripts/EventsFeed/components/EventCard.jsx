@@ -16,10 +16,10 @@ const EventCard = ({event}) => {
 	}
 
 	return (
-		<div className="mdc-card bg-faded" style={{marginBottom: "5%"}}>
+		<div className="mdc-card" style={{marginBottom: "5%"}}>
 		  <section className="mdc-card__primary">
-		    <h1 className="mdc-card__title mdc-card__title--large text-muted">{event.summary}</h1>
-		    <h2 className="mdc-card__subtitle text-muted">{timeRender}</h2>
+		    <h1 className="mdc-card__title mdc-card__title--large text-white">{event.summary}</h1>
+		    <h2 className="mdc-card__subtitle text-white">{timeRender}</h2>
 		  </section>
 		</div>
 	);

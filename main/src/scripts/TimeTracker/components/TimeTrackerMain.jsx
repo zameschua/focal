@@ -17,7 +17,7 @@ class TimeTrackerMain extends Component {
 
 	render() {
 		return (
-	  <div className="mdc-card" style={{backgroundColor: "rgba(255,255,255,0.1)", borderRadius:"25px"}}>
+	  <div className="mdc-card" style={{backgroundColor: "rgba(0,0,0,0.2)", borderRadius:"25px"}}>
 	    <section className="mdc-card__primary">
 		    <h1 className="mdc-card__title mdc-card__title--large text-white" style={{fontFamily:"Segoe UI",fontWeight:"bold"}}>Time Tracker</h1>
 		  </section>

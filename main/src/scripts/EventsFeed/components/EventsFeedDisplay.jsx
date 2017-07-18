@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactScrollbar from 'react-scrollbar-js';
+import ScrollArea from 'react-scrollbar';
 
 import EventsDay from './EventsDay';
 
@@ -10,11 +11,17 @@ const EventsFeedDisplay = ({events}) => {
 			eventsDayRender.push(<EventsDay eventsDay={events[i]} key={events[i].index}/>)
 		}
 	}
-	
+
+	const myScrollbar = {
+  height: "500px",
+  width: "100%",
+  borderRadius:"25px"
+	};
+
 	return (
-		<ReactScrollbar>
+		<ScrollArea horizontal={false} style={myScrollbar} smoothScrolling={true}>
 			{eventsDayRender}
-		</ReactScrollbar>
+		</ScrollArea>
 	);
 }
 
