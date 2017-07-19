@@ -2,7 +2,7 @@ import React from 'react';
 import URLLine from './URLLine';
 import { connect } from 'react-redux';
 
-import ReactScrollbar from 'react-scrollbar-js';
+import ScrollArea from 'react-scrollbar';
 
 
 //compare by descending order
@@ -31,13 +31,13 @@ var URLInfo = ({URLs}) => {
 
   if (URLs) {
     return (
-      <ReactScrollbar style={myScrollbar}>
+      <ScrollArea style={myScrollbar}>
         <ul className="list-group" style={{fontFamily:"Segoe UI"}}>
           {sortedURLs.map(url => (
             <URLLine key={url.id} title={url.title} time={url.time} totalTime={Math.round(url.time*100/totalTimeSpent)} />
           ))}
         </ul>
-      </ReactScrollbar>
+      </ScrollArea>
 
     )
   } else {

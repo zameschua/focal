@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactScrollbar from 'react-scrollbar-js';
 import ScrollArea from 'react-scrollbar';
 
 import EventsDay from './EventsDay';
