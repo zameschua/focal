@@ -1,6 +1,8 @@
 import React, {  Component  } from 'react';
 import {  connect  } from 'react-redux';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import TodoListApp from './TodoList/components/TodoListApp';
 import TemplatePanelComponent from './TemplatePanel/components/TemplatePanelComponent'; // Temporary component
 import TimeTrackerMain from './TimeTracker/components/TimeTrackerMain';
@@ -56,30 +58,32 @@ class App extends Component {
     }
 
     return (
-      <div className="App container-fluid" style={backgroundImageStyle}> {/* Attatch background image */}
-        <div className="row h-100">
-          
-          <div className="col-3" 
-            style={{height:"100vh"}} 
-            onMouseEnter={this.props.showSidePanels.bind(this)} 
-            onMouseLeave={this.props.hideSidePanels.bind(this)}>
-            {leftPanel}
-          </div>
-
-          <div className="col-6 align-self-center">
-            <div className="text-center">
-              <WelcomeCard userName={this.props.userName}/>
-            </div>
+      <div className="App container-fluid" style={{backgroundColor: "black", padding: "0"}}> {/* Attatch background image */}
+        <div style={backgroundImageStyle}>
+          <div className="row h-100">
             
-          </div>
+            <div className="col-3" 
+              style={{height:"100vh"}} 
+              onMouseEnter={this.props.showSidePanels.bind(this)} 
+              onMouseLeave={this.props.hideSidePanels.bind(this)}>
+              {leftPanel}
+            </div>
 
-          <div className="col-3"
-            style={{height:"100vh"}} 
-            onMouseEnter={this.props.showSidePanels.bind(this)} 
-            onMouseLeave={this.props.hideSidePanels.bind(this)}>
-            {rightPanel}
-          </div>
+            <div className="col-6 align-self-center">
+              <div className="text-center">
+                <WelcomeCard userName={this.props.userName}/>
+              </div>
+              
+            </div>
 
+            <div className="col-3"
+              style={{height:"100vh"}} 
+              onMouseEnter={this.props.showSidePanels.bind(this)} 
+              onMouseLeave={this.props.hideSidePanels.bind(this)}>
+              {rightPanel}
+            </div>
+
+          </div>
         </div>
       </div>
     );
