@@ -7,11 +7,21 @@ const EventCard = ({event}) => {
 	if (event.isWholeDayEvent) {
 		timeRender = "Whole Day Event"
 	} else {
+		// If time is single digit ie. 12:05, Insert 0 in front of the time to make it double digit
+		let startTime = `${event.startTime.minutes}`;
+		let endTime = `${event.endTime.minutes}`;
+		if (event.startTime.minutes < 10) {
+			startTime = `0${event.startTime.minutes}`
+		}
+		if (event.endTime.minutes < 10) {
+			endTime = `0${event.endTime.minutes}`
+		}
+
 		if (event.displayStartTime) {
-			timeRender = `From ${event.startTime.hours}:${event.startTime.minutes} `
+			timeRender = `from ${event.startTime.hours}:${startTime} `
 		}
 		if (event.displayEndTime) {
-			timeRender += `Till ${event.endTime.hours}:${event.endTime.minutes}`
+			timeRender += `till ${event.endTime.hours}:${endTime}`
 		}
 	}
 
