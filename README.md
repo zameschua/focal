@@ -1,9 +1,24 @@
-# nus-focal
-A productivity application that runs on Chrome extension
+# Focal
+A chrome extension to boost your productivity
 
-To run the the chrome extension:
-1. Go to this link https://chrome.google.com/webstore/detail/nus-focal/hgoalcaldnhffibnncpgamalbkehopii?hl=en
-2. Install the chrome extension
-3. A popup will appear to ask if you want to keep the extension running. Let it continue to run
-4. Click on the new tab page to see the main dashboard
-5. Navigate to a few other websites and come back, you'll see the time tracker in action!
+## Using the application
+Focal lives on the Google Chrome store at https://chrome.google.com/webstore/detail/nus-focal/hgoalcaldnhffibnncpgamalbkehopii?hl=en
+
+## Development
+1. Clone the repo to your machine
+
+   `> git clone https://github.com/gnosis-agora/nus-focal.git`
+
+2. Install the node modules
+
+   `> npm install`
+ 
+3. Compile the file
+
+   `> gulp`
+
+4. In Google Chrome, navigate to `chrome://extensions`. Ensure that developer mode has been enabled (with the small checkbox at the top-right of the window).
+
+5. At the top of the window, click on 'Load unpacked extensions', and navigate to the `/build` folder that we created in step 3.
+
+6. Open a new tab and you should see the extension running!
