@@ -18,17 +18,23 @@ class RequestName extends Component {
 
   render() {
 	  return (
-	    <div>
-		    <form className="mdc-textfield" onSubmit={this.handleSubmit.bind(this)}>
-		      <input className="mdc-textfield__input"
-		      	type="text" 
-		      	id="input"
-		      	ref={node => {
-            	this.state.inputField = node;
-          	}} />
-		      <label className="mdc-textfield__label" htmlFor="input">What's your name?</label>
-		    </form>
-		  </div>
+	    <div className="container-fluid" style={{height: "100vh", width:"100vh"}}>
+        <div className="row justify-content-center text-center">
+          <div className="col" style={{marginTop: "17vh"}}>
+            <h5 style={{fontSize: "100px"}}>Hey there,</h5>
+            <h5 style={{fontSize: "70px"}}>What's your name?</h5>
+    		    <form className="mdc-textfield" onSubmit={this.handleSubmit.bind(this)}>
+    		      <input className="mdc-textfield__input text-center"
+    		      	type="text" 
+    		      	id="input"
+    		      	ref={node => {
+                	this.state.inputField = node;
+              	}} 
+                style={{fontSize: "70px", width: "40vw", marginTop:"10vh"}}/>
+    		    </form>
+    		  </div>
+        </div>
+      </div>
 	  );
 	}
 }

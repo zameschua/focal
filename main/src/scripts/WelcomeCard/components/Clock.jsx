@@ -2,17 +2,19 @@ import React from 'react';
 
 
 const Clock = ({hours, minutes}) => {
-	if (minutes > 9) {
-		return (
-			<h1 style={{color:"white",fontSize:"108px"}}>{hours}:{minutes}</h1>	
-		)
+	let renderHours = `${hours}`;
+	let renderMinutes = `${minutes}`;
+
+	if (minutes <= 9) {
+		renderMinutes = `0${renderMinutes}`
 	}
-	else {
-	  return (
-	    <h1 style={{color:"white",fontSize:"108px"}}>{hours}:0{minutes}</h1>
-	  )		
+	if (hours <= 9) {
+		renderHours = `0${renderHours}`
 	}
 
+  return (
+    <h1 style={{color:"white",fontSize:"130px"}}>{renderHours}:{renderMinutes}</h1>
+  )		
 }
 
 export default Clock;

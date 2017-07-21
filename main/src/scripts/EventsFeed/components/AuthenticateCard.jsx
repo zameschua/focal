@@ -9,10 +9,10 @@ const AuthenticateCard = ({handleAuthenticate}) => {
 	}
 
 	return (
-		<div className="mdc-card bg-faded text-center">
+		<div className="mdc-card bg-faded text-center" style={{backgroundColor: "rgba(0, 0, 0, 0.70)"}}>
 		  <section className="mdc-card__primary">
 
-		  	<button type="button" className="mdc-button mdc-button--raised" onClick={handleAuthenticate}>
+		  	<button type="button" className="mdc-button mdc-button--raised" style={{backgroundColor: "white"}} onClick={handleAuthenticate}>
   				<div className="row">
 	  				<div className="col-3">
 		  				<span style={googleIconStyle} className="align-middle">

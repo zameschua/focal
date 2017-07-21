@@ -6,8 +6,6 @@ import 'material-components-web/dist/material-components-web.css';
 import {autoInit} from 'material-components-web/dist/material-components-web.js';
 autoInit();
 
-import TodoListApp from './TodoList/components/TodoListApp';
-import TemplatePanelComponent from './TemplatePanel/components/TemplatePanelComponent'; // Temporary component
 import TimeTrackerMain from './TimeTracker/components/TimeTrackerMain';
 import WelcomeCard from './WelcomeCard/containers/WelcomeCard';
 import EventsFeed from './EventsFeed/containers/EventsFeed';
@@ -22,10 +20,6 @@ class App extends Component {
       return <RequestName />
     }
 
-    // Code to render the background image
-    // TODO: Cache the image
-    // Add /daily to end of url so that the image is only queried once a day
-    // Refer to https://source.unsplash.com/
     const wallpaperUrl = this.props.wallpaperUrl;
     
     const backgroundImageStyle = {
