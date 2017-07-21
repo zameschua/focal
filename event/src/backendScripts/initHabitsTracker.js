@@ -66,13 +66,35 @@ const initHabitsTracker = store => {
       // if the time exceeds the duration timer
       // update completed status
       if (currentTabInfo.timeSpent + 1 >= (currentTabInfo.duration*60)) {
+        
+        
+        // if failed
         if (currentTabInfo.atMost && currentTabInfo.completed) {
           store.dispatch(toggleCompleted(currentTabInfo.url));
+          var data = store.getState();
+          var record = {  
+            date: new Date().toLocaleDateString(),
+            completed: data.habitsTracker.habitSites.filter(site => {return site.completed}).length,
+            incomplete: data.habitsTracker.habitSites.filter(site => {return !site.completed}).length
+          };
+
           currentTabInfo.completed = false;
+          sendNotification(currentTabInfo.url, currentTabInfo.duration, currentTabInfo.completed);
+          store.dispatch(addDailyRecord(record.date, record.completed, record.incomplete));
         }
+        // if success
         else if (!currentTabInfo.atMost && !currentTabInfo.completed) {
           store.dispatch(toggleCompleted(currentTabInfo.url));
+          var data = store.getState();
+          var record = {  
+            date: new Date().toLocaleDateString(),
+            completed: data.habitsTracker.habitSites.filter(site => {return site.completed}).length,
+            incomplete: data.habitsTracker.habitSites.filter(site => {return !site.completed}).length
+          };
+
           currentTabInfo.completed = true;
+          sendNotification(currentTabInfo.url, currentTabInfo.duration, currentTabInfo.completed);
+          store.dispatch(addDailyRecord(record.date, record.completed, record.incomplete));
         }
       }
     }
@@ -139,6 +161,23 @@ const initHabitsTracker = store => {
     });
   };
 
+  var sendNotification = (siteUrl, timeSpent, completed) => {
+    if (completed) {
+      var title = "Success!";
+      var message = "Congratulations! You have successfully spent " + timeSpent + " minutes on " + siteUrl + " and hence have completed your goal!";
+    }
+    else {
+      var title = "Awww :(";
+      var message = "Too bad, you spent " + timeSpent + " minutes on " + siteUrl + " and hence have failed your goal.";
+    }
+    chrome.notifications.create({
+      type: "basic",
+      iconUrl: "icon.png",
+      title: title,
+      message: message,
+    });
+  }
+
 
   getCurrentTab();
 
@@ -152,3 +191,6 @@ const initHabitsTracker = store => {
 }
 
 export default initHabitsTracker;
+
+
+      

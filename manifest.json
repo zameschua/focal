@@ -29,7 +29,8 @@
     "*://*/*",
     "storage",
     "unlimitedStorage",
-    "identity"
+    "identity",
+    "notifications"
   ],
   "oauth2": {
     "client_id": "787306999678-fsjshgsfgl2c4qhbnkocknas8c8r4pi9.apps.googleusercontent.com",
