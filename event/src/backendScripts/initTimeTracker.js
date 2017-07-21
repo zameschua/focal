@@ -110,7 +110,7 @@ const initTimeTracker = store => {
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   	
     if (sender.tab) { // if message is sent from a chrome tab
-      userActive = message.userActive;
+      userActive = message.userActive;  
     }
   });
 
