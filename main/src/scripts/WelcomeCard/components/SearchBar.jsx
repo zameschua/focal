@@ -4,9 +4,8 @@ const SearchBar = () => {
   let input
 
   return (
-    <div className="form-group col-sm-6 offset-sm-3" >
+    <div className="form-group col-sm-6 offset-sm-3" style={{marginTop: "5vh"}}>
       <form
-
         onSubmit={e => {
           e.preventDefault()
           if (!input.value.trim()) {
@@ -28,4 +27,4 @@ const SearchBar = () => {
   )
 }
 
-export default SearchBar
+export default SearchBar;
