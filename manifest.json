@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "RCR",
-  "description": "React, Chrome, and Redux example",
-  "version": "0.0.0.1",
+  "name": "Focal",
+  "description": "A Chrome extension to boost your productivity",
+  "version": "0.0.0.2",
   "background": {
     "scripts": [
       "event.js"
