@@ -14,7 +14,10 @@ const AddPastRecordsReducer = (state = [], action) => {
         return state;
       }
 
-      else if (state.filter(record => {return record.date.getDate() === action.payload.date.getDate()}).length !== 0) {
+      else if (state.filter(record => 
+        {return record.date[record.date.indexOf('/') + 1]+record.date[record.date.lastIndexOf('/') - 1] 
+          === action.payload.date[action.payload.date.indexOf('/') + 1]+action.payload.date[action.payload.date.lastIndexOf('/') - 1] 
+      }).length !== 0) {
         // case where record for the day already exists.
         // this only happens when a record is to be updated.
         // remove the most recent record.
