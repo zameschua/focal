@@ -31,7 +31,7 @@ var URLInfo = ({URLs}) => {
   if (URLs) {
     return (
       <ScrollArea smoothScrolling={true} horizontal={false} style={myScrollbar}>
-        <ul className="list-group" style={{fontFamily:"Segoe UI"}}>
+        <ul className="list-group">
           {sortedURLs.map(url => (
             <URLLine key={url.id} title={url.title} time={url.time} totalTime={Math.round(url.time*100/totalTimeSpent)} />
           ))}

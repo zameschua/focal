@@ -3,10 +3,10 @@ import EventCard from './EventCard'
 
 const Events = ({remainingEvents, wholeDayEvents}) => {
 	let wholeDayEventsRender = wholeDayEvents.map(event => {
-		return <EventCard event={event} key={event}/>
+		return <EventCard event={event}/>
 	});
 	let remainingEventsRender = remainingEvents.map(event => {
-		return <EventCard event={event} key={event}/>
+		return <EventCard event={event}/>
 	})
 	return (<div>
 	  {wholeDayEventsRender}
