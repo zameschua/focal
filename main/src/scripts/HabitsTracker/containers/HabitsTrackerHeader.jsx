@@ -67,10 +67,10 @@ class HabitsTrackerHeader extends Component {
 
 		return (
 		  <div>
-	     	<button className="btn" type="button" onClick={this.props.toggleModal}>
+	     	<button className="mdc-button mdc-ripple-upgraded mdc-theme--text-primary-on-dark" type="button" onClick={this.props.toggleModal}>
           <span className="fa fa-plus"></span>
         </button>
-        <button className="btn" type="button" style={{float:"right"}} onClick={this.props.toggleStatsModal}>
+        <button className="mdc-button mdc-ripple-upgraded mdc-theme--text-primary-on-dark" type="button" style={{float:"right"}} onClick={this.props.toggleStatsModal}>
         	<span className="fa fa-calendar"></span>
         </button>
 

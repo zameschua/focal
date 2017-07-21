@@ -4,7 +4,7 @@ const SearchBar = () => {
   let input
 
   return (
-    <div className="form-group col-sm-6 offset-sm-3" style={{marginTop: "5vh"}}>
+    <div className="form-group col-sm-6 offset-sm-3" style={{marginTop: "3vh"}}>
       <form
         onSubmit={e => {
           e.preventDefault()

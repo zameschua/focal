@@ -13,7 +13,7 @@ const Clock = ({hours, minutes}) => {
 	}
 
   return (
-    <h1 style={{color:"white",fontSize:"130px"}}>{renderHours}:{renderMinutes}</h1>
+    <h1 style={{color:"white",fontSize:"140px"}}>{renderHours}:{renderMinutes}</h1>
   )		
 }
 

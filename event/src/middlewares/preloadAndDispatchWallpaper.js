@@ -1,6 +1,6 @@
 import {  preloadWallpaperSuccess  } from '../backendActions';
 
-const WALLPAPER_ID_COLLECTION = ["ibyRjqQ3BjA", "5d2ETacuSgw", "yEKFixUQydo", "p-I9wV811qk"]
+const WALLPAPER_ID_COLLECTION = ["8zMIksrTrOQ", "mGYxAWITqMg", "MctEgCk1Dm0", "ed-hLWaknyk", "in9-n0JwgZ0", "daYZ8ixAn8g", "63DhhZq03LI"]
 
 const preloadAndDispatchWallpaper = (store) => {
 	const randomIndex = Math.floor(Math.random() * WALLPAPER_ID_COLLECTION.length);

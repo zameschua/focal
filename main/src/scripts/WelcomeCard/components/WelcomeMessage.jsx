@@ -2,7 +2,7 @@ import React from 'react';
 
 const WelcomeMessage = ({userName}) => {
   return (
-    <h1 style={{color:"white", fontSize:"80px"}}>Hello, {userName}</h1>
+    <label style={{color:"white",fontSize:"50px",fontFamily:"Segoe UI"}}>Hello, {userName}</label>
   )
 }
 

@@ -15,7 +15,7 @@ const HabitSite = ({ completed, url, timeSpent, onDelete }) => {
 	}
   else {
   	return(<div>
-    <li className="list-group-item justify-content-between list-group-item-danger">
+    <li className="list-group-item justify-content-between list-group-item-danger" style={{fontSize:"14px"}}>
       {url} <span className="badge badge-default badge-pill">{Math.floor(timeSpent/60)} min</span>
 
       <button className="btn" type="button" onClick={onDelete}>
