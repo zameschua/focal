@@ -3,7 +3,7 @@ import DateCard from './DateCard';
 import Events from './Events';
 
 const EventsDay = ({eventsDay}) => {
-	return (<div className="row" style={{backgroundColor: "rgba(0,0,0,0.2)", borderRadius:"25px"}}>
+	return (<div className="row">
 		<div className="col-md-3">
 			<DateCard date={eventsDay.date} month={eventsDay.month} day={eventsDay.day}/>
 		</div>

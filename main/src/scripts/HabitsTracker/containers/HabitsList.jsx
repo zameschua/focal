@@ -5,7 +5,7 @@ import HabitSite from "../components/HabitSite";
 
 const HabitsList = ({ habitSites, deleteHabitSite }) => {
   if (habitSites) {
-    return (<ul className="list-group">
+    return (<ul className="mdc-list">
         {habitSites.map(site => (
         <HabitSite key={site.id} completed={site.completed} url={site.url} timeSpent={site.timeSpent} onDelete={() => deleteHabitSite(site.id, site.completed)} />
       ))}
