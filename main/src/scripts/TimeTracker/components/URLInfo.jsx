@@ -1,7 +1,6 @@
 import React from 'react';
 import URLLine from './URLLine';
 import { connect } from 'react-redux';
-
 import ScrollArea from 'react-scrollbar';
 
 
@@ -31,7 +30,7 @@ var URLInfo = ({URLs}) => {
 
   if (URLs) {
     return (
-      <ScrollArea style={myScrollbar}>
+      <ScrollArea smoothScrolling={true} horizontal={false} style={myScrollbar}>
         <ul className="list-group" style={{fontFamily:"Segoe UI"}}>
           {sortedURLs.map(url => (
             <URLLine key={url.id} title={url.title} time={url.time} totalTime={Math.round(url.time*100/totalTimeSpent)} />
