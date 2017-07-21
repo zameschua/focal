@@ -12,9 +12,8 @@ const EventsFeedDisplay = ({events}) => {
 	}
 
 	const myScrollbar = {
-  height: "500px",
-  width: "100%",
-  borderRadius:"25px"
+	  height: "100%",
+	  width: "100%",
 	};
 
 	return (

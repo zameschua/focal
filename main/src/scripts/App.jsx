@@ -2,6 +2,9 @@ import React, {  Component  } from 'react';
 import {  connect  } from 'react-redux';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'material-components-web/dist/material-components-web.css';
+import {autoInit} from 'material-components-web/dist/material-components-web.js';
+autoInit();
 
 import TodoListApp from './TodoList/components/TodoListApp';
 import TemplatePanelComponent from './TemplatePanel/components/TemplatePanelComponent'; // Temporary component
@@ -63,7 +66,7 @@ class App extends Component {
           <div className="row h-100">
             
             <div className="col-3" 
-              style={{height:"100vh"}} 
+              style={{height: "100vh", paddingRight: "0"}} 
               onMouseEnter={this.props.showSidePanels.bind(this)} 
               onMouseLeave={this.props.hideSidePanels.bind(this)}>
               {leftPanel}
@@ -77,7 +80,7 @@ class App extends Component {
             </div>
 
             <div className="col-3"
-              style={{height:"100vh"}} 
+              style={{height:"100vh", paddingLeft: "0"}} 
               onMouseEnter={this.props.showSidePanels.bind(this)} 
               onMouseLeave={this.props.hideSidePanels.bind(this)}>
               {rightPanel}
