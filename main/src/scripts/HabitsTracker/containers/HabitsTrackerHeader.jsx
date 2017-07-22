@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {SkyLightStateless} from 'react-skylight';
+import moment from "moment";
 import {toggleModal, addHabitSite, toggleStatsModal, updateDailyRecordAdd} from "../actions/index";
 import { connect } from 'react-redux';
 import DayPicker from 'react-day-picker';
@@ -47,8 +48,8 @@ class HabitsTrackerHeader extends Component {
   		selectedIncomplete: 0
   	});
     this.props.pastRecords.forEach(record => {
-    	var dateObj = new Date(record.date);
-    	if (dateObj.getFullYear() === day.getFullYear() && dateObj.getMonth() === day.getMonth() && dateObj.getDate() === day.getDate()) {
+    	var dateObj = new moment(record.date);
+    	if (dateObj.get('year') === day.getFullYear() && dateObj.get('month') === day.getMonth() && dateObj.get('date') === day.getDate()) {
     		this.setState({
     			selectedCompleted: record.completed,
     			selectedIncomplete: record.incomplete
@@ -130,18 +131,6 @@ class HabitsTrackerHeader extends Component {
 	}
 }
 
-var mockRecords = [
-	{
-		date: new Date(2017, 6, 17),
-		completed: 5,
-		incomplete: 10
-	},
-	{
-		date: new Date(2017, 6, 18),
-		completed: 5,
-		incomplete: 2
-	},	
-]
 
 const mapStateToProps = state => {
   return {
