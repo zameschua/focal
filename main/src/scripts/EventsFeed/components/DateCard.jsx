@@ -6,7 +6,7 @@ const DateCard = ({ date, month, day }) => (
       className="row mdc-typography--title mdc-theme--text-primary-on-dark"
       style={{ textShadow: '1px 1px 0.5px #777' }}
     >
-      {`${date}' '${month}`}
+      {`${date} ${month}`}
     </div>
     <div
       className="row mdc-typography--body1 mdc-theme--text-secondary-on-dark"
