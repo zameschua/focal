@@ -24,7 +24,7 @@ class HabitsTrackerHeader extends Component {
 	handleSubmit(event) {
 		let atMost = (this.state.choice == 0);
 		this.props.addHabitSite(this.state.webUrl, atMost, this.state.duration);
-		this.props.updateDailyRecordAdd(new Date().toLocaleDateString(), atMost);
+		this.props.updateDailyRecordAdd(new moment(), atMost);
 		this.props.toggleModal();
 		event.preventDefault();
 	};

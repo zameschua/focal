@@ -35,4 +35,4 @@ class TimeTrackerMain extends Component {
 	}
 }
 
-export default TimeTrackerMain;
+export default TimeTrackerMain
