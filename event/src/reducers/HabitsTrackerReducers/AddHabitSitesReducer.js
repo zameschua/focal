@@ -29,7 +29,7 @@ const AddHabitSitesReducer = (state = [], action) => {
   				: site
 			)
     case 'RESET_COMPLETED_STATUS':
-      return state.map(site => {return {id: site.id, completed: site.atMost, url: site.url, atMost: site.atMost, duration: site.duration, timeSpent: site.timeSpent}})
+      return state.map(site => {return {id: site.id, completed: site.atMost, url: site.url, atMost: site.atMost, duration: site.duration, timeSpent: 0}})
     default:
       return state;
   }

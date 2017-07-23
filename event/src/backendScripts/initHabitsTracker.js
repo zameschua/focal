@@ -1,4 +1,5 @@
 import {toggleCompleted, addHabitSiteTime, addDailyRecord, resetCompletedStatus} from '../backendActions/index';
+import moment from "moment";
 
 const initHabitsTracker = store => {
 
@@ -73,7 +74,7 @@ const initHabitsTracker = store => {
           store.dispatch(toggleCompleted(currentTabInfo.url));
           var data = store.getState();
           var record = {  
-            date: new Date().toLocaleDateString(),
+            date: new moment(),
             completed: data.habitsTracker.habitSites.filter(site => {return site.completed}).length,
             incomplete: data.habitsTracker.habitSites.filter(site => {return !site.completed}).length
           };
@@ -87,7 +88,7 @@ const initHabitsTracker = store => {
           store.dispatch(toggleCompleted(currentTabInfo.url));
           var data = store.getState();
           var record = {  
-            date: new Date().toLocaleDateString(),
+            date: new moment(),
             completed: data.habitsTracker.habitSites.filter(site => {return site.completed}).length,
             incomplete: data.habitsTracker.habitSites.filter(site => {return !site.completed}).length
           };
@@ -103,7 +104,7 @@ const initHabitsTracker = store => {
   var updateDailyRecord = () => {
     var data = store.getState();
     var record = {
-      date: new Date().toLocaleDateString(),
+      date: new moment(),
       completed: data.habitsTracker.habitSites.filter(site => {return site.completed}).length,
       incomplete: data.habitsTracker.habitSites.filter(site => {return !site.completed}).length
     };
@@ -116,7 +117,7 @@ const initHabitsTracker = store => {
       var lastRecordIndex = data.habitsTracker.pastRecords.length-1;
       // check whether dates are same. If it's not the same, 
       // then it's a new day so add the record in and also reset the habitsTracker "completed" status
-      if (new Date(record.date).getDate() !== new Date(data.habitsTracker.pastRecords[lastRecordIndex].date).getDate()) {
+      if (record.date.get('date') !== data.habitsTracker.pastRecords[lastRecordIndex].date.get('date')) {
         store.dispatch(addDailyRecord(record.date, record.completed, record.incomplete));
         store.dispatch(resetCompletedStatus());
       }

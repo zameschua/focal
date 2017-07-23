@@ -2,6 +2,7 @@ import React from 'react';
 import {deleteHabitSite, updateDailyRecordMinus} from "../actions/index";
 import { connect } from 'react-redux';
 import HabitSite from "../components/HabitSite";
+import moment from "moment";
 
 const HabitsList = ({ habitSites, deleteHabitSite }) => {
   if (habitSites) {
@@ -34,7 +35,7 @@ const mapDispatchToProps = dispatch => {
   return {
     deleteHabitSite: (id, completed) => {
       dispatch(deleteHabitSite(id));
-      dispatch(updateDailyRecordMinus(new Date().toLocaleDateString(), completed));
+      dispatch(updateDailyRecordMinus(new moment(), completed));
     },
   }
 }

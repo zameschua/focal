@@ -48,6 +48,7 @@ export const getRecordsModifiersStyles = (pastRecords) => {
     modifiersStyles[i+1] = {
       borderRadius: "50%",
       backgroundColor: approximateColor1ToColor2ByPercent('#f00000', '#0ae600', (completed/total)),
+      color: "grey"
     };
   }
   return modifiersStyles;

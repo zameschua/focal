@@ -86,7 +86,7 @@ store = {
 		],
 		pastRecords: [
 			{
-				date: date STRING formatted like so "MM/DD/YYYY",
+				date: moment date object,
 				completed: NUMBER,
 				incomplete: NUMBER,
 			}

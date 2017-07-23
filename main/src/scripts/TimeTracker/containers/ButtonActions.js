@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import ButtonContainer from '../components/ButtonContainer'
 import {clearAllTabInfo} from '../actions'
 
+
 /**
   mapStateToProps and mapDispatchToProps provides component with the store's state and dispatches
   as props
@@ -10,7 +11,6 @@ import {clearAllTabInfo} from '../actions'
 const mapDispatchToProps = dispatch => {
 	return {
 		handleClearAllClick: () => {
-			console.log("hit");
 			dispatch(clearAllTabInfo())
 		}
 	}

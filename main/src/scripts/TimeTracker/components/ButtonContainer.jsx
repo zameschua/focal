@@ -1,4 +1,5 @@
 import React from 'react';
+import {showSidePanels} from "../../appActions/sidePanelActions";
 
 
 const ButtonContainer = ({handleClearAllClick, toggleShowAllClick}) => {

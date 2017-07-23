@@ -5,7 +5,7 @@ const WALLPAPER_ID_COLLECTION = ["8zMIksrTrOQ", "mGYxAWITqMg", "MctEgCk1Dm0", "e
 const preloadAndDispatchWallpaper = (store) => {
 	const randomIndex = Math.floor(Math.random() * WALLPAPER_ID_COLLECTION.length);
 	const randomWallpaperId = WALLPAPER_ID_COLLECTION[randomIndex];
-	const imageUrl = `https://source.unsplash.com/${randomWallpaperId}/1600x900`;
+	const imageUrl = `https://source.unsplash.com/${randomWallpaperId}/1920x1080`;
 	
 	// Preload image
 	const image = new Image();
