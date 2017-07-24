@@ -42,14 +42,14 @@ const AddPastRecordsReducer = (state = [], action) => {
     case "UPDATE_DAILY_RECORD_ADD":
       if (action.payload.atMost) {
         return state.map(record => 
-          (record.date.get('date') === action.payload.date.get('date')) 
+          (record.date.get('date') === new moment(action.payload.date).get('date')) 
             ? {date: record.date, completed: record.completed+1, incomplete: record.incomplete}
             : record
         )
       }
       else {
         return state.map(record => 
-          (record.date.get('date') === action.payload.date.get('date')) 
+          (record.date.get('date') === new moment(action.payload.date).get('date')) 
             ? {date: record.date, completed: record.completed, incomplete: record.incomplete+1}
             : record
         )        
@@ -57,14 +57,14 @@ const AddPastRecordsReducer = (state = [], action) => {
     case "UPDATE_DAILY_RECORD_MINUS":
       if (action.payload.completed) {
         return state.map(record => 
-          (record.date.get('date') === action.payload.date.get('date')) 
+          (record.date.get('date') === new moment(action.payload.date).get('date')) 
             ? {date: record.date, completed: record.completed-1, incomplete: record.incomplete}
             : record
         )
       }
       else {
         return state.map(record => 
-          (record.date.get('date') === action.payload.date.get('date')) 
+          (record.date.get('date') === new moment(action.payload.date).get('date')) 
             ? {date: record.date, completed: record.completed, incomplete: record.incomplete-1}
             : record
         )

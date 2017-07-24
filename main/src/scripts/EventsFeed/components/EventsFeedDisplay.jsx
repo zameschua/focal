@@ -24,12 +24,12 @@ const EventsFeedDisplay = ({ events }) => {
   }
 
   const myScrollbar = {
-    height: '100%',
+    height: '98vh',
     width: '100%',
   };
 
   return (
-    <ScrollArea horizontal={false} style={myScrollbar} smoothScrolling>
+    <ScrollArea horizontal={false} style={myScrollbar} smoothScrolling={true}>
       {eventsDayRender}
     </ScrollArea>
   );
