@@ -18,6 +18,7 @@ const SearchBar = () => {
         	style={{ borderRadius:"10px"}}
         	className="form-control"
         	placeholder = "Search Google"
+          autoFocus
           ref={node => {
             input = node
           }}

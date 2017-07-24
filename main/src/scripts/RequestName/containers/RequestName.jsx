@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import {  connect  } from 'react-redux';
+import { connect } from 'react-redux';
 
 import { updateUserName } from '../actions/updateUserName';
 
 class RequestName extends Component {
-  constructor() {
-  	super();
+  constructor(props) {
+  	super(props);
   	this.state = {
   		inputField : null,
   	}
@@ -18,7 +18,7 @@ class RequestName extends Component {
 
   render() {
 	  return (
-	    <div className="container-fluid" style={{height: "100vh", width:"100vh"}}>
+	    <div className="container-fluid" style={{height: "100vh", width:"100vw", backgroundColor: 'white'}}>
         <div className="row justify-content-center text-center">
           <div className="col" style={{marginTop: "17vh"}}>
             <h5 style={{fontSize: "100px"}}>Hey there,</h5>
@@ -29,7 +29,8 @@ class RequestName extends Component {
     		      	id="input"
     		      	ref={node => {
                 	this.state.inputField = node;
-              	}} 
+              	}}
+                autoFocus 
                 style={{fontSize: "70px", width: "40vw", marginTop:"10vh"}}/>
     		    </form>
     		  </div>
