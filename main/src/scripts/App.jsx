@@ -59,29 +59,31 @@ class App extends Component {
       const transitionDuration = 200;
 
       const leftPanelDefaultStyles = {
-        transition: `opacity ${transitionDuration}ms ease-in-out`,
+        transition: `opacity ${transitionDuration}ms ease-in-out, left ${transitionDuration}ms ease-in-out`,
         opacity: 0,
         marginTop: '5%',
+        left: '-5vw',
       };
 
       const rightPanelDefaultStyles = {
-        transition: `opacity ${transitionDuration}ms ease-in-out`,
+        transition: `opacity ${transitionDuration}ms ease-in-out, right ${transitionDuration}ms ease-in-out`,
         opacity: 0,
         marginTop: '5%',
+        right: '-5vw',
       };
 
       const leftPanelTransitionStyles = {
-        entering: { opacity: 1 },
-        entered: { opacity: 1 },
-        exiting: { opacity: 0 },
-        exited: { opacity: 0 },
+        entering: { opacity: 1, left: '0vw' },
+        entered: { opacity: 1, left: '0vw' },
+        exiting: { opacity: 0, left: '-5vw' },
+        exited: { opacity: 0, left: '-5vw' },
       };
 
       const rightPanelTransitionStyles = {
-        entering: { opacity: 1 },
-        entered: { opacity: 1 },
-        exiting: { opacity: 0 },
-        exited: { opacity: 0 },
+        entering: { opacity: 1, right: '0vw' },
+        entered: { opacity: 1, right: '0vw' },
+        exiting: { opacity: 0, right: '-5vw' },
+        exited: { opacity: 0, right: '-5vw' },
       };
 
       const leftPanel = (
