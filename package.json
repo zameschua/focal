@@ -28,14 +28,17 @@
     "react-scrollbar": "^0.5.1",
     "react-scrollbar-js": "^1.0.1",
     "react-skylight": "^0.4.2",
+    "react-transition-group": "^2.2.0",
     "redux": "^3.0.4",
     "webpack-css-loaders": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "eslint": "^4.2.0",
     "eslint-config-airbnb": "^15.0.2",
     "eslint-plugin-import": "2.6.1",
