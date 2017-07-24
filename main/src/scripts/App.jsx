@@ -10,6 +10,7 @@ import TimeTrackerMain from './TimeTracker/components/TimeTrackerMain';
 import WelcomeCard from './WelcomeCard/containers/WelcomeCard';
 import EventsFeed from './EventsFeed/containers/EventsFeed';
 import RequestName from './RequestName/containers/RequestName';
+
 import HabitsTrackerApp from './HabitsTracker/components/HabitsTrackerApp';
 
 class App extends Component {

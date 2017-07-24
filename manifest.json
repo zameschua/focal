@@ -10,8 +10,7 @@
     "persistent": true
   },
   "browser_action": {
-    "default_title": "Focal",
-    "default_popup": "popup.html"
+    "default_title": "Focal"
   },
   "chrome_url_overrides" : {
     "newtab" : "main.html"
@@ -32,6 +31,9 @@
     "identity",
     "notifications"
   ],
+  "icons": {
+    "128": "icon.png"
+  },
   "oauth2": {
     "client_id": "787306999678-fsjshgsfgl2c4qhbnkocknas8c8r4pi9.apps.googleusercontent.com",
     "scopes": [
