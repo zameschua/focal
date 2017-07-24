@@ -1,10 +1,6 @@
 import React from 'react';
-import {showSidePanels} from "../../appActions/sidePanelActions";
-
 
 const ButtonContainer = ({handleClearAllClick, toggleShowAllClick}) => {
-
-
   return (
     <div>
     	<button type="button" onClick={handleClearAllClick} className="mdc-button mdc-ripple-upgraded mdc-theme--text-primary-on-dark">Clear all</button>
@@ -15,4 +11,4 @@ const ButtonContainer = ({handleClearAllClick, toggleShowAllClick}) => {
   )
 }
 
-export default ButtonContainer
+export default ButtonContainer;
