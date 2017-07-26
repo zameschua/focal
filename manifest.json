@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Focal",
-  "description": "A Chrome extension to boost your productivity",
+  "description": "A Chrome extension to boost your productivity. Icon credits to Ethan Chew Yu Liang.",
   "version": "0.0.0.2",
   "background": {
     "scripts": [
