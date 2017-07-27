@@ -120,6 +120,12 @@ const initHabitsTracker = store => {
       if (record.date.get('date') !== data.habitsTracker.pastRecords[lastRecordIndex].date.get('date')) {
         store.dispatch(addDailyRecord(record.date, record.completed, record.incomplete));
         store.dispatch(resetCompletedStatus());
+        record = {
+          date: new moment(),
+          completed: data.habitsTracker.habitSites.filter(site => {return site.completed}).length,
+          incomplete: data.habitsTracker.habitSites.filter(site => {return !site.completed}).length
+        };
+        store.dispatch(addDailyRecord(record.date, record.completed, record.incomplete));
       }
     }
   }
