@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {SkyLightStateless} from 'react-skylight';
 import moment from "moment";
 import {toggleModal, addHabitSite, toggleStatsModal, updateDailyRecordAdd} from "../actions/index";
+import {addDailyRecord, resetCompletedStatus} from "../../../../../event/src/backendActions/index";
 import { connect } from 'react-redux';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
@@ -24,7 +25,19 @@ class HabitsTrackerHeader extends Component {
 	handleSubmit(event) {
 		let atMost = (this.state.choice == 0);
 		this.props.addHabitSite(this.state.webUrl, atMost, this.state.duration);
-		this.props.updateDailyRecordAdd(new moment(), atMost);
+
+    if (this.props.pastRecords.length == 0) {
+      if (atMost) {
+        this.props.addDailyRecord(new moment(), 1, 0);
+      }
+      else {
+        this.props.addDailyRecord(new moment(), 1, 0);
+      }
+    }
+    else {
+      this.props.updateDailyRecordAdd(new moment(), atMost);
+    };
+
 		this.props.toggleModal();
 		event.preventDefault();
 	};
@@ -140,6 +153,9 @@ const mapStateToProps = state => {
   }
 }
 
+/**
+  All moment (date) objects dispatched here will become a date string instead.
+**/
 const mapDispatchToProps = dispatch => {
   return {
     toggleModal: () => {
@@ -149,11 +165,14 @@ const mapDispatchToProps = dispatch => {
     	dispatch(toggleStatsModal());
     },
     addHabitSite: (url, atMost, duration) => {
-    	dispatch(addHabitSite(url,atMost,duration));
+    	dispatch(addHabitSite(url, atMost, duration));
     },
     updateDailyRecordAdd: (date, atMost) => {
     	dispatch(updateDailyRecordAdd(date, atMost));
-    }
+    },
+    addDailyRecord: (date, completed, incompleted) => {
+      dispatch(addDailyRecord(date, completed, incompleted));
+    },
   }
 }
 

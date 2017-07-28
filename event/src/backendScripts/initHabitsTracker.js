@@ -118,13 +118,12 @@ const initHabitsTracker = store => {
       // check whether dates are same. If it's not the same, 
       // then it's a new day so add the record in and also reset the habitsTracker "completed" status
       if (record.date.get('date') !== data.habitsTracker.pastRecords[lastRecordIndex].date.get('date')) {
-        store.dispatch(addDailyRecord(record.date, record.completed, record.incomplete));
+        // reset the goals status first
         store.dispatch(resetCompletedStatus());
-        record = {
-          date: new moment(),
-          completed: data.habitsTracker.habitSites.filter(site => {return site.completed}).length,
-          incomplete: data.habitsTracker.habitSites.filter(site => {return !site.completed}).length
-        };
+        // update record's attributes
+        record.completed = data.habitsTracker.habitSites.filter(site => {return site.completed}).length;
+        record.incomplete = data.habitsTracker.habitSites.filter(site => {return !site.completed}).length;
+        // update pastRecords
         store.dispatch(addDailyRecord(record.date, record.completed, record.incomplete));
       }
     }

@@ -31,6 +31,9 @@ const mapStateToProps = state => {
   
 }
 
+/**
+  All moment (date) objects dispatched here will become a date string instead.
+**/
 const mapDispatchToProps = dispatch => {
   return {
     deleteHabitSite: (id, completed) => {
