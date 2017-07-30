@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {SkyLightStateless} from 'react-skylight';
 import moment from "moment";
 import {toggleModal, addHabitSite, toggleStatsModal, updateDailyRecordAdd} from "../actions/index";
-import {addDailyRecord, resetCompletedStatus} from "../../../../../event/src/backendActions/index";
+import {addDailyRecord} from "../../../../../event/src/backendActions/index";
 import { connect } from 'react-redux';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';

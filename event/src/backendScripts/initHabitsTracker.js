@@ -115,9 +115,10 @@ const initHabitsTracker = store => {
     }
     else {
       var lastRecordIndex = data.habitsTracker.pastRecords.length-1;
+      /* NOTE: Everytime the background page refreshes, the date object will become a default moment string */
       // check whether dates are same. If it's not the same, 
       // then it's a new day so add the record in and also reset the habitsTracker "completed" status
-      if (record.date.get('date') !== data.habitsTracker.pastRecords[lastRecordIndex].date.get('date')) {
+      if (record.date.get('date') !== new moment(data.habitsTracker.pastRecords[lastRecordIndex].date).get('date')) {
         // reset the goals status first
         store.dispatch(resetCompletedStatus());
         // update record's attributes
@@ -173,7 +174,7 @@ const initHabitsTracker = store => {
       var message = "Congratulations! You have successfully spent " + timeSpent + " minutes on " + siteUrl + " and hence have completed your goal!";
     }
     else {
-      var title = "Awww :(";
+      var title = "Aww :(";
       var message = "Too bad, you spent " + timeSpent + " minutes on " + siteUrl + " and hence have failed your goal.";
     }
     chrome.notifications.create({
