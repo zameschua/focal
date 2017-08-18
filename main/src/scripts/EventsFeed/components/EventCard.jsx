@@ -27,7 +27,10 @@ const EventCard = ({ event }) => {
   return (
     <div className="mdc-card" style={{ marginBottom: '5%', backgroundColor: 'rgba(0, 0, 0, 0.70)' }}>
       <section className="mdc-card__primary">
-        <h1 className="mdc-card__title mdc-card__title--large mdc-theme--text-primary-on-dark">
+        <h1 
+          className="mdc-card__title mdc-card__title--large mdc-theme--text-primary-on-dark"
+          style={{marginBottom:'5px'}}
+        >
           {event.summary}
         </h1>
         <h2 className="mdc-card__subtitle mdc-theme--text-secondary-on-dark">{timeRender}</h2>
