@@ -33,6 +33,11 @@ const EventCard = ({ event }) => {
         >
           {event.summary}
         </h1>
+        {event.location ? 
+          <h2 className="mdc-card__subtitle mdc-theme--text-primary-on-dark">{event.location}</h2>
+          :
+          null
+        }
         <h2 className="mdc-card__subtitle mdc-theme--text-secondary-on-dark">{timeRender}</h2>
       </section>
     </div>
