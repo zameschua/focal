@@ -1,6 +1,6 @@
 {
   "name": "nus-focal",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "private": true,
   "description": "A productivity application that runs on Chrome extension",
   "scripts": {
