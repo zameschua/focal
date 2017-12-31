@@ -26,7 +26,7 @@ class WelcomeCard extends Component {
       minutes: now.getMinutes()
     });
   }
-  
+
   initClock() {
     this.updateClock();
     window.setInterval(this.updateClock.bind(this), 1000);
@@ -35,7 +35,6 @@ class WelcomeCard extends Component {
   render() {
     return (
       <div>
-        { /* TODO: GET NAME FROM STORE */ }
         <Clock hours={this.state.hours} minutes={this.state.minutes}/>
   		  <WelcomeMessage userName={this.props.userName}/>
         <SearchBar />

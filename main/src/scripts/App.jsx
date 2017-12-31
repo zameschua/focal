@@ -3,14 +3,10 @@ import { connect } from 'react-redux';
 import Transition from 'react-transition-group/Transition';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'material-components-web/dist/material-components-web.css';
-import { autoInit } from 'material-components-web/dist/material-components-web';
 
-import TimeTrackerMain from './TimeTracker/components/TimeTrackerMain';
 import WelcomeCard from './WelcomeCard/containers/WelcomeCard';
 import EventsFeed from './EventsFeed/containers/EventsFeed';
 import RequestName from './RequestName/containers/RequestName';
-import HabitsTrackerApp from './HabitsTracker/components/HabitsTrackerApp';
 
 class App extends Component {
   constructor(props) {
@@ -21,8 +17,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // Load up Material Components Web
-    autoInit();
   }
 
   showSidePanels() {
@@ -102,34 +96,12 @@ class App extends Component {
         </Transition>
       );
 
-      const rightPanel = (
-        <Transition in={this.state.sidePanelsVisible} timeout={transitionDuration} >
-          {state => (
-            <div
-              className="container"
-              style={{
-                ...rightPanelDefaultStyles,
-                ...rightPanelTransitionStyles[state],
-              }}
-            >
-              <div className="row">
-                <TimeTrackerMain />
-              </div>
-              <br />
-              <div className="row">
-                <HabitsTrackerApp/>
-              </div>
-            </div>
-          )}
-        </Transition>
-      );
-
       return (
         <div className="App container-fluid" style={{ padding: '0' }}>
           <div style={backgroundImageStyle}>
             <div className="row h-100">
 
-              <div 
+              <div
                 className="col-3"
                 style={{ height: '100vh', paddingRight: '0' }}
                 onMouseEnter={this.showSidePanels.bind(this)}
@@ -142,17 +114,8 @@ class App extends Component {
                 <div className="text-center">
                   <WelcomeCard userName={ this.props.userName }/>
                 </div>
-                
-              </div>
 
-              <div className="col-3"
-                style={{ height: '100vh', paddingLeft: '0' }}
-                onMouseEnter={this.showSidePanels.bind(this)}
-                onMouseLeave={this.hideSidePanels.bind(this)}
-              >
-                {rightPanel}
               </div>
-
             </div>
           </div>
         </div>

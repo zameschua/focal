@@ -1,12 +1,12 @@
 {
-  "name": "nus-focal",
-  "version": "0.0.3",
+  "name": "Focal",
+  "version": "0.0.1",
   "private": true,
-  "description": "A productivity application that runs on Chrome extension",
+  "description": "A Chrome extension that lets you view your upcoming Google Calendar events in the new tab page",
   "scripts": {
     "test": "eslint event main"
   },
-  "author": "Chen Kuang",
+  "author": "Zames",
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.6",
     "chart.js": "^2.6.0",
@@ -14,7 +14,6 @@
     "jquery": "^3.2.1",
     "loader-utils": "^1.1.0",
     "lodash": "^4.17.4",
-    "material-components-web": "^0.15.0",
     "moment": "^2.18.1",
     "npm": "^5.3.0",
     "react": "^15.6.1",
