@@ -1,19 +1,18 @@
 {
   "manifest_version": 2,
   "name": "Focal",
-  "description": "A Chrome extension to boost your productivity. Icon credits to Ethan Chew Yu Liang.",
+  "description":
+    "A Chrome extension to boost your productivity. Icon credits to Ethan Chew Yu Liang.",
   "version": "0.0.0.3",
   "background": {
-    "scripts": [
-      "event.js"
-    ],
+    "scripts": ["event.js"],
     "persistent": true
   },
   "browser_action": {
     "default_title": "Focal"
   },
-  "chrome_url_overrides" : {
-    "newtab" : "main.html"
+  "chrome_url_overrides": {
+    "newtab": "main.html"
   },
   "content_scripts": [
     {
@@ -35,11 +34,13 @@
     "128": "icon.png"
   },
   "oauth2": {
-    "client_id": "787306999678-fsjshgsfgl2c4qhbnkocknas8c8r4pi9.apps.googleusercontent.com",
+    "client_id":
+      "787306999678-fsjshgsfgl2c4qhbnkocknas8c8r4pi9.apps.googleusercontent.com",
     "scopes": [
       "https://www.googleapis.com/auth/calendar",
       "https://www.googleapis.com/auth/calendar.readonly"
     ]
   },
-  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAw/5VlXrHCVP3lfnvhdIh2FoLDpECO4biNXrv/tNiS5/WpkE8IputaROTEw8xQyOimesgxzuzse7l0+XFt3zs43RgcNWGYFbvWK4PXU2IzlJmuqnr+uB/0MFj7hL8yahDLG1jkXbZWCijAuIjS5J0h0RCZtqjdAbmyudbNChep5BN3nkbAyssNeFtdJyjQVu4UXC/SawitoiIr6uLNhSQlLc0Wa7Vy/lhxtwyYBdsqygZRCqdjeBlYOyiBAzcEuxa6ZbnyF0ottpbKWni4wyg6UX1JFz2Ln8J+X0QD10a1TVBjDlkZ/CFzW2zUhNEAK/8GAtm7UEY5MyoI4RqII0CAwIDAQAB"
+  "key":
+    "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAw/5VlXrHCVP3lfnvhdIh2FoLDpECO4biNXrv/tNiS5/WpkE8IputaROTEw8xQyOimesgxzuzse7l0+XFt3zs43RgcNWGYFbvWK4PXU2IzlJmuqnr+uB/0MFj7hL8yahDLG1jkXbZWCijAuIjS5J0h0RCZtqjdAbmyudbNChep5BN3nkbAyssNeFtdJyjQVu4UXC/SawitoiIr6uLNhSQlLc0Wa7Vy/lhxtwyYBdsqygZRCqdjeBlYOyiBAzcEuxa6ZbnyF0ottpbKWni4wyg6UX1JFz2Ln8J+X0QD10a1TVBjDlkZ/CFzW2zUhNEAK/8GAtm7UEY5MyoI4RqII0CAwIDAQAB"
 }

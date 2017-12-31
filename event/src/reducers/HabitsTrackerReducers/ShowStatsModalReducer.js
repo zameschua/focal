@@ -5,7 +5,6 @@ const ShowStatsModalReducer = (state = false, action) => {
     default:
       return state;
   }
-  
-}
+};
 
 export default ShowStatsModalReducer;

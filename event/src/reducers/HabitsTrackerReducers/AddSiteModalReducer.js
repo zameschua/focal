@@ -5,7 +5,6 @@ const AddSiteModalReducer = (state = false, action) => {
     default:
       return state;
   }
-  
-}
+};
 
 export default AddSiteModalReducer;

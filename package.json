@@ -2,14 +2,16 @@
   "name": "Focal",
   "version": "0.0.1",
   "private": true,
-  "description": "A Chrome extension that lets you view your upcoming Google Calendar events in the new tab page",
+  "description":
+    "A Chrome extension that lets you view your upcoming Google Calendar events in the new tab page",
   "scripts": {
-    "test": "eslint event main"
+    "test": ".\\node_modules\\.bin\\eslint event main",
+    "build": ".\\node_modules\\.bin\\eslint event main && gulp",
+    "fix": ".\\node_modules\\.bin\\eslint --fix event main"
   },
   "author": "Zames",
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.6",
-    "chart.js": "^2.6.0",
     "install": "^0.10.1",
     "jquery": "^3.2.1",
     "loader-utils": "^1.1.0",
@@ -42,12 +44,14 @@
     "eslint-config-airbnb": "^15.0.2",
     "eslint-plugin-import": "2.6.1",
     "eslint-plugin-jsx-a11y": "5.1.1",
+    "eslint-plugin-prettier": "^2.4.0",
     "eslint-plugin-react": "7.1.0",
     "gulp": "^3.9.0",
     "gulp-load-plugins": "^1.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-util": "^3.0.7",
     "inline-source-map": "^0.6.2",
+    "prettier": "^1.9.2",
     "redux-logger": "^3.0.6",
     "rimraf": "^2.5.0",
     "webpack": "^2.6.0"

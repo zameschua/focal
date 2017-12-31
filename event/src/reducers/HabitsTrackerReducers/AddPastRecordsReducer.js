@@ -2,7 +2,7 @@ import moment from 'moment';
 
 const AddPastRecordsReducer = (state = [], action) => {
   switch (action.type) {
-    case 'ADD_DAILY_RECORD':
+    case "ADD_DAILY_RECORD":
       if (state.length == 42) {
         // case where list has 42 elements
         // remove earliest item at index 0
@@ -11,12 +11,16 @@ const AddPastRecordsReducer = (state = [], action) => {
         state.push({
           date: action.payload.date,
           completed: action.payload.completed,
-          incomplete: action.payload.incomplete,
+          incomplete: action.payload.incomplete
         });
         return state;
-      }
-
-      else if (state.filter(record => {return new moment(record.date).get('date') === new moment(action.payload.date).get('date')}).length !== 0) {
+      } else if (
+        state.filter(
+          record =>
+            new moment(record.date).get('date') ===
+            new moment(action.payload.date).get('date'),
+        ).length !== 0
+      ) {
         // case where record for the day already exists.
         // this only happens when a record is to be updated.
         // remove the most recent record.
@@ -25,53 +29,76 @@ const AddPastRecordsReducer = (state = [], action) => {
         state.push({
           date: action.payload.date,
           completed: action.payload.completed,
-          incomplete: action.payload.incomplete,
+          incomplete: action.payload.incomplete
         });
         return state;
       }
-      else {
-        return [
+
+      return [
         ...state,
-          {
-            date: new moment(action.payload.date),
-            completed: action.payload.completed,
-            incomplete: action.payload.incomplete,
-          }
-        ]
-      };
-    case "UPDATE_DAILY_RECORD_ADD":
+        {
+          date: new moment(action.payload.date),
+          completed: action.payload.completed,
+          incomplete: action.payload.incomplete,
+        },
+      ];
+    case 'UPDATE_DAILY_RECORD_ADD':
       if (action.payload.atMost) {
-        return state.map(record => 
-          (new moment(record.date).get('date') === new moment(action.payload.date).get('date')) 
-            ? {date: new moment(action.payload.date), completed: record.completed+1, incomplete: record.incomplete}
-            : record
-        )
+        return state.map(
+          record =>
+            new moment(record.date).get('date') ===
+            new moment(action.payload.date).get('date')
+              ? {
+                date: new moment(action.payload.date),
+                completed: record.completed + 1,
+                incomplete: record.incomplete,
+              }
+              : record
+        );
       }
-      else {
-        return state.map(record => 
-          (new moment(record.date).get('date') === new moment(action.payload.date).get('date')) 
-            ? {date: new moment(action.payload.date), completed: record.completed, incomplete: record.incomplete+1}
-            : record
-        )        
-      }
-    case "UPDATE_DAILY_RECORD_MINUS":
+
+      return state.map(
+        record =>
+          (new moment(record.date).get("date") ===
+          new moment(action.payload.date).get("date")
+            ? {
+                date: new moment(action.payload.date),
+                completed: record.completed,
+                incomplete: record.incomplete + 1
+              }
+            : record)
+      );
+
+    case 'UPDATE_DAILY_RECORD_MINUS':
       if (action.payload.completed) {
-        return state.map(record => 
-          (new moment(record.date).get('date') === new moment(action.payload.date).get('date')) 
-            ? {date: new moment(action.payload.date), completed: record.completed-1, incomplete: record.incomplete}
-            : record
-        )
+        return state.map(
+          record =>
+            new moment(record.date).get('date') ===
+            new moment(action.payload.date).get('date')
+              ? {
+                date: new moment(action.payload.date),
+                completed: record.completed - 1,
+                incomplete: record.incomplete,
+              }
+              : record
+        );
       }
-      else {
-        return state.map(record => 
-          (new moment(record.date).get('date') === new moment(action.payload.date).get('date')) 
-            ? {date: new moment(action.payload.date), completed: record.completed, incomplete: record.incomplete-1}
-            : record
-        )
-      }
+
+      return state.map(
+        record =>
+          (new moment(record.date).get("date") ===
+          new moment(action.payload.date).get("date")
+            ? {
+                date: new moment(action.payload.date),
+                completed: record.completed,
+                incomplete: record.incomplete - 1
+              }
+            : record)
+      );
+
     default:
       return state;
   }
-}
+};
 
 export default AddPastRecordsReducer;

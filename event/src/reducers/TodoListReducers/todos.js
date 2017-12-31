@@ -11,20 +11,19 @@ const todos = (state = [], action) => {
           text: action.payload.text,
           completed: false
         }
-      ]
+      ];
     case 'TOGGLE_TODO':
-      return state.map(todo =>
-        (todo.id === action.payload.id) 
-          ? {id: todo.id, text: todo.text, completed: !todo.completed} // toggle todo as opposite of its current state
-          : todo
-      )
+      return state.map(
+        todo =>
+          (todo.id === action.payload.id
+            ? { id: todo.id, text: todo.text, completed: !todo.completed } // toggle todo as opposite of its current state
+            : todo)
+      );
     case 'DELETE_TODO':
-      return state.filter(todo =>
-        (todo.id !== action.payload.id)
-      )
+      return state.filter(todo => todo.id !== action.payload.id);
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default todos
+export default todos;

@@ -8,18 +8,19 @@ const URLReducer = (state = [], action) => {
           title: action.payload.title,
           time: action.payload.time
         }
-      ]
+      ];
     case 'ADD_TIME':
-    	return state.map(url => 
-    		(url.title === action.payload.title)
-    			? {id: url.id, title: url.title, time: (url.time + 1)}
-    			: url
-  		)
+      return state.map(
+        url =>
+          (url.title === action.payload.title
+            ? { id: url.id, title: url.title, time: url.time + 1 }
+            : url)
+      );
     case 'CLEAR_ALL_TAB_INFO':
-      return []
+      return [];
     default:
       return state;
   }
-}
+};
 
 export default URLReducer;

@@ -5,6 +5,6 @@ const authenticationReducer = (state = false, action) => {
     default:
       return state;
   }
-}
+};
 
 export default authenticationReducer;
