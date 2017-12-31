@@ -1,4 +1,4 @@
-const authenticationReducer = (state = false, action) => {
+const userAuthenticationReducer = (state = false, action) => {
   switch (action.type) {
     case 'UPDATE_USER_AUTHENTICATION_STATUS':
       return action.payload;
@@ -7,4 +7,4 @@ const authenticationReducer = (state = false, action) => {
   }
 };
 
-export default authenticationReducer;
+export default userAuthenticationReducer;

@@ -33,8 +33,7 @@ class App extends Component {
 
   render() {
     if (this.props.storeHasLoaded) {
-      // Requests for user name if it's user's first login
-      if (this.props.userFirstLogin) {
+      if (!this.props.userHasAuthenticated) {
         return <FirstSignIn />;
       }
 
@@ -130,16 +129,14 @@ const mapStateToProps = (state) => {
   if (state.appState) {
     return {
       sidePanelsVisible: state.appState.sidePanelsVisible,
-      userFirstLogin: (state.appState.userName === ''), // Returns true if user first login
-      userName: state.appState.userName,
+      userHasAuthenticated: state.appState.userHasAuthenticated, // Returns true if user first login
       wallpaperUrl: state.appState.cachedWallpapers.nextWallpaper,
       storeHasLoaded: true,
     };
   }
   return {
     sidePanelsVisible: false,
-    userFirstLogin: true,
-    userName: '',
+    userHasAuthenticated: false,
     wallpaperUrl: '',
     storeHasLoaded: false,
   };

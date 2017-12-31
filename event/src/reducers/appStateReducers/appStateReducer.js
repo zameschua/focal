@@ -1,8 +1,8 @@
-import userNameReducer from './userNameReducer';
+import userAuthenticationReducer from './userAuthenticationReducer';
 import wallpapersReducer from './wallpapersReducer';
 
 const INITIAL_STATE = {
-  userName: "",
+  userHasAuthenticated: false,
   cachedWallpapers: {
     wallpaperQueue: [],
     nextWallpaper: ""
@@ -12,7 +12,7 @@ const INITIAL_STATE = {
 // Combine reducers for todoList
 function appStateReducer(state = INITIAL_STATE, action) {
   return {
-    userName: userNameReducer(state.userName, action), // ADD THIS LATER
+    userHasAuthenticated: userAuthenticationReducer(state.userHasAuthenticated, action),
     cachedWallpapers: wallpapersReducer(state.cachedWallpapers, action),
   };
 }

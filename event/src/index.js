@@ -6,8 +6,6 @@ const store = initStore();
 
 if (store.getState().appState.cachedWallpapers.wallpaperQueue.length <= 1) {
   store.dispatch(preloadWallpaper());
-  store.dispatch(preloadWallpaper());
-  store.dispatch(preloadWallpaper());
 }
 
 store.dispatch(changeWallpaper());

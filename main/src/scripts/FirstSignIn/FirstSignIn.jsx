@@ -1,35 +1,46 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import styled from "styled-components";
 
 import { updateUserAuthenticationStatus, getCalendarEvents } from "./actions";
 import GoogleSignInButton from "./GoogleSignInButton";
 
+const SignInBackground = styled.div`
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+`;
+
+const SignInContainer = styled.div`
+  display: flex;
+  margin: auto;
+  align-items: center;
+  height: 70vh;
+  width: 40vw;
+`;
+
+const FocalTitle = styled.h5`
+  font-size: 100px;
+`;
+
 class FirstSignIn extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      inputField: null
-    };
   }
 
   render() {
     return (
-      <div
-        className="container-fluid"
-        style={{ height: "100vh", width: "100vw", backgroundColor: "white" }}
-      >
-        <div className="row justify-content-center text-center">
-          <div className="col" style={{ marginTop: "17vh" }}>
-            <h5 style={{ fontSize: "100px" }}>focal</h5>
-            <GoogleSignInButton
-              getCalendarEvents={this.props.getCalendarEvents}
-              updateUserAuthenticationStatus={
-                this.props.updateUserAuthenticationStatus
-              }
-            />
-          </div>
-        </div>
-      </div>
+      <SignInBackground>
+        <SignInContainer>
+          <FocalTitle>focal</FocalTitle>
+          <GoogleSignInButton
+            getCalendarEvents={this.props.getCalendarEvents}
+            updateUserAuthenticationStatus={
+              this.props.updateUserAuthenticationStatus
+            }
+          />
+        </SignInContainer>
+      </SignInBackground>
     );
   }
 }
@@ -38,21 +49,7 @@ const mapStateToProps = state => {
   return {};
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    updateUserName: userName => {
-      dispatch(updateUserName(userName));
-    },
-    updateUserAuthenticationStatus: (status) => {
-      dispatch(updateUserAuthenticationStatus(status));
-    },
-    getCalendarEvents: () => {
-      dispatch(getCalendarEvents());
-    },
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(FirstSignIn);
+export default connect(mapStateToProps, {
+  updateUserAuthenticationStatus,
+  getCalendarEvents
+})(FirstSignIn);
