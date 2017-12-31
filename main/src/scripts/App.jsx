@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import WelcomeCard from './WelcomeCard/containers/WelcomeCard';
 import EventsFeed from './EventsFeed/containers/EventsFeed';
-import RequestName from './RequestName/containers/RequestName';
+import FirstSignIn from './FirstSignIn/FirstSignIn';
 
 class App extends Component {
   constructor(props) {
@@ -35,7 +35,7 @@ class App extends Component {
     if (this.props.storeHasLoaded) {
       // Requests for user name if it's user's first login
       if (this.props.userFirstLogin) {
-        return <RequestName />;
+        return <FirstSignIn />;
       }
 
       const wallpaperUrl = this.props.wallpaperUrl;
