@@ -9,8 +9,8 @@ const INITIAL_STATE = {
     userHasAuthenticated: false,
     cachedWallpapers: {
       wallpaperQueue: [],
-      nextWallpaper: ""
-    }
+      nextWallpaper: '',
+    },
   },
 };
 

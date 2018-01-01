@@ -5,14 +5,17 @@ const INITIAL_STATE = {
   userHasAuthenticated: false,
   cachedWallpapers: {
     wallpaperQueue: [],
-    nextWallpaper: ""
-  }
+    nextWallpaper: '',
+  },
 };
 
 // Combine reducers for todoList
 function appStateReducer(state = INITIAL_STATE, action) {
   return {
-    userHasAuthenticated: userAuthenticationReducer(state.userHasAuthenticated, action),
+    userHasAuthenticated: userAuthenticationReducer(
+      state.userHasAuthenticated,
+      action
+    ),
     cachedWallpapers: wallpapersReducer(state.cachedWallpapers, action),
   };
 }

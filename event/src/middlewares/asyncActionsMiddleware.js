@@ -1,4 +1,3 @@
-import { preloadWallpaperSuccess } from "../backendActions/index";
 import eventsFeedApiCall from './eventsFeedApiCall';
 import preloadAndDispatchWallpaper from './preloadAndDispatchWallpaper';
 
@@ -12,8 +11,10 @@ const asyncActionsMiddleware = store => next => action => {
           // Grab calendar events and update the store
           eventsFeedApiCall(token, store);
         });
+        return next(action);
       case 'PRELOAD_WALLPAPER':
         preloadAndDispatchWallpaper(store);
+        return next(action);
       default:
         return next(action);
     }

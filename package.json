@@ -3,7 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "description": "A Chrome extension that lets you view your upcoming Google Calendar events in the new tab page",
+  "watch": {
+    "build": "{main,event,popup,content}/*.js[x]?"
+  },
   "scripts": {
+    "watch": "npm-watch",
     "lint": ".\\node_modules\\.bin\\eslint event/src main/src content/src popup/src",
     "build": "yarn lint && gulp",
     "fix": ".\\node_modules\\.bin\\eslint --fix event main content popup"
@@ -30,6 +34,7 @@
     "react-skylight": "^0.4.2",
     "react-transition-group": "^2.2.0",
     "redux": "^3.0.4",
+    "redux-logger": "^3.0.6",
     "styled-components": "^2.4.0",
     "webpack-css-loaders": "^1.0.0"
   },
@@ -52,8 +57,8 @@
     "gulp-rename": "^1.2.2",
     "gulp-util": "^3.0.7",
     "inline-source-map": "^0.6.2",
+    "npm-watch": "^0.3.0",
     "prettier": "^1.9.2",
-    "redux-logger": "^3.0.6",
     "rimraf": "^2.5.0",
     "webpack": "^2.6.0"
   },

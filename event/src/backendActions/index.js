@@ -1,27 +1,3 @@
-/**
-  Fires off actions to the reducers, informing the reducer of changes to be made
-**/
-
-// TimeTracker actions
-
-export const addURL = (id, title, time) => ({
-  type: 'ADD_URL',
-  payload: {
-    id,
-    title,
-    time
-  },
-});
-
-export const addTime = title => ({
-  type: 'ADD_TIME',
-  payload: {
-    title
-  },
-});
-
-// EventsFeed actions
-
 export const updateUserAuthenticationStatus = status => ({
   type: 'UPDATE_USER_AUTHENTICATION_STATUS',
   payload: status,
@@ -43,11 +19,9 @@ export const getCalendarEvents = () => ({
 });
 
 // appState actions
-export const changeWallpaper = () =>
-  // Get the next image
-  ({
-    type: 'CHANGE_WALLPAPER'
-  });
+export const changeWallpaper = () => ({
+  type: 'CHANGE_WALLPAPER',
+});
 
 export const preloadWallpaper = () => ({
   type: 'PRELOAD_WALLPAPER',
@@ -64,14 +38,14 @@ export const preloadWallpaperSuccess = newWallpaperId => ({
 export const addHabitSiteTime = url => ({
   type: 'ADD_HABIT_SITE_TIME',
   payload: {
-    url
+    url,
   },
 });
 
 export const toggleCompleted = url => ({
   type: 'TOGGLE_COMPLETED',
   payload: {
-    url
+    url,
   },
 });
 
@@ -80,7 +54,7 @@ export const addDailyRecord = (date, completed, incomplete) => ({
   payload: {
     date,
     completed,
-    incomplete
+    incomplete,
   },
 });
 

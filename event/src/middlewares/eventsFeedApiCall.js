@@ -1,46 +1,35 @@
-import {
-  getCalendarEventsSuccess,
-  getCalendarEventsFailure
-} from "../backendActions/index";
 import moment from 'moment';
 
-const eventsFeedApiCall = (token, store) => {
-  const today = moment();
-  const nextWeek = moment(today).add(7, 'days'); // Add 1 week
-  const timeMin = today.toISOString();
-  const timeMax = nextWeek.toISOString();
+import { getCalendarEventsSuccess } from '../backendActions/index';
 
-  // Format payload for API call
-  const headers = new Headers({
-    Authorization: `Bearer ${token}`,
-    'Content-Type': 'application/json'
-  });
-  const queryParams = { headers };
+const createEventPayload = (
+  summary,
+  startTime,
+  endTime,
+  location,
+  displayStartTime,
+  displayEndTime,
+  isWholeDayEvent
+) => ({
+  summary,
+  startTime,
+  endTime,
+  location,
+  displayStartTime,
+  displayEndTime,
+  isWholeDayEvent,
+});
 
-  // Make the actual call
-  fetch(
-    `https://www.googleapis.com/calendar/v3/calendars/primary/events?timeMin=${timeMin}&timeMax=${timeMax}`,
-    queryParams,
-  )
-    .then(response => response.json()) // Transform the data into json
-    .then(events => {
-      console.log(events);
-      const dateArray = createDateArray();
-      const eventsPayloadArray = splitEventsByDay(events, dateArray);
-      const sortedEventsPayloadArray = sortEventsByTime(
-        eventsPayloadArray,
-        store,
-        dateArray,
-      );
-    });
-};
+// Full-day events have a .date field, non full-day events have a .dateTime field
+const isFullDayEvent = event =>
+  event.start.date !== undefined && event.end.date !== undefined;
 
 // Takes in Event oject and returns an object of events split by their days
 const splitEventsByDay = (events, dateArray) => {
   // Create array of 7 empty arrays
-  const eventsPayloadArray = Array.from({ length: 7 }, x => []);
+  const eventsPayloadArray = Array.from({ length: 7 }, () => []);
 
-  events.items.forEach((event) => {
+  events.items.forEach(event => {
     let fullDayEvent = false;
     let eventStart = moment(event.start.dateTime);
     let eventEnd = moment(event.end.dateTime);
@@ -60,13 +49,13 @@ const splitEventsByDay = (events, dateArray) => {
 
       const payloadStartTime = {
         date: eventStart,
-        hours: eventStart.get("hours"),
-        minutes: eventStart.get("minutes")
+        hours: eventStart.get('hours'),
+        minutes: eventStart.get('minutes'),
       };
       const payloadEndTime = {
         date: eventEnd,
-        hours: eventEnd.get("hours"),
-        minutes: eventEnd.get("minutes")
+        hours: eventEnd.get('hours'),
+        minutes: eventEnd.get('minutes'),
       };
 
       if (fullDayEvent) {
@@ -81,82 +70,76 @@ const splitEventsByDay = (events, dateArray) => {
             event.location,
             false,
             false,
-            true,
+            true
           );
           eventsPayloadArray[i].push(eventPayload);
         }
-      } else {
+      } else if (
         // Event starts and ends on that day
-        if (
-          eventStart.isSameOrAfter(dayStart) &&
-          eventEnd.isSameOrBefore(dayEnd)
-        ) {
-          const eventPayload = createEventPayload(
-            event.summary,
-            payloadStartTime,
-            payloadEndTime,
-            event.location,
-            true,
-            true,
-            false,
-          );
-          eventsPayloadArray[i].push(eventPayload);
-          // Event spans a few days / whole day
-        } else if (
-          eventStart.isSameOrBefore(dayStart) &&
-          eventEnd.isSameOrAfter(dayEnd)
-        ) {
-          const eventPayload = createEventPayload(
-            event.summary,
-            payloadStartTime,
-            payloadEndTime,
-            event.location,
-            false,
-            false,
-            true,
-          );
-          eventsPayloadArray[i].push(eventPayload);
-          // Event ends on that day
-        } else if (
-          eventStart.isBefore(dayStart) &&
-          (eventEnd.isAfter(dayStart) && eventEnd.isSameOrBefore(dayEnd))
-        ) {
-          const eventPayload = createEventPayload(
-            event.summary,
-            payloadStartTime,
-            payloadEndTime,
-            event.location,
-            false,
-            true,
-            false,
-          );
-          eventsPayloadArray[i].push(eventPayload);
-          // Event starts on that day
-        } else if (
-          eventStart.isAfter(dayStart) &&
-          eventStart.isSameOrBefore(dayEnd) &&
-          eventEnd.isAfter(dayEnd)
-        ) {
-          const eventPayload = createEventPayload(
-            event.summary,
-            payloadStartTime,
-            payloadEndTime,
-            event.location,
-            true,
-            false,
-            false,
-          );
-          eventsPayloadArray[i].push(eventPayload);
-        }
+        eventStart.isSameOrAfter(dayStart) &&
+        eventEnd.isSameOrBefore(dayEnd)
+      ) {
+        const eventPayload = createEventPayload(
+          event.summary,
+          payloadStartTime,
+          payloadEndTime,
+          event.location,
+          true,
+          true,
+          false
+        );
+        eventsPayloadArray[i].push(eventPayload);
+        // Event spans a few days / whole day
+      } else if (
+        eventStart.isSameOrBefore(dayStart) &&
+        eventEnd.isSameOrAfter(dayEnd)
+      ) {
+        const eventPayload = createEventPayload(
+          event.summary,
+          payloadStartTime,
+          payloadEndTime,
+          event.location,
+          false,
+          false,
+          true
+        );
+        eventsPayloadArray[i].push(eventPayload);
+        // Event ends on that day
+      } else if (
+        eventStart.isBefore(dayStart) &&
+        (eventEnd.isAfter(dayStart) && eventEnd.isSameOrBefore(dayEnd))
+      ) {
+        const eventPayload = createEventPayload(
+          event.summary,
+          payloadStartTime,
+          payloadEndTime,
+          event.location,
+          false,
+          true,
+          false
+        );
+        eventsPayloadArray[i].push(eventPayload);
+        // Event starts on that day
+      } else if (
+        eventStart.isAfter(dayStart) &&
+        eventStart.isSameOrBefore(dayEnd) &&
+        eventEnd.isAfter(dayEnd)
+      ) {
+        const eventPayload = createEventPayload(
+          event.summary,
+          payloadStartTime,
+          payloadEndTime,
+          event.location,
+          true,
+          false,
+          false
+        );
+        eventsPayloadArray[i].push(eventPayload);
       }
     }
   });
   return eventsPayloadArray;
 };
-
-// Full-day events have a .date field, non full-day events have a .dateTime field
-const isFullDayEvent = event =>
-  event.start.date != undefined && event.end.date != undefined;
 
 // Creates an array of dates like [today, tomorrow, day after, ... 1 week later]
 const createDateArray = () => {
@@ -170,49 +153,31 @@ const createDateArray = () => {
   return dateArray;
 };
 
-const createEventPayload = (
-  summary,
-  startTime,
-  endTime,
-  location,
-  displayStartTime,
-  displayEndTime,
-  isWholeDayEvent,
-) => ({
-  summary,
-  startTime,
-  endTime,
-  location,
-  displayStartTime,
-  displayEndTime,
-  isWholeDayEvent,
-});
-
 const sortEventsByTime = (eventsPayloadArray, store, dateArray) => {
   const monthsArray = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec"
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
   ];
 
   // Initialize empty payload
-  const resultArray = Array.from({ length: 7 }, x => {});
+  const resultArray = Array.from({ length: 7 }, () => ({}));
 
   // For each day
   for (let i = 0; i < eventsPayloadArray.length; i++) {
     const dayArray = eventsPayloadArray[i];
 
     // If the day has at least 1 event
-    if (dayArray != []) {
+    if (dayArray !== []) {
       const wholeDayEvents = [];
       for (let j = 0; j < dayArray.length; j++) {
         // Remove and store events that are whole day
@@ -250,6 +215,32 @@ const sortEventsByTime = (eventsPayloadArray, store, dateArray) => {
     }
     store.dispatch(getCalendarEventsSuccess(resultArray));
   }
+};
+
+const eventsFeedApiCall = (token, store) => {
+  const today = moment();
+  const nextWeek = moment(today).add(7, 'days'); // Add 1 week
+  const timeMin = today.toISOString();
+  const timeMax = nextWeek.toISOString();
+
+  // Format payload for API call
+  const headers = new Headers({
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json',
+  });
+  const queryParams = { headers };
+
+  // Make the actual call
+  fetch(
+    `https://www.googleapis.com/calendar/v3/calendars/primary/events?timeMin=${timeMin}&timeMax=${timeMax}`,
+    queryParams
+  )
+    .then(response => response.json()) // Transform the data into json
+    .then(events => {
+      const dateArray = createDateArray();
+      const eventsPayloadArray = splitEventsByDay(events, dateArray);
+      sortEventsByTime(eventsPayloadArray, store, dateArray);
+    });
 };
 
 export default eventsFeedApiCall;

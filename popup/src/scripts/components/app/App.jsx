@@ -9,16 +9,14 @@ class App extends Component {
   render() {
     return (
       <div>
-        Click Count: {this.props.count}
+        <a href="https://www.github.com/zameschua/focal">View this project on Github!</a>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log("stateInPopup: " + state);
   return {
-    count: state.visibilityFilter
   };
 };
 

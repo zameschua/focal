@@ -1,16 +1,16 @@
 const INITIAL_STATE = {
   wallpaperQueue: [],
-  nextWallpaper: ""
+  nextWallpaper: '',
 };
 
 const wallpapersReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case "PRELOAD_WALLPAPER_SUCCESS":
+    case 'PRELOAD_WALLPAPER_SUCCESS':
       // Put pre-loaded wallpaper as next wallpaper on first load
       if (state.nextWallpaper === '' || state.nextWallpaper === undefined) {
         return {
           wallpaperQueue: [...state.wallpaperQueue],
-          nextWallpaper: action.payload
+          nextWallpaper: action.payload,
         };
       }
       return {
@@ -19,10 +19,10 @@ const wallpapersReducer = (state = INITIAL_STATE, action) => {
       };
 
     // Dequeue the last wallpaper and make it the next wallpaper to load
-    case "CHANGE_WALLPAPER":
+    case 'CHANGE_WALLPAPER':
       return {
         wallpaperQueue: state.wallpaperQueue.slice(1),
-        nextWallpaper: state.wallpaperQueue[0]
+        nextWallpaper: state.wallpaperQueue[0],
       };
     default:
       return state;

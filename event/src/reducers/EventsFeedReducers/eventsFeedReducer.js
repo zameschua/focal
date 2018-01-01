@@ -7,7 +7,7 @@ const INITIAL_STATE = {
 // Combine reducers for todoList
 function eventsFeedReducer(state = INITIAL_STATE, action) {
   return {
-    events: eventsReducer(state.events, action)
+    events: eventsReducer(state.events, action),
   };
 }
 
