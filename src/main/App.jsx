@@ -16,8 +16,7 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   showSidePanels() {
     this.setState({
@@ -58,13 +57,6 @@ class App extends Component {
         left: '-5vw',
       };
 
-      const rightPanelDefaultStyles = {
-        transition: `opacity ${transitionDuration}ms ease-in-out, right ${transitionDuration}ms ease-in-out`,
-        opacity: 0,
-        marginTop: '5%',
-        right: '-5vw',
-      };
-
       const leftPanelTransitionStyles = {
         entering: { opacity: 1, left: '0vw' },
         entered: { opacity: 1, left: '0vw' },
@@ -72,15 +64,11 @@ class App extends Component {
         exited: { opacity: 0, left: '-5vw' },
       };
 
-      const rightPanelTransitionStyles = {
-        entering: { opacity: 1, right: '0vw' },
-        entered: { opacity: 1, right: '0vw' },
-        exiting: { opacity: 0, right: '-5vw' },
-        exited: { opacity: 0, right: '-5vw' },
-      };
-
       const leftPanel = (
-        <Transition in={this.state.sidePanelsVisible} timeout={transitionDuration} >
+        <Transition
+          in={this.state.sidePanelsVisible}
+          timeout={transitionDuration}
+        >
           {state => (
             <div
               className="container"
@@ -99,21 +87,18 @@ class App extends Component {
         <div className="App container-fluid" style={{ padding: '0' }}>
           <div style={backgroundImageStyle}>
             <div className="row h-100">
-
               <div
                 className="col-3"
                 style={{ height: '100vh', paddingRight: '0' }}
                 onMouseEnter={this.showSidePanels.bind(this)}
-                onMouseLeave={this.hideSidePanels.bind(this)}
-              >
+                onMouseLeave={this.hideSidePanels.bind(this)}>
                 {leftPanel}
               </div>
 
               <div className="col-6 align-self-center">
                 <div className="text-center">
-                  <WelcomeCard userName={ this.props.userName }/>
+                  <WelcomeCard userName={this.props.userName} />
                 </div>
-
               </div>
             </div>
           </div>
@@ -124,7 +109,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   // Check if the state is ready
   if (state.appState) {
     return {
@@ -142,7 +127,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  null,
-)(App);
+export default connect(mapStateToProps, null)(App);

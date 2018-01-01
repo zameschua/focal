@@ -1,11 +1,12 @@
 {
   "extends": ["airbnb", "prettier"],
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "react"],
   "rules": {
     "linebreak-style": "off",
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "import/prefer-default-export": "off",
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "react/prop-types": 0
   },
   "env": {
     "browser": true
