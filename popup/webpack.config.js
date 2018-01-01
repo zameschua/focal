@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
 
   entry: [
-    './popup/src/scripts/index.js'
+    './popup/src/scripts/index.jsx'
   ],
 
   output: {

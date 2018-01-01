@@ -4,9 +4,9 @@
   "private": true,
   "description": "A Chrome extension that lets you view your upcoming Google Calendar events in the new tab page",
   "scripts": {
-    "test": ".\\node_modules\\.bin\\eslint event main",
-    "build": ".\\node_modules\\.bin\\eslint event main && gulp",
-    "fix": ".\\node_modules\\.bin\\eslint --fix event main"
+    "lint": ".\\node_modules\\.bin\\eslint event/src main/src content/src popup/src",
+    "build": "yarn lint && gulp",
+    "fix": ".\\node_modules\\.bin\\eslint --fix event main content popup"
   },
   "author": "Zames",
   "dependencies": {
