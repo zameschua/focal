@@ -9,7 +9,7 @@ const SearchBar = () => {
         onSubmit={e => {
           e.preventDefault()
           if (!input.value.trim()) {
-            return
+            return;
           }
           window.location.assign("https://www.google.com.sg/search?q=" + input.value)
         }}
@@ -20,7 +20,7 @@ const SearchBar = () => {
         	placeholder = "Search Google"
           autoFocus
           ref={node => {
-            input = node
+            input = node;
           }}
         />
       </form>

@@ -1,15 +1,15 @@
 {
   "manifest_version": 2,
-  "name": "Focal",
+  "name": "focal",
   "description":
-    "A Chrome extension to boost your productivity. Icon credits to Ethan Chew Yu Liang.",
+    "A Chrome extension that lets you view your upcoming Google Calendar events in the new tab page",
   "version": "0.0.0.3",
   "background": {
-    "scripts": ["event.js"],
+    "scripts": ["background.js"],
     "persistent": true
   },
   "browser_action": {
-    "default_title": "Focal"
+    "default_title": "focal"
   },
   "chrome_url_overrides": {
     "newtab": "main.html"
@@ -31,7 +31,7 @@
     "notifications"
   ],
   "icons": {
-    "128": "icon.png"
+    "128": "assets/icon.png"
   },
   "oauth2": {
     "client_id":
