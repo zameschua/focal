@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect }  from 'react-redux';
 import WelcomeMessage from '../components/WelcomeMessage';
-import Clock from '../components/Clock'
-import SearchBar from "../components/SearchBar"
+import Clock from '../components/Clock';
 
 class WelcomeCard extends Component {
   constructor() {
     super();
-    let now = new Date();
+    const now = new Date();
     this.state = {
       minutes: now.getHours(),
-      hours: now.getMinutes()
-    }
+      hours: now.getMinutes(),
+    };
   }
 
   componentDidMount() {
@@ -20,10 +17,10 @@ class WelcomeCard extends Component {
   }
 
   updateClock() {
-    let now = new Date();
+    const now = new Date();
     this.setState({
       hours: now.getHours(),
-      minutes: now.getMinutes()
+      minutes: now.getMinutes(),
     });
   }
 
@@ -35,9 +32,8 @@ class WelcomeCard extends Component {
   render() {
     return (
       <div>
-        <Clock hours={this.state.hours} minutes={this.state.minutes}/>
-  		  <WelcomeMessage userName={this.props.userName}/>
-        <SearchBar />
+        <Clock hours={this.state.hours} minutes={this.state.minutes} />
+        <WelcomeMessage userName={this.props.userName} />
       </div>
     );
   }

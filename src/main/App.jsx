@@ -5,7 +5,7 @@ import Transition from 'react-transition-group/Transition';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import WelcomeCard from './WelcomeCard/containers/WelcomeCard';
-import EventsFeed from './EventsFeed/containers/EventsFeed';
+import EventsFeed from './EventsFeed/EventsFeedContainer';
 import FirstSignIn from './FirstSignIn/FirstSignIn';
 
 class App extends Component {

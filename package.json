@@ -1,7 +1,7 @@
 {
   "name": "Focal",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
   "description": "A Chrome extension that lets you view your upcoming Google Calendar events in the new tab page",
   "scripts": {
     "watch": "webpack --watch",
